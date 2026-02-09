@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__*",
+      "WebSearch",
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(git add:*)",
+      "Bash(bun run:*)",
+      "Bash(bun add:*)",
+      "Bash(bun remove:*)"
+    ],
+    "ask": ["Bash(git push:*)", "Bash(git commit:*)"]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "context7",
+    "serena",
+    "chrome-devtools",
+    "next-devtools",
+    "kiri"
+  ],
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}
