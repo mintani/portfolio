@@ -1,30 +1,32 @@
 import Link from "next/link";
-import { ModeToggle } from "@/components/shared/mode-toggle/ModeToggle";
-import { fetchCurrentUser } from "@/gateways/user";
-import { AuthNavigation } from "./auth-navigation/AuthNavigation";
 
 export const Header = async () => {
-  const user = await fetchCurrentUser();
-
   return (
-    <header className="sticky top-0 z-50 bg-transparent backdrop-blur-md">
-      <div className="flex items-center justify-between px-6 py-6">
-        <div>
-          <h1 className="font-medium text-2xl">
-            <Link href="/">Title</Link>
-          </h1>
-        </div>
-        <div className="flex items-center gap-5">
-          <Link href="/link1" className="text-gray-400 text-sm">
-            Link1
-          </Link>
-          <Link href="/link2" className="text-gray-400 text-sm">
-            Link2
-          </Link>
-          <ModeToggle />
-          <AuthNavigation user={user} />
-        </div>
-      </div>
-    </header>
+    <nav className="absolute z-10 flex items-center justify-center gap-8 px-8 py-6 bg-transparent top-0 left-0 right-0">
+      <Link
+        href="/"
+        className="font-poppins relative text-[0.95rem] font-medium tracking-wide text-[#2f2f2f] after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#2f2f2f] after:transition-transform after:duration-300 hover:after:scale-x-100"
+      >
+        Home
+      </Link>
+      <Link
+        href="/about"
+        className="font-poppins relative text-[0.95rem] font-medium tracking-wide text-[#2f2f2f] after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#2f2f2f] after:transition-transform after:duration-300 hover:after:scale-x-100"
+      >
+        About
+      </Link>
+      <Link
+        href="/blog"
+        className="font-poppins relative text-[0.95rem] font-medium tracking-wide text-[#2f2f2f] after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#2f2f2f] after:transition-transform after:duration-300 hover:after:scale-x-100"
+      >
+        Blog
+      </Link>
+      <Link
+        href="/contact"
+        className="font-poppins relative text-[0.95rem] font-medium tracking-wide text-[#2f2f2f] after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#2f2f2f] after:transition-transform after:duration-300 hover:after:scale-x-100"
+      >
+        Contact
+      </Link>
+    </nav>
   );
 };
