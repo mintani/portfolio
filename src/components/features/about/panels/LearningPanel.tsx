@@ -24,7 +24,7 @@ export function LearningPanel({ compact = false }: { compact?: boolean }) {
     return () => cancelAnimationFrame(raf);
   }, []);
 
-  const items = compact ? LEARNING.slice(0, 3) : LEARNING;
+  const items = compact ? LEARNING.slice(0, 5) : LEARNING;
 
   return (
     <div className="flex flex-col gap-3">
