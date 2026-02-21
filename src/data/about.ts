@@ -101,18 +101,18 @@ export type LearningItem = {
 
 export const LEARNING: LearningItem[] = [
   {
-    name: "Rust",
-    pct: 35,
-    color: "bg-orange-400",
-    glowColor: "rgba(251,146,60,0.5)",
-    phase: "基礎習得中",
+    name: "TypeScript",
+    pct: 75,
+    color: "bg-blue-400",
+    glowColor: "rgba(59,130,246,0.5)",
+    phase: "まあまあ",
   },
   {
-    name: "Three.js / WebGL",
-    pct: 50,
-    color: "bg-purple-400",
+    name: " Python",
+    pct: 60,
+    color: "bg-yellow-400",
     glowColor: "rgba(192,132,252,0.5)",
-    phase: "実践投入済み",
+    phase: "ちょっとしたものなら",
   },
   {
     name: "Go",
@@ -122,18 +122,18 @@ export const LEARNING: LearningItem[] = [
     phase: "入門フェーズ",
   },
   {
-    name: "AI / LLM API 連携",
+    name: "React",
     pct: 70,
-    color: "bg-emerald-400",
-    glowColor: "rgba(52,211,153,0.5)",
-    phase: "本番運用中",
+    color: "bg-blue-400",
+    glowColor: "rgba(59,130,246,0.5)",
+    phase: "使える",
   },
   {
-    name: "WebAssembly",
-    pct: 20,
-    color: "bg-pink-400",
-    glowColor: "rgba(244,114,182,0.5)",
-    phase: "調査中",
+    name: "Tailwind CSS",
+    pct: 85,
+    color: "bg-cyan-400",
+    glowColor: "rgba(34,211,238,0.5)",
+    phase: "得意",
   },
 ];
 
