@@ -5,16 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 
 const SkillsPanel = dynamic(() =>
-  import("./panels/SkillsPanel").then((mod) => mod.SkillsPanel)
+  import("./_components/SkillsPanel").then((mod) => mod.SkillsPanel)
 );
 const CareerPanel = dynamic(() =>
-  import("./panels/CareerPanel").then((mod) => mod.CareerPanel)
+  import("./_components/CareerPanel").then((mod) => mod.CareerPanel)
 );
 const LearningPanel = dynamic(() =>
-  import("./panels/LearningPanel").then((mod) => mod.LearningPanel)
+  import("./_components/LearningPanel").then((mod) => mod.LearningPanel)
 );
 const SocialPanel = dynamic(() =>
-  import("./panels/SocialPanel").then((mod) => mod.SocialPanel)
+  import("./_components/SocialPanel").then((mod) => mod.SocialPanel)
 );
 
 // Reduced to 3 lines so the console card stays short (1 row height)

@@ -6,9 +6,7 @@ import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 const AboutSection = dynamic(() =>
-  import("@/components/features/about/AboutSection").then(
-    (mod) => mod.AboutSection
-  )
+  import("@/app/_components/AboutSection").then((mod) => mod.AboutSection)
 );
 
 const SECTIONS = ["hero-section", "about-section"];
