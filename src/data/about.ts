@@ -1,4 +1,3 @@
-import type { SvglComponentName } from "@ridemountainpig/svgl-react";
 import { XLight } from "@ridemountainpig/svgl-react";
 import { Github, Mail, Globe } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -145,10 +144,7 @@ export const LEARNING: LearningItem[] = [
 export type SocialItem = {
   label: string;
   href: string;
-  icon:
-    | LucideIcon
-    | ComponentType<{ size?: number; className?: string }>
-    | SvglComponentName;
+  icon: LucideIcon | ComponentType<{ size?: number; className?: string }>;
   hoverBorder: string;
   hoverText: string;
   hoverBg: string;
@@ -158,7 +154,7 @@ export type SocialItem = {
   desc: string;
 };
 
-export const SOCIALS: SocialItem[] = [
+export const SOCIALS = [
   {
     label: "GitHub",
     href: "https://github.com/mintani",
@@ -202,6 +198,6 @@ export const SOCIALS: SocialItem[] = [
     hoverBg: "hover:bg-amber-50/70",
     iconBg: "bg-amber-100/80",
     iconColor: "text-amber-600",
-    desc: "お仕事・コラボのご相談",
+    desc: "お仕事のご相談",
   },
-];
+] satisfies SocialItem[];

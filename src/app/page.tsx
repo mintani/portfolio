@@ -3,11 +3,7 @@
 import Image from "next/image";
 import { Github, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
-
-const AboutSection = dynamic(() =>
-  import("@/app/_components/AboutSection").then((mod) => mod.AboutSection)
-);
+import { AboutSection } from "@/app/_components/AboutSection";
 
 const SECTIONS = ["hero-section", "about-section"];
 
