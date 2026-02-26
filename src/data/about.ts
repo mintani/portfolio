@@ -1,5 +1,8 @@
-import { Github, Twitter, Mail, Globe } from "lucide-react";
+import type { SvglComponentName } from "@ridemountainpig/svgl-react";
+import { XLight } from "@ridemountainpig/svgl-react";
+import { Github, Mail, Globe } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
 
 // ─── Skills ──────────────────────────────────────────────────────────────────
 
@@ -142,12 +145,16 @@ export const LEARNING: LearningItem[] = [
 export type SocialItem = {
   label: string;
   href: string;
-  icon: LucideIcon;
+  icon:
+    | LucideIcon
+    | ComponentType<{ size?: number; className?: string }>
+    | SvglComponentName;
   hoverBorder: string;
   hoverText: string;
   hoverBg: string;
   iconBg: string;
   iconColor: string;
+  iconSize?: number;
   desc: string;
 };
 
@@ -165,13 +172,14 @@ export const SOCIALS: SocialItem[] = [
   },
   {
     label: "Twitter / X",
-    href: "https://twitter.com",
-    icon: Twitter,
+    href: "https://twitter.com/_mint76",
+    icon: XLight,
     hoverBorder: "hover:border-sky-400/60",
     hoverText: "hover:text-sky-700",
     hoverBg: "hover:bg-sky-50/70",
     iconBg: "bg-sky-100/80",
     iconColor: "text-sky-600",
+    iconSize: 24,
     desc: "近況・技術メモ",
   },
   {
@@ -187,7 +195,7 @@ export const SOCIALS: SocialItem[] = [
   },
   {
     label: "Email",
-    href: "mailto:example@example.com",
+    href: "mailto:mi.2005.sub@gmail.com",
     icon: Mail,
     hoverBorder: "hover:border-amber-400/60",
     hoverText: "hover:text-amber-700",
