@@ -2,21 +2,11 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 
-const SkillsPanel = dynamic(() =>
-  import("./_components/SkillsPanel").then((mod) => mod.SkillsPanel)
-);
-const CareerPanel = dynamic(() =>
-  import("./_components/CareerPanel").then((mod) => mod.CareerPanel)
-);
-const LearningPanel = dynamic(() =>
-  import("./_components/LearningPanel").then((mod) => mod.LearningPanel)
-);
-const SocialPanel = dynamic(() =>
-  import("./_components/SocialPanel").then((mod) => mod.SocialPanel)
-);
-
+import { SkillsPanel } from "./_components/SkillsPanel";
+import { CareerPanel } from "./_components/CareerPanel";
+import { LearningPanel } from "./_components/LearningPanel";
+import { SocialPanel } from "./_components/SocialPanel";
 // Reduced to 3 lines so the console card stays short (1 row height)
 const CONSOLE_LINES = [
   {
@@ -102,7 +92,7 @@ export function AboutSection() {
             className={`flex flex-col gap-1 mt-6 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
           >
             <span className="font-mono text-xs tracking-[0.25em] uppercase text-neutral-400">
-              {"// 自己紹介"}
+              {"&#47; 自己紹介"}
             </span>
             <div className="flex items-end gap-4">
               <span className="text-4xl sm:text-5xl font-bold font-poppins italic text-neutral-800">
@@ -180,7 +170,7 @@ export function AboutSection() {
             {/* ③ Social — lg: col 1-4, row 2  (compact: vertical list) */}
             <BentoCard className="lg:col-span-4" delay={120} inView={inView}>
               <div className="p-5 sm:p-6">
-                <CardLabel>// Social</CardLabel>
+                <CardLabel>&#47;&#47; Social</CardLabel>
                 <SocialPanel compact />
               </div>
             </BentoCard>
@@ -192,7 +182,7 @@ export function AboutSection() {
               inView={inView}
             >
               <div className="p-5 sm:p-6">
-                <CardLabel>// Career</CardLabel>
+                <CardLabel>&#47;&#47; Career</CardLabel>
                 <CareerPanel compact />
               </div>
             </BentoCard>
@@ -205,7 +195,7 @@ export function AboutSection() {
             >
               <div className="p-5 sm:p-6 flex flex-col gap-5 h-full">
                 <div>
-                  <CardLabel>// Learning</CardLabel>
+                  <CardLabel>&#47;&#47; Learning</CardLabel>
                   <LearningPanel compact />
                 </div>
               </div>
