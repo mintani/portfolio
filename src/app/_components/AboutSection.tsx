@@ -89,10 +89,8 @@ export function AboutSection() {
   return (
     <section
       id="about-section"
-      className="background-gradient w-full relative z-30 overflow-hidden flex flex-col items-center justify-center"
+      className="w-full relative z-30 overflow-hidden flex flex-col items-center justify-center"
     >
-      <div className="hero-dots absolute -z-10 inset-0 pointer-events-none" />
-
       <div
         ref={ref}
         className="container mx-auto w-full py-16 px-4 sm:px-6 lg:px-10 flex flex-col gap-10"
@@ -120,10 +118,10 @@ export function AboutSection() {
             <div className="flex flex-col sm:flex-row gap-6 h-full">
               {/* Avatar */}
               <div className="shrink-0">
-                <div className="relative w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-yellow-400/50 shadow-md">
+                <div className="relative w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-cyan-400 shadow-md">
                   <Image
-                    src="/3.png"
-                    alt="MinTani"
+                    src="/mint.png"
+                    alt="mintanaka"
                     fill
                     className="object-cover object-top"
                     sizes="80px"

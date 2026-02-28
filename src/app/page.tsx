@@ -70,13 +70,13 @@ export default function Home() {
           className="absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible"
           aria-hidden="true"
         >
-          <span className="flex-1 hero-outline-text align-right text-right text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-blue select-none">
+          <span className="flex-1 hero-outline-text align-right text-right text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-green select-none">
             Catch up
           </span>
-          <span className="flex-1 hero-outline-text align-left text-left text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-purple select-none">
+          <span className="flex-1 hero-outline-text align-left text-left text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-teal select-none">
             to the
           </span>
-          <span className="flex-1 hero-outline-text align-right text-right text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-pink select-none">
+          <span className="flex-1 hero-outline-text align-right text-right text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-blue select-none">
             future
           </span>
         </div>
@@ -95,7 +95,7 @@ export default function Home() {
             <span className="font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#585858] select-none">
               &ldquo;
             </span>
-            <span className="font-playwrite text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#EBBD05] px-1 select-none">
+            <span className="font-playwrite text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#01c7ca] px-1 select-none">
               stylish
             </span>
             <span className="font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#585858] select-none">
@@ -131,12 +131,11 @@ export default function Home() {
         {/* Character image */}
         <div className="absolute -right-30 sm:-right-50 md:-right-50 lg:-right-65 xl:-right-200 top-10 md:top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-170 xl:w-[1500px] max-h-dvh overflow-visible">
           <Image
-            src="/3.png"
-            alt="MinTani character"
+            src="/mint-trans.png"
+            alt="mint"
             width={1000}
-            height={1461}
-            className="object-cover drop-shadow-lg"
-            quality={100}
+            height={1000}
+            className="object-cover object-top"
           />
         </div>
 

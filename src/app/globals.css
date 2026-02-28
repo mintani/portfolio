@@ -117,21 +117,18 @@
 /* ===== Hero Page - Custom styles that Tailwind can't handle ===== */
 
 /* Gradient background */
-.background-gradient {
+.background-gradient { 
   background: linear-gradient(
     135deg,
-    #f5d5e0 0%,
-    #f0dce8 15%,
-    #eae0f0 30%,
-    #dfe5f5 50%,
-    #d5eaf8 70%,
-    #cdeefa 85%,
-    #c8f0fc 100%
+    #dedede 0%,
+    #c2dbc1 33%,
+    #a7d1d3 66%,
+    #dedede 100%
   );
 }
 
 /* Dot pattern overlay */
-.hero-dots {
+.hero-dots {  
   background-image: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.6) 1.5px,
@@ -150,16 +147,16 @@
   white-space: nowrap;
 }
 
+.stroke-green {
+  -webkit-text-stroke: 2px rgba(130, 253, 204, 0.5);
+}
+
+.stroke-teal {
+  -webkit-text-stroke: 2px rgba(140, 245, 248, 0.5);
+}
+
 .stroke-blue {
-  -webkit-text-stroke: 2px rgba(180, 210, 240, 0.45);
-}
-
-.stroke-purple {
-  -webkit-text-stroke: 2px rgba(200, 180, 220, 0.35);
-}
-
-.stroke-pink {
-  -webkit-text-stroke: 2px rgba(230, 180, 200, 0.35);
+  -webkit-text-stroke: 2px rgba(123, 178, 254, 0.5);
 }
 
 /* Panel fade-in animation */
