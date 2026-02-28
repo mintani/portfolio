@@ -162,7 +162,7 @@ export function AboutSection() {
             {/* ② Skills — lg: col 5-12, row 1 */}
             <BentoCard className="lg:col-span-8" delay={80} inView={inView}>
               <div className="p-5 sm:p-6">
-                <CardLabel>// Skills</CardLabel>
+                <CardLabel>&#47;&#47; Skills</CardLabel>
                 <SkillsPanel />
               </div>
             </BentoCard>
