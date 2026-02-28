@@ -92,7 +92,7 @@ export function AboutSection() {
             className={`flex flex-col gap-1 mt-6 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
           >
             <span className="font-mono text-xs tracking-[0.25em] uppercase text-neutral-400">
-              {"&#47; 自己紹介"}
+              &#47;&#47;自己紹介
             </span>
             <div className="flex items-end gap-4">
               <span className="text-4xl sm:text-5xl font-bold font-poppins italic text-neutral-800">

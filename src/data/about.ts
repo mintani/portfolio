@@ -1,8 +1,3 @@
-import { XLight } from "@ridemountainpig/svgl-react";
-import { Github, Mail, Globe } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import type { ComponentType } from "react";
-
 // ─── Skills ──────────────────────────────────────────────────────────────────
 
 export type SkillGroup = {
@@ -138,66 +133,3 @@ export const LEARNING: LearningItem[] = [
     phase: "得意",
   },
 ];
-
-// ─── Socials ──────────────────────────────────────────────────────────────────
-
-export type SocialItem = {
-  label: string;
-  href: string;
-  icon: LucideIcon | ComponentType<{ size?: number; className?: string }>;
-  hoverBorder: string;
-  hoverText: string;
-  hoverBg: string;
-  iconBg: string;
-  iconColor: string;
-  iconSize?: number;
-  desc: string;
-};
-
-export const SOCIALS = [
-  {
-    label: "GitHub",
-    href: "https://github.com/mintani",
-    icon: Github,
-    hoverBorder: "hover:border-neutral-400/60",
-    hoverText: "hover:text-neutral-800",
-    hoverBg: "hover:bg-neutral-50/70",
-    iconBg: "bg-neutral-100/80",
-    iconColor: "text-neutral-700",
-    desc: "コードとプロジェクト",
-  },
-  {
-    label: "Twitter / X",
-    href: "https://twitter.com/_mint76",
-    icon: XLight,
-    hoverBorder: "hover:border-sky-400/60",
-    hoverText: "hover:text-sky-700",
-    hoverBg: "hover:bg-sky-50/70",
-    iconBg: "bg-sky-100/80",
-    iconColor: "text-sky-600",
-    iconSize: 24,
-    desc: "近況・技術メモ",
-  },
-  {
-    label: "Portfolio",
-    href: "#",
-    icon: Globe,
-    hoverBorder: "hover:border-violet-400/60",
-    hoverText: "hover:text-violet-700",
-    hoverBg: "hover:bg-violet-50/70",
-    iconBg: "bg-violet-100/80",
-    iconColor: "text-violet-600",
-    desc: "作品・プロジェクト一覧",
-  },
-  {
-    label: "Email",
-    href: "mailto:mi.2005.sub@gmail.com",
-    icon: Mail,
-    hoverBorder: "hover:border-amber-400/60",
-    hoverText: "hover:text-amber-700",
-    hoverBg: "hover:bg-amber-50/70",
-    iconBg: "bg-amber-100/80",
-    iconColor: "text-amber-600",
-    desc: "お仕事のご相談",
-  },
-] satisfies SocialItem[];
