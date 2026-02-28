@@ -1,55 +1,24 @@
 // ─── Skills ──────────────────────────────────────────────────────────────────
 
-export type SkillGroup = {
-  category: string;
-  color: string;
-  borderColor: string;
-  bgColor: string;
-  dotColor: string;
-  badgeHover: string;
-  items: string[];
+export type SkillItem = {
+  name: string;
+  category: "frontend" | "backend" | "infra" | "tools";
 };
 
-export const SKILLS: SkillGroup[] = [
-  {
-    category: "Frontend",
-    color: "text-sky-600",
-    borderColor: "border-sky-400/30",
-    bgColor: "bg-sky-400/8",
-    dotColor: "bg-sky-500",
-    badgeHover: "hover:bg-sky-50/80 hover:border-sky-400/60 hover:text-sky-700",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-  },
-  {
-    category: "Backend",
-    color: "text-emerald-600",
-    borderColor: "border-emerald-400/30",
-    bgColor: "bg-emerald-400/8",
-    dotColor: "bg-emerald-500",
-    badgeHover:
-      "hover:bg-emerald-50/80 hover:border-emerald-400/60 hover:text-emerald-700",
-    items: ["Hono", "PostgreSQL"],
-  },
-  {
-    category: "Infrastructure",
-    color: "text-violet-600",
-    borderColor: "border-violet-400/30",
-    bgColor: "bg-violet-400/8",
-    dotColor: "bg-violet-500",
-    badgeHover:
-      "hover:bg-violet-50/80 hover:border-violet-400/60 hover:text-violet-700",
-    items: ["AWS", "Proxmox", "Vercel", "Docker", "GitHub Actions"],
-  },
-  {
-    category: "Tools & Design",
-    color: "text-amber-600",
-    borderColor: "border-amber-400/30",
-    bgColor: "bg-amber-400/8",
-    dotColor: "bg-amber-500",
-    badgeHover:
-      "hover:bg-amber-50/80 hover:border-amber-400/60 hover:text-amber-700",
-    items: ["Git", "Figma"],
-  },
+export const SKILLS: SkillItem[] = [
+  { name: "React", category: "frontend" },
+  { name: "Next.js", category: "frontend" },
+  { name: "TypeScript", category: "frontend" },
+  { name: "Tailwind CSS", category: "frontend" },
+  { name: "Hono", category: "backend" },
+  { name: "PostgreSQL", category: "backend" },
+  { name: "AWS", category: "infra" },
+  { name: "Proxmox", category: "infra" },
+  { name: "Vercel", category: "infra" },
+  { name: "Docker", category: "infra" },
+  { name: "GitHub Actions", category: "infra" },
+  { name: "Git", category: "tools" },
+  { name: "Figma", category: "tools" },
 ];
 
 // ─── Career ───────────────────────────────────────────────────────────────────
@@ -65,71 +34,53 @@ export type CareerItem = {
 export const CAREER: CareerItem[] = [
   {
     year: "2026",
-    title: "仕事探し中-個人開発",
-    place: "大学生/個人開発者",
-    desc: "",
+    title: "仕事探し中 / 個人開発",
+    place: "大学生・個人開発者",
+    desc: "就活しながらもWebサービス開発を継続。お仕事・インターンのご連絡はXのDMかメールへ。",
     tags: ["個人開発", "フリーランス"],
   },
   {
     year: "2024",
-    title: "サポーターズ/ハッカソン出場",
-    place: "独学集中期",
-    desc: "技育CAMPハッカソンや技育博に出場して、チームで開発。",
+    title: "ハッカソン出場",
+    place: "サポーターズ / 技育CAMP",
+    desc: "技育CAMPハッカソン・技育博に複数回出場し、チーム開発を経験。企業賞・優秀賞を受賞。",
     tags: ["企業賞", "優秀賞"],
   },
   {
     year: "2017",
-    title: "非エンジニア期間",
+    title: "プログラミングと出会う",
     place: "中学生時代",
-    desc: "マイニングブームがあり中学生ながらその波に乗る。仮想通貨とプログラミングに興味を持ち出した。",
+    desc: "マイニングブームがきっかけで仮想通貨・Pythonに興味を持ち、独学でコードを書き始める。",
     tags: ["Crypto", "Python"],
   },
 ];
 
-// ─── Learning ─────────────────────────────────────────────────────────────────
+// ─── Projects ─────────────────────────────────────────────────────────────────
 
-export type LearningItem = {
+export type ProjectItem = {
   name: string;
-  pct: number;
-  color: string;
-  glowColor: string;
-  phase: string;
+  desc: string;
+  tags: string[];
+  url?: string;
 };
 
-export const LEARNING: LearningItem[] = [
+export const PROJECTS: ProjectItem[] = [
   {
-    name: "TypeScript",
-    pct: 75,
-    color: "bg-blue-400",
-    glowColor: "rgba(59,130,246,0.5)",
-    phase: "まあまあ",
+    name: "このポートフォリオ",
+    desc: "Next.js + Tailwind CSS で構築したポートフォリオサイト。GitHub Actionsで自動デプロイ。",
+    tags: ["Next.js", "TypeScript", "Vercel"],
+    url: "https://github.com/mintani",
   },
   {
-    name: " Python",
-    pct: 60,
-    color: "bg-yellow-400",
-    glowColor: "rgba(192,132,252,0.5)",
-    phase: "ちょっとしたものなら",
+    name: "ハッカソンプロジェクト",
+    desc: "技育CAMPで企業賞を受賞したチームプロダクト。Hono + PostgreSQL によるAPIサーバー。",
+    tags: ["Hono", "PostgreSQL", "Docker"],
+    url: "https://github.com/mintani",
   },
   {
-    name: "Go",
-    pct: 25,
-    color: "bg-cyan-400",
-    glowColor: "rgba(34,211,238,0.5)",
-    phase: "入門フェーズ",
-  },
-  {
-    name: "React",
-    pct: 70,
-    color: "bg-blue-400",
-    glowColor: "rgba(59,130,246,0.5)",
-    phase: "使える",
-  },
-  {
-    name: "Tailwind CSS",
-    pct: 85,
-    color: "bg-cyan-400",
-    glowColor: "rgba(34,211,238,0.5)",
-    phase: "得意",
+    name: "個人Webサービス",
+    desc: "個人で企画・設計・実装まで一人で行ったフルスタックWebアプリ。",
+    tags: ["React", "AWS", "TypeScript"],
+    url: "https://github.com/mintani",
   },
 ];

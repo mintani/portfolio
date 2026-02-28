@@ -2,22 +2,12 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { ExternalLink, Github, Mail, Globe } from "lucide-react";
+import { XLight } from "@ridemountainpig/svgl-react";
 
 import { SkillsPanel } from "./_components/SkillsPanel";
 import { CareerPanel } from "./_components/CareerPanel";
 import { LearningPanel } from "./_components/LearningPanel";
-import { SocialPanel } from "./_components/SocialPanel";
-// Reduced to 3 lines so the console card stays short (1 row height)
-const CONSOLE_LINES = [
-  {
-    cmd: "cat bio.txt",
-    out: "日本工業大学先進工学部データサイエンス学科(28卒)",
-  },
-  {
-    cmd: "cat description.txt",
-    out: "「いろいろやる」をモットーに活動しています!Web関連の開発をメインでやっています。現在仕事探し中です。お仕事・インターンのご連絡はXのDMかメール、各種就職サイトからお願いします。連絡お待ちしております!",
-  },
-];
 
 function useInView(threshold = 0.05) {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,7 +30,39 @@ function useInView(threshold = 0.05) {
   return { ref, inView };
 }
 
-function BentoCard({
+const SOCIALS = [
+  {
+    label: "GitHub",
+    sub: "@mintani",
+    href: "https://github.com/mintani",
+    icon: Github,
+    color: "hover:text-neutral-900",
+  },
+  {
+    label: "Twitter / X",
+    sub: "@_mint76",
+    href: "https://twitter.com/_mint76",
+    icon: XLight,
+    color: "hover:text-sky-600",
+  },
+  {
+    label: "Runa.dev",
+    sub: "作品一覧",
+    href: "https://runa.dev",
+    icon: Globe,
+    color: "hover:text-violet-600",
+  },
+  {
+    label: "Email",
+    sub: "mi.2005.sub@gmail.com",
+    href: "mailto:mi.2005.sub@gmail.com",
+    icon: Mail,
+    color: "hover:text-amber-600",
+  },
+];
+
+// Thin card wrapper — no uniform height enforcement
+function Panel({
   children,
   className = "",
   delay = 0,
@@ -53,21 +75,10 @@ function BentoCard({
 }) {
   return (
     <div
-      className={`rounded-2xl bg-white/30 backdrop-blur-xl border border-white/50 ring-1 ring-white/60 shadow-xl overflow-hidden transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
+      className={`rounded-2xl bg-white/30 backdrop-blur-xl border border-white/50 ring-1 ring-white/60 shadow-lg overflow-hidden transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}
       style={{ transitionDelay: inView ? `${delay}ms` : "0ms" }}
     >
       {children}
-    </div>
-  );
-}
-
-function CardLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-2 mb-3">
-      <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-neutral-400/70">
-        {children}
-      </span>
-      <div className="flex-1 h-px bg-neutral-200/60" />
     </div>
   );
 }
@@ -78,129 +89,140 @@ export function AboutSection() {
   return (
     <section
       id="about-section"
-      className="background-gradient w-full min-h-screen relative z-30 overflow-hidden flex flex-col items-center justify-center"
+      className="background-gradient w-full relative z-30 overflow-hidden flex flex-col items-center justify-center"
     >
-      <div className="container mx-auto">
-        <div className="hero-dots absolute -z-10 inset-0 pointer-events-none" />
+      <div className="hero-dots absolute -z-10 inset-0 pointer-events-none" />
 
+      <div
+        ref={ref}
+        className="container mx-auto w-full py-16 px-4 sm:px-6 lg:px-10 flex flex-col gap-10"
+      >
+        {/* ── Section header ── */}
         <div
-          ref={ref}
-          className="z-10 w-full py-10 px-2 sm:px-4 lg:ml-10 flex flex-col gap-6"
+          className={`flex flex-col gap-1 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
-          {/* ── Section title ── */}
-          <div
-            className={`flex flex-col gap-1 mt-6 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          <span className="font-mono text-xs tracking-[0.3em] uppercase text-neutral-400">
+            自己紹介
+          </span>
+          <h2 className="text-5xl sm:text-6xl font-bold font-poppins italic text-neutral-800 leading-none">
+            About me
+          </h2>
+        </div>
+
+        {/* ── Row 1: Profile (wide) + Socials ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Profile — takes 2 cols */}
+          <Panel
+            className="lg:col-span-2 p-7 sm:p-8"
+            delay={60}
+            inView={inView}
           >
-            <span className="font-mono text-xs tracking-[0.25em] uppercase text-neutral-400">
-              &#47;&#47;自己紹介
-            </span>
-            <div className="flex items-end gap-4">
-              <span className="text-4xl sm:text-5xl font-bold font-poppins italic text-neutral-800">
-                About&nbsp;me
-              </span>
-            </div>
-          </div>
-
-          {/* ──  Grid — 2 rows on lg ── */}
-          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-12 gap-3 auto-rows-auto  transition-all duration-700">
-            {/* ① Terminal — lg: col 1-4, row 1 (single row, compact) */}
-            <BentoCard className="lg:col-span-4" delay={0} inView={inView}>
-              {/* Window chrome */}
-              <div className="flex items-center gap-1.5 px-4 py-2.5 bg-white/35 border-b border-white/40">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
-                <span className="ml-2 font-mono text-[11px] text-neutral-500/60 tracking-wide">
-                  mintani@portfolio ~ zsh
-                </span>
-              </div>
-
-              <div className="flex items-center gap-4 px-5 py-4">
-                {/* Avatar */}
-                <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-yellow-400/60 ring-offset-2 ring-offset-white/10 shadow-md shrink-0">
+            <div className="flex flex-col sm:flex-row gap-6 h-full">
+              {/* Avatar */}
+              <div className="shrink-0">
+                <div className="relative w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-yellow-400/50 shadow-md">
                   <Image
                     src="/3.png"
                     alt="MinTani"
                     fill
                     className="object-cover object-top"
-                    sizes="48px"
+                    sizes="80px"
                   />
                 </div>
+              </div>
+
+              {/* Bio */}
+              <div className="flex flex-col gap-3 flex-1">
                 <div className="flex flex-col gap-0.5">
-                  <span className="font-poppins font-bold text-base text-neutral-800 leading-tight">
-                    MinTani(mintanaka)
+                  <span className="font-poppins font-bold text-xl text-neutral-900 leading-tight">
+                    MinTani
+                  </span>
+                  <span className="font-mono text-xs text-neutral-400 tracking-wide">
+                    mintanaka
+                  </span>
+                </div>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  「いろいろやる」をモットーに活動する学生エンジニア。
+                  日本工業大学先進工学部データサイエンス学科（28卒）。
+                  WebサービスやAPIの設計・実装が得意で、ハッカソンにも積極的に参加しています。
+                </p>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  現在インターン・お仕事を探しています。
+                  お気軽にXのDMやメールでご連絡ください。
+                </p>
+                <div className="mt-auto pt-1">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full bg-yellow-50 border border-yellow-200 text-yellow-700">
+                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+                    Open to work
                   </span>
                 </div>
               </div>
+            </div>
+          </Panel>
 
-              {/* Console lines */}
-              <div className="px-5 pb-4 font-mono text-xs flex flex-col gap-2 border-t border-white/30 pt-3">
-                {CONSOLE_LINES.map((line, i) => (
-                  <div key={i} className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-yellow-500 font-bold select-none text-sm">
-                        ❯
-                      </span>
-                      <span className="text-md text-neutral-700 font-semibold">
-                        {line.cmd}
-                      </span>
+          {/* Social links — 1 col */}
+          <Panel className="p-6" delay={120} inView={inView}>
+            <div className="flex flex-col gap-2 h-full justify-center">
+              {SOCIALS.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target={s.href.startsWith("mailto") ? undefined : "_blank"}
+                    rel="noopener noreferrer"
+                    className={`group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/60 transition-all duration-200 ${s.color}`}
+                  >
+                    <Icon
+                      size={16}
+                      width={16}
+                      height={16}
+                      className="shrink-0 text-neutral-500 group-hover:scale-110 transition-transform duration-200"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-neutral-800 leading-none">
+                        {s.label}
+                      </p>
+                      <p className="text-[11px] text-neutral-400 mt-0.5 truncate">
+                        {s.sub}
+                      </p>
                     </div>
-                    <div className="pl-4 text-md text-neutral-500 leading-relaxed">
-                      {line.out}
-                    </div>
-                  </div>
-                ))}
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="text-yellow-500 font-bold select-none text-sm">
-                    ❯
-                  </span>
-                  <span className="inline-block w-1.5 h-3.5 bg-yellow-400/80 animate-pulse" />
-                </div>
-              </div>
-            </BentoCard>
+                    <ExternalLink
+                      size={11}
+                      className="shrink-0 text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity"
+                    />
+                  </a>
+                );
+              })}
+            </div>
+          </Panel>
+        </div>
 
-            {/* ② Skills — lg: col 5-12, row 1 */}
-            <BentoCard className="lg:col-span-8" delay={80} inView={inView}>
-              <div className="p-5 sm:p-6">
-                <CardLabel>&#47;&#47; Skills</CardLabel>
-                <SkillsPanel />
-              </div>
-            </BentoCard>
+        {/* ── Row 2: Full-width skill grid ── */}
+        <Panel delay={180} inView={inView} className="p-7">
+          <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mb-5">
+            Skills
+          </h3>
+          <SkillsPanel />
+        </Panel>
 
-            {/* ③ Social — lg: col 1-4, row 2  (compact: vertical list) */}
-            <BentoCard className="lg:col-span-4" delay={120} inView={inView}>
-              <div className="p-5 sm:p-6">
-                <CardLabel>&#47;&#47; Social</CardLabel>
-                <SocialPanel compact />
-              </div>
-            </BentoCard>
+        {/* ── Row 3: Career (narrow) + Projects ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+          {/* Career — 2 cols */}
+          <Panel className="lg:col-span-2 p-7" delay={240} inView={inView}>
+            <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mb-5">
+              Career
+            </h3>
+            <CareerPanel />
+          </Panel>
 
-            {/* ④ Career — lg: col 5-8, row 2 */}
-            <BentoCard
-              className="lg:col-span-4 hidden lg:block"
-              delay={160}
-              inView={inView}
-            >
-              <div className="p-5 sm:p-6">
-                <CardLabel>&#47;&#47; Career</CardLabel>
-                <CareerPanel compact />
-              </div>
-            </BentoCard>
-
-            {/* ⑤ Learning (compact, 3 bars) + About bio — lg: col 9-12, row 2 */}
-            <BentoCard
-              className="lg:col-span-4 hidden lg:block"
-              delay={200}
-              inView={inView}
-            >
-              <div className="p-5 sm:p-6 flex flex-col gap-5 h-full">
-                <div>
-                  <CardLabel>&#47;&#47; Learning</CardLabel>
-                  <LearningPanel compact />
-                </div>
-              </div>
-            </BentoCard>
-          </div>
+          {/* Projects — 3 cols */}
+          <Panel className="lg:col-span-3 p-7" delay={300} inView={inView}>
+            <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mb-5">
+              Projects
+            </h3>
+            <LearningPanel />
+          </Panel>
         </div>
       </div>
     </section>
