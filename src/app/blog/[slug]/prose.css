@@ -1,0 +1,269 @@
+/* ===== Blog Article Prose Styles ===== */
+
+.blog-prose {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #404040;
+  max-width: 42rem;
+}
+
+/* Headings */
+.blog-prose h1 {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #171717;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.blog-prose h2 {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #262626;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  line-height: 1.4;
+}
+
+.blog-prose h3 {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.blog-prose h4 {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #404040;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraphs */
+.blog-prose p {
+  margin-bottom: 1.25rem;
+}
+
+/* Links */
+.blog-prose a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.blog-prose a:hover {
+  color: #1d4ed8;
+}
+
+/* Anchor headings */
+.blog-prose .anchor-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-prose .anchor-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Lists */
+.blog-prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.blog-prose li {
+  margin-bottom: 0.375rem;
+  line-height: 1.7;
+}
+
+.blog-prose li > ul,
+.blog-prose li > ol {
+  margin-top: 0.375rem;
+  margin-bottom: 0;
+}
+
+/* Blockquotes */
+.blog-prose blockquote {
+  border-left: 3px solid #d4d4d4;
+  padding-left: 1rem;
+  color: #6b6b6b;
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+
+/* Images */
+.blog-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+/* Inline code */
+.blog-prose :not(pre) > code {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 0.25rem;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.875em;
+  color: #d63384;
+  font-weight: 500;
+}
+
+/* Code blocks (rehype-pretty-code) */
+.blog-prose pre {
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.blog-prose pre > code {
+  display: block;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* rehype-pretty-code: title bar */
+.blog-prose [data-rehype-pretty-code-title] {
+  background: #1e1e2e;
+  color: #a6adc8;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem 0.75rem 0 0;
+  font-size: 0.8rem;
+  font-family: monospace;
+  margin-top: 1.5rem;
+}
+
+.blog-prose [data-rehype-pretty-code-title] + pre {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* rehype-pretty-code: line highlighting */
+.blog-prose [data-highlighted-line] {
+  background: rgba(255, 255, 255, 0.06);
+  margin: 0 -1.25rem;
+  padding: 0 1.25rem;
+  border-left: 2px solid #7c3aed;
+}
+
+/* rehype-pretty-code: line numbers */
+.blog-prose code[data-line-numbers] {
+  counter-reset: line;
+}
+
+.blog-prose code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: #6b7280;
+}
+
+/* Horizontal rules */
+.blog-prose hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 2rem 0;
+}
+
+/* Tables */
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.blog-prose th {
+  background: rgba(0, 0, 0, 0.03);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.blog-prose td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Strong / emphasis */
+.blog-prose strong {
+  font-weight: 600;
+  color: #262626;
+}
+
+.blog-prose em {
+  font-style: italic;
+}
+
+/* Task lists (GFM) */
+.blog-prose input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #7c3aed;
+}
+
+/* Footnotes */
+.blog-prose .footnotes {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .blog-prose {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+  }
+
+  .blog-prose h1 {
+    font-size: 1.5rem;
+  }
+
+  .blog-prose h2 {
+    font-size: 1.25rem;
+  }
+
+  .blog-prose h3 {
+    font-size: 1.1rem;
+  }
+
+  .blog-prose pre {
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+}
