@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink, Github, Mail, Globe } from "lucide-react";
 import { XLight } from "@ridemountainpig/svgl-react";
@@ -9,12 +10,18 @@ import { SkillsPanel } from "./_components/SkillsPanel";
 import { CareerPanel } from "./_components/CareerPanel";
 import { LearningPanel } from "./_components/LearningPanel";
 
+// ---------------------------------------------------------------------------
+// Hooks
+// ---------------------------------------------------------------------------
+
 function useInView(threshold = 0.05) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -27,10 +34,28 @@ function useInView(threshold = 0.05) {
     obs.observe(el);
     return () => obs.disconnect();
   }, [threshold]);
+
   return { ref, inView };
 }
 
-const SOCIALS = [
+// ---------------------------------------------------------------------------
+// Data — hoisted outside the component (rendering-hoist-jsx)
+// ---------------------------------------------------------------------------
+
+type SocialItem = {
+  readonly label: string;
+  readonly sub: string;
+  readonly href: string;
+  readonly icon: React.ComponentType<{
+    size?: number;
+    width?: number;
+    height?: number;
+    className?: string;
+  }>;
+  readonly color: string;
+};
+
+const SOCIALS: readonly SocialItem[] = [
   {
     label: "GitHub",
     sub: "@mintani",
@@ -42,7 +67,7 @@ const SOCIALS = [
     label: "Twitter / X",
     sub: "@_mint76",
     href: "https://twitter.com/_mint76",
-    icon: XLight,
+    icon: XLight as SocialItem["icon"],
     color: "hover:text-sky-600",
   },
   {
@@ -61,14 +86,17 @@ const SOCIALS = [
   },
 ];
 
-// Thin card wrapper — no uniform height enforcement
+// ---------------------------------------------------------------------------
+// Panel — thin card wrapper
+// ---------------------------------------------------------------------------
+
 function Panel({
   children,
   className = "",
   delay = 0,
   inView,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delay?: number;
   inView: boolean;
@@ -82,6 +110,47 @@ function Panel({
     </div>
   );
 }
+
+// ---------------------------------------------------------------------------
+// Social link item — extracted to avoid duplication in map
+// ---------------------------------------------------------------------------
+
+function SocialItem({ item }: { item: SocialItem }) {
+  const Icon = item.icon;
+  const isExternal = !item.href.startsWith("mailto");
+
+  return (
+    <a
+      href={item.href}
+      target={isExternal ? "_blank" : undefined}
+      rel="noopener noreferrer"
+      className={`group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/60 transition-all duration-200 ${item.color}`}
+    >
+      <Icon
+        size={16}
+        width={16}
+        height={16}
+        className="shrink-0 text-neutral-500 group-hover:scale-110 transition-transform duration-200"
+      />
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-semibold text-neutral-800 leading-none">
+          {item.label}
+        </p>
+        <p className="text-[11px] text-neutral-400 mt-0.5 truncate">
+          {item.sub}
+        </p>
+      </div>
+      <ExternalLink
+        size={11}
+        className="shrink-0 text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity"
+      />
+    </a>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Main component
+// ---------------------------------------------------------------------------
 
 export function AboutSection() {
   const { ref, inView } = useInView(0.05);
@@ -118,7 +187,7 @@ export function AboutSection() {
             <div className="flex flex-col sm:flex-row gap-6 h-full">
               {/* Avatar */}
               <div className="shrink-0">
-                <div className="relative w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-cyan-400 shadow-md">
+                <div className="relative size-20 rounded-2xl overflow-hidden ring-2 ring-cyan-400 shadow-md">
                   <Image
                     src="/mint.png"
                     alt="mintanaka"
@@ -150,7 +219,7 @@ export function AboutSection() {
                 </p>
                 <div className="mt-auto pt-1">
                   <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full bg-yellow-50 border border-yellow-200 text-yellow-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+                    <span className="size-1.5 rounded-full bg-yellow-400 animate-pulse" />
                     Open to work
                   </span>
                 </div>
@@ -161,37 +230,9 @@ export function AboutSection() {
           {/* Social links — 1 col */}
           <Panel className="p-6" delay={120} inView={inView}>
             <div className="flex flex-col gap-2 h-full justify-center">
-              {SOCIALS.map((s) => {
-                const Icon = s.icon;
-                return (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                    rel="noopener noreferrer"
-                    className={`group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/60 transition-all duration-200 ${s.color}`}
-                  >
-                    <Icon
-                      size={16}
-                      width={16}
-                      height={16}
-                      className="shrink-0 text-neutral-500 group-hover:scale-110 transition-transform duration-200"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-neutral-800 leading-none">
-                        {s.label}
-                      </p>
-                      <p className="text-[11px] text-neutral-400 mt-0.5 truncate">
-                        {s.sub}
-                      </p>
-                    </div>
-                    <ExternalLink
-                      size={11}
-                      className="shrink-0 text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity"
-                    />
-                  </a>
-                );
-              })}
+              {SOCIALS.map((s) => (
+                <SocialItem key={s.label} item={s} />
+              ))}
             </div>
           </Panel>
         </div>

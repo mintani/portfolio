@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import {
   ReactDark,
   Nextjs,
@@ -14,24 +15,35 @@ import {
 } from "@ridemountainpig/svgl-react";
 import { SKILLS } from "@/data/about";
 
-const SKILL_ICONS: Record<
-  string,
-  React.ComponentType<{ className?: string; width?: number; height?: number }>
-> = {
+// ---------------------------------------------------------------------------
+// Icon mapping — hoisted outside the component (rendering-hoist-jsx)
+// ---------------------------------------------------------------------------
+
+type SvglIcon = ComponentType<{
+  className?: string;
+  width?: number;
+  height?: number;
+}>;
+
+const SKILL_ICONS: Record<string, SvglIcon> = {
   React: ReactDark,
   "Next.js": Nextjs,
-  TypeScript: TypeScript,
+  TypeScript,
   "Tailwind CSS": TailwindCSS,
-  Hono: Hono,
-  PostgreSQL: PostgreSQL,
+  Hono,
+  PostgreSQL,
   AWS: AmazonWebServicesDark,
   Proxmox: Docker,
   Vercel: VercelDark,
-  Docker: Docker,
+  Docker,
   "GitHub Actions": GitHubDark,
-  Git: Git,
-  Figma: Figma,
+  Git,
+  Figma,
 };
+
+// ---------------------------------------------------------------------------
+// Component
+// ---------------------------------------------------------------------------
 
 export function SkillsPanel() {
   return (
@@ -43,9 +55,9 @@ export function SkillsPanel() {
             key={skill.name}
             className="flex items-center gap-2 px-3 py-2 rounded-xl bg-white/50 border border-white/70 shadow-sm backdrop-blur-sm hover:bg-white/70 hover:-translate-y-0.5 transition-all duration-200"
           >
-            {Icon && (
-              <Icon className="w-4 h-4 shrink-0" width={16} height={16} />
-            )}
+            {Icon ? (
+              <Icon className="size-4 shrink-0" width={16} height={16} />
+            ) : null}
             <span className="text-sm font-medium text-neutral-700 whitespace-nowrap">
               {skill.name}
             </span>

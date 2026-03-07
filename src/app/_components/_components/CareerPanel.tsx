@@ -21,12 +21,12 @@ export function CareerPanel({ compact = false }: { compact?: boolean }) {
               {item.title}
             </span>
             <span className="text-[11px] text-neutral-400">{item.place}</span>
-            {item.desc && !compact && (
+            {item.desc && !compact ? (
               <p className="text-xs text-neutral-500 leading-relaxed mt-1">
                 {item.desc}
               </p>
-            )}
-            {item.tags && item.tags.length > 0 && (
+            ) : null}
+            {item.tags.length > 0 ? (
               <div className="flex flex-wrap gap-1 mt-1.5">
                 {item.tags.map((tag) => (
                   <span
@@ -37,7 +37,7 @@ export function CareerPanel({ compact = false }: { compact?: boolean }) {
                   </span>
                 ))}
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       ))}

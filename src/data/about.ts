@@ -1,11 +1,13 @@
 // ─── Skills ──────────────────────────────────────────────────────────────────
 
+export type SkillCategory = "frontend" | "backend" | "infra" | "tools";
+
 export type SkillItem = {
-  name: string;
-  category: "frontend" | "backend" | "infra" | "tools";
+  readonly name: string;
+  readonly category: SkillCategory;
 };
 
-export const SKILLS: SkillItem[] = [
+export const SKILLS = [
   { name: "React", category: "frontend" },
   { name: "Next.js", category: "frontend" },
   { name: "TypeScript", category: "frontend" },
@@ -19,19 +21,19 @@ export const SKILLS: SkillItem[] = [
   { name: "GitHub Actions", category: "infra" },
   { name: "Git", category: "tools" },
   { name: "Figma", category: "tools" },
-];
+] as const satisfies readonly SkillItem[];
 
 // ─── Career ───────────────────────────────────────────────────────────────────
 
 export type CareerItem = {
-  year: string;
-  title: string;
-  place: string;
-  desc: string;
-  tags: string[];
+  readonly year: string;
+  readonly title: string;
+  readonly place: string;
+  readonly desc: string;
+  readonly tags: readonly string[];
 };
 
-export const CAREER: CareerItem[] = [
+export const CAREER = [
   {
     year: "2026",
     title: "仕事探し中 / 個人開発",
@@ -53,18 +55,18 @@ export const CAREER: CareerItem[] = [
     desc: "マイニングブームがきっかけで仮想通貨・Pythonに興味を持ち、独学でコードを書き始める。",
     tags: ["Crypto", "Python"],
   },
-];
+] as const satisfies readonly CareerItem[];
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
 
 export type ProjectItem = {
-  name: string;
-  desc: string;
-  tags: string[];
-  url?: string;
+  readonly name: string;
+  readonly desc: string;
+  readonly tags: readonly string[];
+  readonly url?: string;
 };
 
-export const PROJECTS: ProjectItem[] = [
+export const PROJECTS = [
   {
     name: "このポートフォリオ",
     desc: "Next.js + Tailwind CSS で構築したポートフォリオサイト。GitHub Actionsで自動デプロイ。",
@@ -83,4 +85,4 @@ export const PROJECTS: ProjectItem[] = [
     tags: ["React", "AWS", "TypeScript"],
     url: "https://github.com/mintani",
   },
-];
+] as const satisfies readonly ProjectItem[];
