@@ -117,7 +117,7 @@
 /* ===== Hero Page - Custom styles that Tailwind can't handle ===== */
 
 /* Gradient background */
-.background-gradient { 
+.background-gradient {
   background: linear-gradient(
     135deg,
     #dedede 0%,
@@ -128,7 +128,7 @@
 }
 
 /* Dot pattern overlay */
-.hero-dots {  
+.hero-dots {
   background-image: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.6) 1.5px,
