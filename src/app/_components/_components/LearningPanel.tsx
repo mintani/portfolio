@@ -1,18 +1,14 @@
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/data/about";
 
-// ---------------------------------------------------------------------------
-// Shared link attributes — hoisted to avoid per-render allocation
-// ---------------------------------------------------------------------------
+// ─── Shared link attributes ──────────────────────────────────────────────────
 
 const EXTERNAL_LINK_ATTRS = {
   target: "_blank" as const,
   rel: "noopener noreferrer",
 };
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
+// ─── Component ───────────────────────────────────────────────────────────────
 
 export function LearningPanel() {
   return (

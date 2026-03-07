@@ -10,9 +10,7 @@ import { SkillsPanel } from "./_components/SkillsPanel";
 import { CareerPanel } from "./_components/CareerPanel";
 import { LearningPanel } from "./_components/LearningPanel";
 
-// ---------------------------------------------------------------------------
-// Hooks
-// ---------------------------------------------------------------------------
+// ─── Hooks ───────────────────────────────────────────────────────────────────
 
 function useInView(threshold = 0.05) {
   const ref = useRef<HTMLDivElement>(null);
@@ -38,9 +36,7 @@ function useInView(threshold = 0.05) {
   return { ref, inView };
 }
 
-// ---------------------------------------------------------------------------
-// Data — hoisted outside the component (rendering-hoist-jsx)
-// ---------------------------------------------------------------------------
+// ─── Data — hoisted outside the component (rendering-hoist-jsx) ─────────────
 
 type SocialItem = {
   readonly label: string;
@@ -86,9 +82,7 @@ const SOCIALS: readonly SocialItem[] = [
   },
 ];
 
-// ---------------------------------------------------------------------------
-// Panel — thin card wrapper
-// ---------------------------------------------------------------------------
+// ─── Panel ───────────────────────────────────────────────────────────────────
 
 function Panel({
   children,
@@ -111,9 +105,7 @@ function Panel({
   );
 }
 
-// ---------------------------------------------------------------------------
-// Social link item — extracted to avoid duplication in map
-// ---------------------------------------------------------------------------
+// ─── Social link item ────────────────────────────────────────────────────────
 
 function SocialItem({ item }: { item: SocialItem }) {
   const Icon = item.icon;
@@ -148,9 +140,7 @@ function SocialItem({ item }: { item: SocialItem }) {
   );
 }
 
-// ---------------------------------------------------------------------------
-// Main component
-// ---------------------------------------------------------------------------
+// ─── Main component ─────────────────────────────────────────────────────────
 
 export function AboutSection() {
   const { ref, inView } = useInView(0.05);

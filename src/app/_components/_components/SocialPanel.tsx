@@ -2,9 +2,7 @@ import type { ComponentType, SVGProps } from "react";
 import { ExternalLink, Github, Mail, Globe } from "lucide-react";
 import { XLight } from "@ridemountainpig/svgl-react";
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
+// ─── Types ───────────────────────────────────────────────────────────────────
 
 type ColorScheme = {
   border: string;
@@ -22,9 +20,7 @@ type SocialLink = {
   color: ColorScheme;
 };
 
-// ---------------------------------------------------------------------------
-// Data — hoisted outside the component (rendering-hoist-jsx)
-// ---------------------------------------------------------------------------
+// ─── Data — hoisted outside the component (rendering-hoist-jsx) ─────────────
 
 const SOCIAL_LINKS: readonly SocialLink[] = [
   {
@@ -81,18 +77,14 @@ const SOCIAL_LINKS: readonly SocialLink[] = [
   },
 ] as const;
 
-// ---------------------------------------------------------------------------
-// Shared link attributes — hoisted to avoid per-render allocation
-// ---------------------------------------------------------------------------
+// ─── Shared link attributes ──────────────────────────────────────────────────
 
 const EXTERNAL_LINK_ATTRS = {
   target: "_blank" as const,
   rel: "noopener noreferrer",
 };
 
-// ---------------------------------------------------------------------------
-// Sub-component: a single social link
-// ---------------------------------------------------------------------------
+// ─── Sub-component ───────────────────────────────────────────────────────────
 
 function SocialLinkItem({
   link,
@@ -155,9 +147,7 @@ function SocialLinkItem({
   );
 }
 
-// ---------------------------------------------------------------------------
-// Main component
-// ---------------------------------------------------------------------------
+// ─── Main component ─────────────────────────────────────────────────────────
 
 export function SocialPanel({ compact = false }: { compact?: boolean }) {
   if (compact) {

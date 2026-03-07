@@ -15,9 +15,7 @@ import {
 } from "@ridemountainpig/svgl-react";
 import { SKILLS } from "@/data/about";
 
-// ---------------------------------------------------------------------------
-// Icon mapping — hoisted outside the component (rendering-hoist-jsx)
-// ---------------------------------------------------------------------------
+// ─── Icon mapping ────────────────────────────────────────────────────────────
 
 type SvglIcon = ComponentType<{
   className?: string;
@@ -41,9 +39,7 @@ const SKILL_ICONS: Record<string, SvglIcon> = {
   Figma,
 };
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
+// ─── Component ───────────────────────────────────────────────────────────────
 
 export function SkillsPanel() {
   return (
