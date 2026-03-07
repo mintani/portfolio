@@ -2,7 +2,7 @@ import type { BlogArticle } from "@/lib/github-blog";
 import type { Heading } from "mdast";
 import type { Metadata } from "next";
 import rehypeAutoLinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
+import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
