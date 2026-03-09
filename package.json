@@ -55,6 +55,7 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "gray-matter": "^4.0.3",
+    "hono": "^4.11.4",
     "input-otp": "^1.4.2",
     "lefthook": "^1.11.14",
     "lucide-react": "^0.525.0",

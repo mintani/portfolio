@@ -3,6 +3,7 @@ import { BLOG_CONFIG } from "@/lib/blog-config";
 import { getArticlesList } from "@/lib/github-blog";
 import { ArticleCard } from "@/app/blog/_components/ArticleCard";
 import { BookOpen } from "lucide-react";
+import { getRequestOrigin } from "@/lib/request-origin";
 
 export const metadata: Metadata = {
   title: "Blog | MinTani Portfolio",
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
   const githubToken = process.env.GITHUB_TOKEN;
+  const apiBaseUrl = await getRequestOrigin();
 
   const articles = githubToken
     ? await getArticlesList({
@@ -18,6 +20,7 @@ export default async function BlogPage() {
         repo: BLOG_CONFIG.REPO,
         articlesDir: BLOG_CONFIG.ARTICLES_DIR,
         githubToken,
+        baseUrl: apiBaseUrl,
       })
     : [];
 

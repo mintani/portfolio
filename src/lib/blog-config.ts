@@ -5,5 +5,4 @@ export const BLOG_CONFIG = {
   SITE_URL: "https://mintani.runa.dev",
   SITE_TITLE: "MinTani Blog",
   SITE_DESCRIPTION: "Tech blog by MinTani",
-  API_BASE_URL: process.env.BLOG_API_BASE_URL ?? "http://localhost:8000",
 } as const;

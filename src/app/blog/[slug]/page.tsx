@@ -5,6 +5,7 @@ import { getArticle } from "@/lib/github-blog";
 import { getPageMeta, markdownToHtml } from "@/lib/markdown";
 import { ArticleDetailHeader } from "@/app/blog/_components/ArticleDetailHeader";
 import { ArticleContent } from "@/app/blog/_components/ArticleContent";
+import { getRequestOrigin } from "@/lib/request-origin";
 import "./prose.css";
 
 type Props = {
@@ -15,6 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const githubToken = process.env.GITHUB_TOKEN;
   if (!githubToken) return { title: "Blog | MinTani Portfolio" };
+  const apiBaseUrl = await getRequestOrigin();
 
   try {
     const article = await getArticle({
@@ -23,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       slug,
       articlesDir: BLOG_CONFIG.ARTICLES_DIR,
       githubToken,
+      baseUrl: apiBaseUrl,
     });
     return getPageMeta(article);
   } catch {
@@ -33,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogDetailPage({ params }: Props) {
   const { slug } = await params;
   const githubToken = process.env.GITHUB_TOKEN;
+  const apiBaseUrl = await getRequestOrigin();
 
   if (!githubToken || slug.startsWith("_")) {
     notFound();
@@ -46,6 +50,7 @@ export default async function BlogDetailPage({ params }: Props) {
       slug,
       articlesDir: BLOG_CONFIG.ARTICLES_DIR,
       githubToken,
+      baseUrl: apiBaseUrl,
     });
   } catch {
     notFound();
