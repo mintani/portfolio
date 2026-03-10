@@ -1,10 +1,10 @@
 /* ===== Blog Article Prose Styles ===== */
 
 .blog-prose {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #404040;
   max-width: 42rem;
+  color: #585858;
+  font-size: 1rem;
+  line-height: 1.9;
 }
 
 /* Headings */
@@ -13,7 +13,7 @@
   font-size: 1.875rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #171717;
+  color: #2f2f2f;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.3;
@@ -24,11 +24,11 @@
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: #262626;
+  color: #2f2f2f;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(88, 88, 88, 0.14);
   line-height: 1.4;
 }
 
@@ -36,7 +36,7 @@
   font-family: var(--font-poppins), "Poppins", sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #333;
+  color: #2f2f2f;
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
   line-height: 1.4;
@@ -46,7 +46,7 @@
   font-family: var(--font-poppins), "Poppins", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #404040;
+  color: #2f2f2f;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -58,14 +58,15 @@
 
 /* Links */
 .blog-prose a {
-  color: #2563eb;
+  color: #01aeb1;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
   transition: color 0.2s ease;
 }
 
 .blog-prose a:hover {
-  color: #1d4ed8;
+  color: #01888b;
 }
 
 /* Anchor headings */
@@ -105,10 +106,11 @@
 
 /* Blockquotes */
 .blog-prose blockquote {
-  border-left: 3px solid #d4d4d4;
-  padding-left: 1rem;
-  color: #6b6b6b;
-  font-style: italic;
+  border-left: 3px solid rgba(1, 199, 202, 0.45);
+  border-radius: 0 1rem 1rem 0;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 1rem 1.25rem;
+  color: #585858;
   margin: 1.5rem 0;
 }
 
@@ -116,29 +118,32 @@
 .blog-prose img {
   max-width: 100%;
   height: auto;
-  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(47, 47, 47, 0.08);
   margin: 1.5rem 0;
 }
 
 /* Inline code */
 .blog-prose :not(pre) > code {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 0.25rem;
-  padding: 0.15rem 0.4rem;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 0.45rem;
+  padding: 0.15rem 0.45rem;
   font-size: 0.875em;
-  color: #d63384;
+  color: #2f2f2f;
   font-weight: 500;
 }
 
 /* Code blocks (rehype-pretty-code) */
 .blog-prose pre {
-  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 1rem;
   padding: 1rem 1.25rem;
   overflow-x: auto;
   margin: 1.5rem 0;
   font-size: 0.875rem;
   line-height: 1.7;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(47, 47, 47, 0.08);
 }
 
 .blog-prose pre > code {
@@ -171,7 +176,7 @@
   background: rgba(255, 255, 255, 0.06);
   margin: 0 -1.25rem;
   padding: 0 1.25rem;
-  border-left: 2px solid #7c3aed;
+  border-left: 2px solid #01c7ca;
 }
 
 /* rehype-pretty-code: line numbers */
@@ -186,13 +191,13 @@
   width: 1rem;
   margin-right: 1rem;
   text-align: right;
-  color: #6b7280;
+  color: #8b8b8b;
 }
 
 /* Horizontal rules */
 .blog-prose hr {
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(88, 88, 88, 0.14);
   margin: 2rem 0;
 }
 
@@ -202,25 +207,29 @@
   border-collapse: collapse;
   margin: 1.5rem 0;
   font-size: 0.9rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.42);
 }
 
 .blog-prose th {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.65);
   font-weight: 600;
   text-align: left;
   padding: 0.625rem 0.75rem;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(88, 88, 88, 0.14);
+  color: #2f2f2f;
 }
 
 .blog-prose td {
   padding: 0.625rem 0.75rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(88, 88, 88, 0.1);
 }
 
 /* Strong / emphasis */
 .blog-prose strong {
   font-weight: 600;
-  color: #262626;
+  color: #2f2f2f;
 }
 
 .blog-prose em {
@@ -230,14 +239,14 @@
 /* Task lists (GFM) */
 .blog-prose input[type="checkbox"] {
   margin-right: 0.5rem;
-  accent-color: #7c3aed;
+  accent-color: #01c7ca;
 }
 
 /* Footnotes */
 .blog-prose .footnotes {
   font-size: 0.875rem;
-  color: #6b6b6b;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  color: #585858;
+  border-top: 1px solid rgba(88, 88, 88, 0.14);
   margin-top: 3rem;
   padding-top: 1.5rem;
 }

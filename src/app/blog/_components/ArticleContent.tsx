@@ -11,11 +11,10 @@ export const ArticleContent = ({ htmlContent, toc }: ArticleContentProps) => {
 
   return (
     <>
-      {/* Desktop layout with TOC sidebar */}
       <div className="hidden lg:block">
         <div className="relative mx-auto max-w-5xl">
-          <div className="flex gap-10">
-            <main className="min-w-0 flex-1">
+          <div className="grid grid-cols-[minmax(0,1fr)_14rem] gap-10">
+            <main className="min-w-0">
               <div
                 className="blog-prose"
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
@@ -30,7 +29,6 @@ export const ArticleContent = ({ htmlContent, toc }: ArticleContentProps) => {
         </div>
       </div>
 
-      {/* Mobile layout */}
       <main className="mx-auto max-w-2xl lg:hidden">
         <div
           className="blog-prose"

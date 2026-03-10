@@ -19,51 +19,49 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="group block rounded-2xl border border-white/20 bg-white/40 backdrop-blur-md p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-200/20 hover:bg-white/60"
+      className="group block rounded-[1.5rem] border border-white/55 bg-white/32 p-5 shadow-sm backdrop-blur-xl transition-all duration-200 hover:border-white/75 hover:bg-white/45 hover:shadow-md md:p-6"
     >
-      <div className="flex flex-col gap-3">
-        {/* Title */}
-        <h2 className="font-poppins text-lg font-semibold text-neutral-800 line-clamp-2 transition-colors duration-200 group-hover:text-neutral-950 md:text-xl">
-          {article.title}
-        </h2>
+      <div className="flex h-full flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-6">
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-500">
+            {formattedDate ? (
+              <span className="inline-flex items-center gap-1.5">
+                <Calendar size={12} />
+                {formattedDate}
+              </span>
+            ) : null}
+            {article.readingTime ? (
+              <span className="inline-flex items-center gap-1.5">
+                <Clock size={12} />
+                {article.readingTime}
+              </span>
+            ) : null}
+          </div>
 
-        {/* Description */}
-        {article.description ? (
-          <p className="text-sm leading-relaxed text-neutral-500 line-clamp-2">
-            {article.description}
-          </p>
-        ) : null}
+          <h2 className="mt-3 font-poppins text-xl font-semibold tracking-tight text-[#2f2f2f] transition-colors duration-200 group-hover:text-[#01aeb1] md:text-2xl">
+            {article.title}
+          </h2>
 
-        {/* Tags */}
+          {article.description ? (
+            <p className="mt-3 line-clamp-2 text-sm leading-7 text-[#585858] md:text-[15px]">
+              {article.description}
+            </p>
+          ) : null}
+        </div>
+
         {article.tags.length > 0 ? (
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2 md:max-w-[13rem] md:justify-end">
             {article.tags.map((tag) => (
               <Badge
                 key={tag}
                 variant="secondary"
-                className="rounded-full bg-neutral-100/80 px-2.5 py-0.5 text-xs font-medium text-neutral-600 transition-colors group-hover:bg-neutral-200/80"
+                className="rounded-full border border-white/65 bg-white/70 px-3 py-1 text-xs font-medium text-[#585858]"
               >
                 {tag}
               </Badge>
             ))}
           </div>
         ) : null}
-
-        {/* Meta */}
-        <div className="flex items-center gap-4 pt-1 text-xs text-neutral-400">
-          {formattedDate ? (
-            <span className="flex items-center gap-1">
-              <Calendar size={12} />
-              {formattedDate}
-            </span>
-          ) : null}
-          {article.readingTime ? (
-            <span className="flex items-center gap-1">
-              <Clock size={12} />
-              {article.readingTime}
-            </span>
-          ) : null}
-        </div>
       </div>
     </Link>
   );

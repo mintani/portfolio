@@ -17,61 +17,50 @@ export const ArticleDetailHeader = ({ article }: ArticleDetailHeaderProps) => {
     : "";
 
   return (
-    <header className="relative overflow-hidden border-b border-white/20 bg-white/30 backdrop-blur-lg">
-      {/* Decorative gradient accent */}
-      <div
-        className="absolute inset-0 opacity-40 pointer-events-none"
-        aria-hidden="true"
-      >
-        <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-linear-to-br from-purple-200 to-pink-200 blur-3xl" />
-        <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-linear-to-tr from-blue-200 to-sky-200 blur-3xl" />
-      </div>
-
-      <div className="container relative mx-auto max-w-4xl px-4 py-10 md:py-16">
-        {/* Back link */}
+    <header className="relative border-b border-white/45">
+      <div className="container relative mx-auto max-w-4xl px-4 py-8 md:px-6 md:py-10">
         <Link
           href="/blog"
-          className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-800"
+          className="mb-6 inline-flex items-center gap-1.5 text-sm text-[#585858] transition-colors hover:text-[#2f2f2f]"
         >
           <ArrowLeft size={14} />
-          ブログ一覧に戻る
+          記事一覧に戻る
         </Link>
 
-        {/* Title */}
-        <h1 className="font-poppins text-2xl font-bold tracking-tight text-neutral-900 md:text-3xl lg:text-4xl">
-          {article.title}
-        </h1>
+        <div className="space-y-5">
+          <h1 className="font-poppins text-3xl font-semibold tracking-tight text-[#2f2f2f] md:text-5xl">
+            {article.title}
+          </h1>
 
-        {/* Meta row */}
-        <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-neutral-500">
-          {formattedDate ? (
-            <span className="flex items-center gap-1.5">
-              <Calendar size={14} />
-              {formattedDate}
-            </span>
-          ) : null}
-          {article.readingTime ? (
-            <span className="flex items-center gap-1.5">
-              <Clock size={14} />
-              {article.readingTime}
-            </span>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#585858]">
+            {formattedDate ? (
+              <span className="inline-flex items-center gap-1.5">
+                <Calendar size={14} className="text-[#01aeb1]" />
+                {formattedDate}
+              </span>
+            ) : null}
+            {article.readingTime ? (
+              <span className="inline-flex items-center gap-1.5">
+                <Clock size={14} className="text-[#01aeb1]" />
+                {article.readingTime}
+              </span>
+            ) : null}
+          </div>
+
+          {article.tags.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {article.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  className="rounded-full border border-white/65 bg-white/70 px-3 py-1 text-xs font-medium text-[#585858]"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           ) : null}
         </div>
-
-        {/* Tags */}
-        {article.tags.length > 0 ? (
-          <div className="mt-4 flex flex-wrap gap-2">
-            {article.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="rounded-full bg-neutral-100/80 px-3 py-1 text-xs font-medium text-neutral-600"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        ) : null}
       </div>
     </header>
   );

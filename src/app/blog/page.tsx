@@ -7,7 +7,7 @@ import { getRequestOrigin } from "@/lib/request-origin";
 
 export const metadata: Metadata = {
   title: "Blog | MinTani Portfolio",
-  description: "技術的な学びや日々の気づきを記録しています。",
+  description: "気まぐれに書くブログです。Tech以外のことも書いていきます。",
 };
 
 export default async function BlogPage() {
@@ -25,38 +25,42 @@ export default async function BlogPage() {
     : [];
 
   return (
-    <div className="min-h-screen background-gradient relative">
-      {/* Dot pattern */}
+    <div className="min-h-screen background-gradient relative overflow-hidden">
       <div className="hero-dots absolute inset-0 z-0 pointer-events-none" />
 
-      <div className="container relative z-10 mx-auto max-w-4xl px-4 pb-20 pt-28 md:pt-32">
-        {/* Page header */}
-        <header className="mb-12 text-center md:mb-16">
-          <h1 className="font-poppins text-4xl font-bold tracking-tight text-neutral-800 md:text-5xl">
-            Blog
-          </h1>
-          <p className="mx-auto mt-3 max-w-lg text-base text-neutral-500">
-            技術的な学びや日々の気づきを記録しています。
-          </p>
-        </header>
-
-        {/* Article grid */}
+      <div className="container relative z-10 mx-auto max-w-4xl px-4 pb-20 pt-24 md:px-6 md:pt-28">
         {articles.length > 0 ? (
-          <div className="grid gap-5 sm:grid-cols-2">
-            {articles.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
-            ))}
-          </div>
+          <>
+            <header className="border-b border-white/45 pb-8 md:pb-10">
+              <div>
+                <h1 className="font-poppins text-4xl font-semibold tracking-tight text-[#2f2f2f] md:text-5xl">
+                  記事一覧
+                </h1>
+                <p className="mt-3 max-w-2xl text-base leading-8 text-[#585858]">
+                  技術メモや日々の記録を一覧で読めます。
+                </p>
+              </div>
+            </header>
+
+            <section className="mt-8 space-y-4 md:mt-10">
+              {articles.map((article) => (
+                <ArticleCard key={article.slug} article={article} />
+              ))}
+            </section>
+          </>
         ) : (
-          <div className="flex flex-col items-center justify-center gap-4 py-20">
-            <div className="rounded-full bg-white/50 p-4 backdrop-blur-sm">
-              <BookOpen size={32} className="text-neutral-400" />
+          <div className="mx-auto flex max-w-xl flex-col items-center justify-center rounded-[2rem] border border-white/55 bg-white/35 px-6 py-20 text-center shadow-lg backdrop-blur-xl">
+            <div className="rounded-full border border-white/60 bg-white/60 p-4 backdrop-blur-sm">
+              <BookOpen size={32} className="text-[#585858]" />
             </div>
-            <div className="text-center">
-              <h2 className="font-poppins text-lg font-semibold text-neutral-600">
+            <div className="mt-5 text-center">
+              <h1 className="font-poppins text-4xl font-bold tracking-tight text-[#2f2f2f] md:text-5xl">
+                Blog
+              </h1>
+              <h2 className="mt-4 font-poppins text-lg font-semibold text-[#2f2f2f]">
                 記事がまだありません
               </h2>
-              <p className="mt-1 text-sm text-neutral-400">
+              <p className="mt-2 text-sm leading-7 text-[#585858]">
                 最初の記事をお楽しみに！
               </p>
             </div>

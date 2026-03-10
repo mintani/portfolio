@@ -47,10 +47,10 @@ export const ArticleToc = ({ items }: ArticleTocProps) => {
 
   return (
     <nav className="sticky top-24" aria-label="Table of contents">
-      <h3 className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
+      <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-neutral-500">
         目次
       </h3>
-      <ul className="flex flex-col gap-1 border-l border-neutral-200">
+      <ul className="flex flex-col gap-1 border-l border-white/70">
         {items.map((item) => {
           const isActive = activeId === item.url;
           const depthClass =
@@ -63,8 +63,8 @@ export const ArticleToc = ({ items }: ArticleTocProps) => {
                 onClick={() => handleClick(item.url)}
                 className={`block w-full cursor-pointer text-left text-sm leading-relaxed transition-all duration-200 ${depthClass} ${
                   isActive
-                    ? "border-l-2 border-neutral-800 font-medium text-neutral-800 -ml-px"
-                    : "text-neutral-400 hover:text-neutral-600"
+                    ? "border-l-2 border-[#01c7ca] font-medium text-[#2f2f2f] -ml-px"
+                    : "text-[#585858] hover:text-[#2f2f2f]"
                 }`}
               >
                 {item.value}
