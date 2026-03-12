@@ -2,9 +2,9 @@
 
 .blog-prose {
   max-width: 42rem;
-  color: #585858;
-  font-size: 1rem;
-  line-height: 1.9;
+  color: #243128;
+  font-size: 1.02rem;
+  line-height: 1.95;
 }
 
 /* Headings */
@@ -13,7 +13,7 @@
   font-size: 1.875rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #2f2f2f;
+  color: #111713;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.3;
@@ -24,11 +24,11 @@
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: #2f2f2f;
+  color: #111713;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(88, 88, 88, 0.14);
+  border-bottom: 1px solid rgba(24, 63, 36, 0.14);
   line-height: 1.4;
 }
 
@@ -36,7 +36,7 @@
   font-family: var(--font-poppins), "Poppins", sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #2f2f2f;
+  color: #111713;
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
   line-height: 1.4;
@@ -46,7 +46,7 @@
   font-family: var(--font-poppins), "Poppins", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #2f2f2f;
+  color: #111713;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -58,7 +58,7 @@
 
 /* Links */
 .blog-prose a {
-  color: #01aeb1;
+  color: #275437;
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
@@ -66,7 +66,7 @@
 }
 
 .blog-prose a:hover {
-  color: #01888b;
+  color: #183f24;
 }
 
 /* Anchor headings */
@@ -106,44 +106,46 @@
 
 /* Blockquotes */
 .blog-prose blockquote {
-  border-left: 3px solid rgba(1, 199, 202, 0.45);
+  border-left: 3px solid rgba(53, 104, 71, 0.5);
   border-radius: 0 1rem 1rem 0;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.82);
   padding: 1rem 1.25rem;
-  color: #585858;
+  color: #314136;
   margin: 1.5rem 0;
+  box-shadow: 0 14px 28px rgba(17, 23, 19, 0.04);
 }
 
 /* Images */
 .blog-prose img {
   max-width: 100%;
   height: auto;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(24, 63, 36, 0.12);
   border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(47, 47, 47, 0.08);
+  box-shadow: 0 18px 38px rgba(17, 23, 19, 0.08);
   margin: 1.5rem 0;
 }
 
 /* Inline code */
 .blog-prose :not(pre) > code {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 0.45rem;
   padding: 0.15rem 0.45rem;
   font-size: 0.875em;
-  color: #2f2f2f;
+  color: #183f24;
   font-weight: 500;
+  border: 1px solid rgba(24, 63, 36, 0.08);
 }
 
 /* Code blocks (rehype-pretty-code) */
 .blog-prose pre {
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(24, 63, 36, 0.1);
   border-radius: 1rem;
   padding: 1rem 1.25rem;
   overflow-x: auto;
   margin: 1.5rem 0;
   font-size: 0.875rem;
   line-height: 1.7;
-  box-shadow: 0 10px 30px rgba(47, 47, 47, 0.08);
+  box-shadow: 0 18px 38px rgba(17, 23, 19, 0.08);
 }
 
 .blog-prose pre > code {
@@ -176,7 +178,7 @@
   background: rgba(255, 255, 255, 0.06);
   margin: 0 -1.25rem;
   padding: 0 1.25rem;
-  border-left: 2px solid #01c7ca;
+  border-left: 2px solid #356847;
 }
 
 /* rehype-pretty-code: line numbers */
@@ -191,13 +193,13 @@
   width: 1rem;
   margin-right: 1rem;
   text-align: right;
-  color: #8b8b8b;
+  color: #7b857d;
 }
 
 /* Horizontal rules */
 .blog-prose hr {
   border: none;
-  border-top: 1px solid rgba(88, 88, 88, 0.14);
+  border-top: 1px solid rgba(24, 63, 36, 0.14);
   margin: 2rem 0;
 }
 
@@ -209,27 +211,28 @@
   font-size: 0.9rem;
   overflow: hidden;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 18px 38px rgba(17, 23, 19, 0.05);
 }
 
 .blog-prose th {
-  background: rgba(255, 255, 255, 0.65);
+  background: #eef3ea;
   font-weight: 600;
   text-align: left;
   padding: 0.625rem 0.75rem;
-  border-bottom: 1px solid rgba(88, 88, 88, 0.14);
-  color: #2f2f2f;
+  border-bottom: 1px solid rgba(24, 63, 36, 0.12);
+  color: #111713;
 }
 
 .blog-prose td {
   padding: 0.625rem 0.75rem;
-  border-bottom: 1px solid rgba(88, 88, 88, 0.1);
+  border-bottom: 1px solid rgba(24, 63, 36, 0.08);
 }
 
 /* Strong / emphasis */
 .blog-prose strong {
   font-weight: 600;
-  color: #2f2f2f;
+  color: #111713;
 }
 
 .blog-prose em {
@@ -239,14 +242,14 @@
 /* Task lists (GFM) */
 .blog-prose input[type="checkbox"] {
   margin-right: 0.5rem;
-  accent-color: #01c7ca;
+  accent-color: #356847;
 }
 
 /* Footnotes */
 .blog-prose .footnotes {
   font-size: 0.875rem;
-  color: #585858;
-  border-top: 1px solid rgba(88, 88, 88, 0.14);
+  color: #4b5b51;
+  border-top: 1px solid rgba(24, 63, 36, 0.14);
   margin-top: 3rem;
   padding-top: 1.5rem;
 }

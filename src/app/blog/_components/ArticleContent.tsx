@@ -13,7 +13,7 @@ export const ArticleContent = ({ htmlContent, toc }: ArticleContentProps) => {
     <>
       <div className="hidden lg:block">
         <div className="relative mx-auto max-w-5xl">
-          <div className="grid grid-cols-[minmax(0,1fr)_14rem] gap-10">
+          <div className="grid grid-cols-[minmax(0,1fr)_15rem] gap-12">
             <main className="min-w-0">
               <div
                 className="blog-prose"

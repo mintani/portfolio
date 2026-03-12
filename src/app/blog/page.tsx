@@ -25,19 +25,23 @@ export default async function BlogPage() {
     : [];
 
   return (
-    <div className="min-h-screen background-gradient relative overflow-hidden">
-      <div className="hero-dots absolute inset-0 z-0 pointer-events-none" />
+    <div className="relative min-h-screen overflow-hidden bg-[#f4f6ef] text-[#142018]">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(24,63,36,0.05)_1px,transparent_1px)] bg-[size:32px_32px] opacity-40" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,rgba(28,78,44,0.08),transparent)]" />
 
       <div className="container relative z-10 mx-auto max-w-4xl px-4 pb-20 pt-24 md:px-6 md:pt-28">
         {articles.length > 0 ? (
           <>
-            <header className="border-b border-white/45 pb-8 md:pb-10">
-              <div>
-                <h1 className="font-poppins text-4xl font-semibold tracking-tight text-[#2f2f2f] md:text-5xl">
+            <header className="border-b border-[#183f24]/16 pb-8 md:pb-10">
+              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#356847]">
+                Journal
+              </p>
+              <div className="mt-4">
+                <h1 className="font-poppins text-4xl font-semibold tracking-tight text-[#111713] md:text-5xl">
                   記事一覧
                 </h1>
-                <p className="mt-3 max-w-2xl text-base leading-8 text-[#585858]">
-                  技術メモや日々の記録を一覧で読めます。
+                <p className="mt-3 max-w-2xl text-base leading-8 text-[#4b5b51]">
+                  技術メモや自分用のメモ
                 </p>
               </div>
             </header>
@@ -49,18 +53,18 @@ export default async function BlogPage() {
             </section>
           </>
         ) : (
-          <div className="mx-auto flex max-w-xl flex-col items-center justify-center rounded-[2rem] border border-white/55 bg-white/35 px-6 py-20 text-center shadow-lg backdrop-blur-xl">
-            <div className="rounded-full border border-white/60 bg-white/60 p-4 backdrop-blur-sm">
-              <BookOpen size={32} className="text-[#585858]" />
+          <div className="mx-auto flex max-w-xl flex-col items-center justify-center rounded-[2rem] border border-[#183f24]/14 bg-white px-6 py-20 text-center shadow-[0_24px_60px_rgba(17,23,19,0.06)]">
+            <div className="rounded-full border border-[#183f24]/12 bg-[#eef3ea] p-4">
+              <BookOpen size={32} className="text-[#356847]" />
             </div>
             <div className="mt-5 text-center">
-              <h1 className="font-poppins text-4xl font-bold tracking-tight text-[#2f2f2f] md:text-5xl">
+              <h1 className="font-poppins text-4xl font-bold tracking-tight text-[#111713] md:text-5xl">
                 Blog
               </h1>
-              <h2 className="mt-4 font-poppins text-lg font-semibold text-[#2f2f2f]">
+              <h2 className="mt-4 font-poppins text-lg font-semibold text-[#111713]">
                 記事がまだありません
               </h2>
-              <p className="mt-2 text-sm leading-7 text-[#585858]">
+              <p className="mt-2 text-sm leading-7 text-[#4b5b51]">
                 最初の記事をお楽しみに！
               </p>
             </div>

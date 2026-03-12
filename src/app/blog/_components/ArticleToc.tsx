@@ -46,11 +46,14 @@ export const ArticleToc = ({ items }: ArticleTocProps) => {
   if (items.length === 0) return null;
 
   return (
-    <nav className="sticky top-24" aria-label="Table of contents">
-      <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-neutral-500">
+    <nav
+      className="sticky top-24 rounded-2xl border border-[#183f24]/12 bg-white p-5 shadow-[0_18px_40px_rgba(17,23,19,0.05)]"
+      aria-label="Table of contents"
+    >
+      <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#607065]">
         目次
       </h3>
-      <ul className="flex flex-col gap-1 border-l border-white/70">
+      <ul className="flex flex-col gap-1 border-l border-[#183f24]/10">
         {items.map((item) => {
           const isActive = activeId === item.url;
           const depthClass =
@@ -63,8 +66,8 @@ export const ArticleToc = ({ items }: ArticleTocProps) => {
                 onClick={() => handleClick(item.url)}
                 className={`block w-full cursor-pointer text-left text-sm leading-relaxed transition-all duration-200 ${depthClass} ${
                   isActive
-                    ? "border-l-2 border-[#01c7ca] font-medium text-[#2f2f2f] -ml-px"
-                    : "text-[#585858] hover:text-[#2f2f2f]"
+                    ? "border-l-2 border-[#356847] -ml-px font-medium text-[#111713]"
+                    : "text-[#4b5b51] hover:text-[#111713]"
                 }`}
               >
                 {item.value}
