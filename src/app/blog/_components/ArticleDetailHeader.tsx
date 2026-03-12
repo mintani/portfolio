@@ -18,7 +18,7 @@ export const ArticleDetailHeader = ({ article }: ArticleDetailHeaderProps) => {
 
   return (
     <header className="relative border-b border-[#183f24]/12 bg-[#f4f6ef]">
-      <div className="container relative mx-auto max-w-4xl px-4 py-8 md:px-6 md:py-10">
+      <div className="container relative mx-auto max-w-4xl px-4 py-20 md:px-6 md:py-20">
         <Link
           href="/blog"
           className="mb-6 inline-flex items-center gap-1.5 text-sm text-[#4b5b51] transition-colors hover:text-[#111713]"
