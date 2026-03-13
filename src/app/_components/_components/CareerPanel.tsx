@@ -10,7 +10,7 @@ export function CareerPanel({ compact = false }: { compact?: boolean }) {
         >
           {/* Year pill */}
           <div className="shrink-0 mt-0.5">
-            <span className="inline-block font-mono text-[11px] font-bold tracking-widest text-yellow-600 bg-yellow-50 border border-yellow-200/80 px-2.5 py-1 rounded-md">
+            <span className="inline-block font-mono text-[11px] font-bold tracking-widest text-cyan-600 bg-cyan-50 border border-cyan-200/80 px-2.5 py-1 rounded-md">
               {item.year}
             </span>
           </div>

@@ -207,12 +207,6 @@ export function AboutSection() {
                   現在インターン・お仕事を探しています。
                   お気軽にXのDMやメールでご連絡ください。
                 </p>
-                <div className="mt-auto pt-1">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full bg-yellow-50 border border-yellow-200 text-yellow-700">
-                    <span className="size-1.5 rounded-full bg-yellow-400 animate-pulse" />
-                    Open to work
-                  </span>
-                </div>
               </div>
             </div>
           </Panel>
