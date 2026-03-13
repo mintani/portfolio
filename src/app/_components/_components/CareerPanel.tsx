@@ -26,18 +26,6 @@ export function CareerPanel({ compact = false }: { compact?: boolean }) {
                 {item.desc}
               </p>
             ) : null}
-            {item.tags.length > 0 ? (
-              <div className="flex flex-wrap gap-1 mt-1.5">
-                {item.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-neutral-100/80 border border-neutral-200/60 text-neutral-500"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            ) : null}
           </div>
         </div>
       ))}
