@@ -19,7 +19,7 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="group block rounded-[1.5rem] border border-[#183f24]/12 bg-white p-5 shadow-[0_18px_40px_rgba(17,23,19,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#356847]/35 hover:shadow-[0_24px_52px_rgba(17,23,19,0.08)] md:p-6"
+      className="group block rounded-3xl border border-[#183f24]/12 bg-white p-5 shadow-[0_18px_40px_rgba(17,23,19,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#356847]/35 hover:shadow-[0_24px_52px_rgba(17,23,19,0.08)] md:p-6"
     >
       <div className="flex h-full flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-6">
         <div className="min-w-0 flex-1">
@@ -50,7 +50,7 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
         </div>
 
         {article.tags.length > 0 ? (
-          <div className="flex flex-wrap gap-2 md:max-w-[13rem] md:justify-end">
+          <div className="flex flex-wrap gap-2 md:max-w-52 md:justify-end">
             {article.tags.map((tag) => (
               <Badge
                 key={tag}
