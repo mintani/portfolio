@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+//import Image from "next/image";
 import { Github, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AboutSection } from "@/app/_components/AboutSection";
@@ -129,7 +129,7 @@ export default function Home() {
         </div>
 
         {/* Character image */}
-        <div className="absolute -right-30 sm:-right-50 md:-right-50 lg:-right-65 xl:-right-200 top-10 md:top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-170 xl:w-[1500px] max-h-dvh overflow-visible">
+        {/* <div className="absolute -right-30 sm:-right-50 md:-right-50 lg:-right-65 xl:-right-200 top-10 md:top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-170 xl:w-[1500px] max-h-dvh overflow-visible">
           <Image
             src="/mint-trans.png"
             alt="mint"
@@ -137,7 +137,7 @@ export default function Home() {
             height={1000}
             className="object-cover object-top"
           />
-        </div>
+        </div> */}
 
         {/* Chevron Down */}
         <button
