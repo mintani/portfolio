@@ -148,7 +148,7 @@ export function AboutSection() {
   return (
     <section
       id="about-section"
-      className="w-full relative z-30 overflow-hidden flex flex-col items-center justify-center"
+      className="w-full relative z-30 overflow-hidden flex flex-col items-center justify-center bg-[#EBFFFC]"
     >
       <div
         ref={ref}

@@ -37,10 +37,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full background-gradient relative flex flex-col items-center overflow-x-hidden">
-      {/* Dot pattern */}
-      <div className="hero-dots absolute inset-0 z-0 pointer-events-none" />
-
+    <div className="w-full bg-[#ceefee] relative flex flex-col items-center overflow-x-hidden">
       {/* Page indicator */}
       <nav
         aria-label="Page indicator"
@@ -63,7 +60,7 @@ export default function Home() {
       {/* ── Hero ── */}
       <section
         id="hero-section"
-        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[700px] lg:min-h-[900px] xl:min-h-[1120px]"
+        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[700px]"
       >
         {/* Background outline text */}
         <div
