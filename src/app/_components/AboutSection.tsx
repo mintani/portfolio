@@ -3,12 +3,11 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, Github, Mail, Globe } from "lucide-react";
-import { XLight } from "@ridemountainpig/svgl-react";
 
 import { SkillsPanel } from "./_components/SkillsPanel";
 import { CareerPanel } from "./_components/CareerPanel";
 import { LearningPanel } from "./_components/LearningPanel";
+import { SocialPanel } from "./_components/SocialPanel";
 
 // ─── Hooks ───────────────────────────────────────────────────────────────────
 
@@ -36,52 +35,6 @@ function useInView(threshold = 0.05) {
   return { ref, inView };
 }
 
-// ─── Data — hoisted outside the component (rendering-hoist-jsx) ─────────────
-
-type SocialItem = {
-  readonly label: string;
-  readonly sub: string;
-  readonly href: string;
-  readonly icon: React.ComponentType<{
-    size?: number;
-    width?: number;
-    height?: number;
-    className?: string;
-  }>;
-  readonly color: string;
-};
-
-const SOCIALS: readonly SocialItem[] = [
-  {
-    label: "GitHub",
-    sub: "@mintani",
-    href: "https://github.com/mintani",
-    icon: Github,
-    color: "hover:text-neutral-900",
-  },
-  {
-    label: "Twitter / X",
-    sub: "@_mint76",
-    href: "https://twitter.com/_mint76",
-    icon: XLight as SocialItem["icon"],
-    color: "hover:text-sky-600",
-  },
-  {
-    label: "Runa.dev",
-    sub: "作品一覧",
-    href: "https://runa.dev",
-    icon: Globe,
-    color: "hover:text-violet-600",
-  },
-  {
-    label: "Email",
-    sub: "mi.2005.sub@gmail.com",
-    href: "mailto:mi.2005.sub@gmail.com",
-    icon: Mail,
-    color: "hover:text-amber-600",
-  },
-];
-
 // ─── Panel ───────────────────────────────────────────────────────────────────
 
 function Panel({
@@ -102,41 +55,6 @@ function Panel({
     >
       {children}
     </div>
-  );
-}
-
-// ─── Social link item ────────────────────────────────────────────────────────
-
-function SocialItem({ item }: { item: SocialItem }) {
-  const Icon = item.icon;
-  const isExternal = !item.href.startsWith("mailto");
-
-  return (
-    <a
-      href={item.href}
-      target={isExternal ? "_blank" : undefined}
-      rel="noopener noreferrer"
-      className={`group flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/60 transition-all duration-200 ${item.color}`}
-    >
-      <Icon
-        size={16}
-        width={16}
-        height={16}
-        className="shrink-0 text-neutral-500 group-hover:scale-110 transition-transform duration-200"
-      />
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-semibold text-neutral-800 leading-none">
-          {item.label}
-        </p>
-        <p className="text-[11px] text-neutral-400 mt-0.5 truncate">
-          {item.sub}
-        </p>
-      </div>
-      <ExternalLink
-        size={11}
-        className="shrink-0 text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity"
-      />
-    </a>
   );
 }
 
@@ -214,9 +132,7 @@ export function AboutSection() {
           {/* Social links — 1 col */}
           <Panel className="p-6" delay={120} inView={inView}>
             <div className="flex flex-col gap-2 h-full justify-center">
-              {SOCIALS.map((s) => (
-                <SocialItem key={s.label} item={s} />
-              ))}
+              <SocialPanel compact />
             </div>
           </Panel>
         </div>

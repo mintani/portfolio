@@ -1,6 +1,6 @@
 "use client";
 
-//import Image from "next/image";
+import Image from "next/image";
 import { Github, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AboutSection } from "@/app/_components/AboutSection";
@@ -60,7 +60,7 @@ export default function Home() {
       {/* ── Hero ── */}
       <section
         id="hero-section"
-        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[700px]"
+        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[1000px]"
       >
         {/* Background outline text */}
         <div
@@ -126,15 +126,15 @@ export default function Home() {
         </div>
 
         {/* Character image */}
-        {/* <div className="absolute -right-30 sm:-right-50 md:-right-50 lg:-right-65 xl:-right-200 top-10 md:top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-170 xl:w-[1500px] max-h-dvh overflow-visible">
+        <div className="absolute -right-30 sm:-right-50 md:-right-50 lg:-right-65 xl:-right-50 top-10 md:top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-150 xl:w-[1000px] max-h-dvh overflow-visible">
           <Image
-            src="/mint-trans.png"
+            src="/anime-2.png"
             alt="mint"
-            width={1000}
-            height={1000}
+            width={800}
+            height={800}
             className="object-cover object-top"
           />
-        </div> */}
+        </div>
 
         {/* Chevron Down */}
         <button

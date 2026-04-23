@@ -1,6 +1,6 @@
 import { CAREER } from "@/data/about";
 
-export function CareerPanel({ compact = false }: { compact?: boolean }) {
+export function CareerPanel() {
   return (
     <div className="flex flex-col divide-y divide-white/40">
       {CAREER.map((item) => (
@@ -21,7 +21,7 @@ export function CareerPanel({ compact = false }: { compact?: boolean }) {
               {item.title}
             </span>
             <span className="text-[11px] text-neutral-400">{item.place}</span>
-            {item.desc && !compact ? (
+            {item.desc ? (
               <p className="text-xs text-neutral-500 leading-relaxed mt-1">
                 {item.desc}
               </p>
