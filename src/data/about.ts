@@ -57,7 +57,52 @@ export const CAREER = [
   },
 ] as const satisfies readonly CareerItem[];
 
-// ─── Projects ─────────────────────────────────────────────────────────────────
+// ─── Works ────────────────────────────────────────────────────────────────────
+
+export type WorkItem = {
+  readonly type: "hackathon" | "project";
+  readonly title: string;
+  readonly desc: string;
+  readonly tags: readonly string[];
+  readonly url?: string;
+  readonly award?: string;
+  readonly colorFrom: string;
+  readonly colorTo: string;
+};
+
+export const WORKS: readonly WorkItem[] = [
+  {
+    type: "hackathon",
+    title: "技育CAMP ハッカソン",
+    desc: "チームでWebサービスを開発。HonoとPostgreSQLのAPIバックエンドを担当し企業賞を受賞。",
+    tags: ["Hono", "PostgreSQL", "Docker", "React"],
+    url: "https://github.com/mintani",
+    award: "企業賞",
+    colorFrom: "#06b6d4",
+    colorTo: "#0891b2",
+  },
+  {
+    type: "hackathon",
+    title: "技育博 出展",
+    desc: "個人プロジェクトを技育博に出展。Next.jsで作ったフルスタックWebアプリ。",
+    tags: ["Next.js", "TypeScript", "AWS"],
+    url: "https://github.com/mintani",
+    award: "優秀賞",
+    colorFrom: "#8b5cf6",
+    colorTo: "#6d28d9",
+  },
+  {
+    type: "project",
+    title: "このポートフォリオ",
+    desc: "Next.js + Tailwind CSSで作ったポートフォリオ。GitHub Actionsで自動デプロイ。",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+    url: "https://github.com/mintani",
+    colorFrom: "#10b981",
+    colorTo: "#059669",
+  },
+] as const satisfies readonly WorkItem[];
+
+// ─── Projects (About section compact view) ────────────────────────────────────
 
 export type ProjectItem = {
   readonly name: string;

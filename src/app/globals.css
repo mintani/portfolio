@@ -148,15 +148,15 @@
 }
 
 .stroke-green {
-  -webkit-text-stroke: 2px rgba(130, 253, 204, 0.5);
+  -webkit-text-stroke: 2px rgba(107, 236, 184, 0.6);
 }
 
 .stroke-teal {
-  -webkit-text-stroke: 2px rgba(140, 245, 248, 0.5);
+  -webkit-text-stroke: 2px rgba(126, 200, 202, 0.6);
 }
 
 .stroke-blue {
-  -webkit-text-stroke: 2px rgba(123, 178, 254, 0.5);
+  -webkit-text-stroke: 2px rgba(237, 167, 234, 0.6);
 }
 
 /* Panel fade-in animation */
