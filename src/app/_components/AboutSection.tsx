@@ -50,10 +50,21 @@ function Panel({
 }) {
   return (
     <div
-      className={`rounded-2xl bg-white/30 backdrop-blur-xl border border-white/50 ring-1 ring-white/60 shadow-lg overflow-hidden transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}
+      className={`rounded-2xl bg-white/50 backdrop-blur-xl border border-white/70 shadow-sm overflow-hidden transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}
       style={{ transitionDelay: inView ? `${delay}ms` : "0ms" }}
     >
       {children}
+    </div>
+  );
+}
+
+function PanelLabel({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex items-center gap-2 mb-6">
+      <div className="w-1 h-3.5 rounded-full bg-cyan-400/70" />
+      <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-neutral-400">
+        {children}
+      </span>
     </div>
   );
 }
@@ -70,13 +81,13 @@ export function AboutSection() {
     >
       <div
         ref={ref}
-        className="container mx-auto w-full py-16 px-4 sm:px-6 lg:px-10 flex flex-col gap-10"
+        className="container mx-auto w-full py-20 px-4 sm:px-6 lg:px-10 flex flex-col gap-8"
       >
         {/* ── Section header ── */}
         <div
-          className={`flex flex-col gap-1 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          className={`flex flex-col gap-1.5 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
         >
-          <span className="font-mono text-xs tracking-[0.3em] uppercase text-neutral-400">
+          <span className="font-mono text-xs tracking-[0.35em] uppercase text-cyan-500/70">
             自己紹介
           </span>
           <h2 className="text-5xl sm:text-6xl font-bold font-poppins italic text-neutral-800 leading-none">
@@ -93,9 +104,8 @@ export function AboutSection() {
             inView={inView}
           >
             <div className="flex flex-col sm:flex-row gap-6 h-full">
-              {/* Avatar */}
               <div className="shrink-0">
-                <div className="relative size-20 rounded-2xl overflow-hidden ring-2 ring-cyan-400 shadow-md">
+                <div className="relative size-20 rounded-2xl overflow-hidden ring-2 ring-cyan-300 shadow-md">
                   <Image
                     src="/mint.png"
                     alt="mintanaka"
@@ -105,43 +115,39 @@ export function AboutSection() {
                   />
                 </div>
               </div>
-
-              {/* Bio */}
               <div className="flex flex-col gap-3 flex-1">
                 <div className="flex flex-col gap-0.5">
                   <span className="font-poppins font-bold text-xl text-neutral-900 leading-tight">
                     MinTani
                   </span>
                   <span className="font-mono text-xs text-neutral-400 tracking-wide">
-                    mintanaka
+                    @mintanaka
                   </span>
                 </div>
                 <p className="text-sm text-neutral-600 leading-relaxed">
-                  「いろいろやる」をモットーに活動する学生エンジニア。
-                  日本工業大学先進工学部データサイエンス学科（28卒）。
-                  WebサービスやAPIの設計・実装が得意で、ハッカソンにも積極的に参加しています。
+                  日本工業大学データサイエンス学科の学生（28卒）です。
+                  中学のころ独学でプログラミングを始めて、今もコードを書き続けています。
+                  最近はチームで開発する機会も増えてきてフロントエンドだけでなく
+                  インフラやバックエンドなど、日々新しいことに挑戦しています。
                 </p>
                 <p className="text-sm text-neutral-600 leading-relaxed">
-                  現在インターン・お仕事を探しています。
-                  お気軽にXのDMやメールでご連絡ください。
+                  自宅サーバーを運用していて、サーバーに友人と遊ぶためのゲームサーバーを立てたり、ウェブサイトをデプロイしたり
+                  このサイトも自宅サーバーから配信しています。
                 </p>
               </div>
             </div>
           </Panel>
 
           {/* Social links — 1 col */}
-          <Panel className="p-6" delay={120} inView={inView}>
-            <div className="flex flex-col gap-2 h-full justify-center">
-              <SocialPanel compact />
-            </div>
+          <Panel className="p-6 flex flex-col" delay={120} inView={inView}>
+            <PanelLabel>Connect</PanelLabel>
+            <SocialPanel compact />
           </Panel>
         </div>
 
         {/* ── Row 2: Full-width skill grid ── */}
         <Panel delay={180} inView={inView} className="p-7">
-          <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mb-5">
-            Skills
-          </h3>
+          <PanelLabel>Skills</PanelLabel>
           <SkillsPanel />
         </Panel>
 
@@ -149,17 +155,13 @@ export function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
           {/* Career — 2 cols */}
           <Panel className="lg:col-span-2 p-7" delay={240} inView={inView}>
-            <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mb-5">
-              Career
-            </h3>
+            <PanelLabel>Career</PanelLabel>
             <CareerPanel />
           </Panel>
 
           {/* Projects — 3 cols */}
           <Panel className="lg:col-span-3 p-7" delay={300} inView={inView}>
-            <h3 className="text-xs font-mono tracking-[0.2em] uppercase text-neutral-400 mb-5">
-              Projects
-            </h3>
+            <PanelLabel>Projects</PanelLabel>
             <LearningPanel />
           </Panel>
         </div>

@@ -2,27 +2,28 @@ import { CAREER } from "@/data/about";
 
 export function CareerPanel() {
   return (
-    <div className="flex flex-col divide-y divide-white/40">
+    <div className="relative flex flex-col">
+      {/* Vertical line */}
+      <div className="absolute left-[5px] top-3 bottom-3 w-px bg-gradient-to-b from-cyan-300/70 via-cyan-200/40 to-transparent" />
+
       {CAREER.map((item) => (
-        <div
-          key={item.year}
-          className="group flex items-start gap-4 py-4 first:pt-0 last:pb-0"
-        >
-          {/* Year pill */}
-          <div className="shrink-0 mt-0.5">
-            <span className="inline-block font-mono text-[11px] font-bold tracking-widest text-cyan-600 bg-cyan-50 border border-cyan-200/80 px-2.5 py-1 rounded-md">
-              {item.year}
-            </span>
+        <div key={item.year} className="relative flex gap-5 pb-8 last:pb-0">
+          {/* Dot */}
+          <div className="shrink-0 mt-1.5 z-10">
+            <div className="size-[11px] rounded-full border-2 border-cyan-400 bg-white shadow-sm" />
           </div>
 
           {/* Content */}
-          <div className="flex flex-col gap-1 flex-1 min-w-0">
+          <div className="flex flex-col gap-1 flex-1 min-w-0 -mt-0.5">
+            <span className="font-mono text-[10px] tracking-[0.2em] text-neutral-400 uppercase">
+              {item.year}
+            </span>
             <span className="font-semibold text-sm text-neutral-800 leading-snug">
               {item.title}
             </span>
             <span className="text-[11px] text-neutral-400">{item.place}</span>
             {item.desc ? (
-              <p className="text-xs text-neutral-500 leading-relaxed mt-1">
+              <p className="text-xs text-neutral-500 leading-relaxed mt-0.5">
                 {item.desc}
               </p>
             ) : null}

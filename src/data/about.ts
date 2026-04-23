@@ -5,22 +5,23 @@ export type SkillCategory = "frontend" | "backend" | "infra" | "tools";
 export type SkillItem = {
   readonly name: string;
   readonly category: SkillCategory;
+  readonly level: 1 | 2 | 3;
 };
 
 export const SKILLS = [
-  { name: "React", category: "frontend" },
-  { name: "Next.js", category: "frontend" },
-  { name: "TypeScript", category: "frontend" },
-  { name: "Tailwind CSS", category: "frontend" },
-  { name: "Hono", category: "backend" },
-  { name: "PostgreSQL", category: "backend" },
-  { name: "AWS", category: "infra" },
-  { name: "Proxmox", category: "infra" },
-  { name: "Vercel", category: "infra" },
-  { name: "Docker", category: "infra" },
-  { name: "GitHub Actions", category: "infra" },
-  { name: "Git", category: "tools" },
-  { name: "Figma", category: "tools" },
+  { name: "React", category: "frontend", level: 3 },
+  { name: "Next.js", category: "frontend", level: 3 },
+  { name: "TypeScript", category: "frontend", level: 3 },
+  { name: "Tailwind CSS", category: "frontend", level: 3 },
+  { name: "Hono", category: "backend", level: 2 },
+  { name: "PostgreSQL", category: "backend", level: 2 },
+  { name: "AWS", category: "infra", level: 1 },
+  { name: "Proxmox", category: "infra", level: 1 },
+  { name: "Vercel", category: "infra", level: 2 },
+  { name: "Docker", category: "infra", level: 2 },
+  { name: "GitHub Actions", category: "infra", level: 2 },
+  { name: "Git", category: "tools", level: 3 },
+  { name: "Figma", category: "tools", level: 1 },
 ] as const satisfies readonly SkillItem[];
 
 // ─── Career ───────────────────────────────────────────────────────────────────
@@ -50,10 +51,10 @@ export const CAREER = [
   },
   {
     year: "2017",
-    title: "プログラミングと出会う",
+    title: "プログラミングを始める",
     place: "中学生時代",
-    desc: "マイニングブームがきっかけで仮想通貨・Pythonに興味を持ち、独学でコードを書き始める。",
-    tags: ["Crypto", "Python"],
+    desc: "Pythonに興味を持ち独学でコードを書き始める。それ以来ずっとコードを書いている。",
+    tags: ["Python"],
   },
 ] as const satisfies readonly CareerItem[];
 
