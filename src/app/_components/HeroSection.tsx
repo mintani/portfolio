@@ -59,7 +59,7 @@ export function HeroSection() {
       {/* ── Hero ── */}
       <section
         id="hero-section"
-        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[640px]"
+        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[1000px]"
       >
         {/* White trapezoid */}
         <div
