@@ -40,7 +40,7 @@ export function HeroSection() {
       {/* Page indicator */}
       <nav
         aria-label="Page indicator"
-        className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-8"
+        className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-8 "
       >
         {SECTIONS.map((id, index) => (
           <button
@@ -59,11 +59,11 @@ export function HeroSection() {
       {/* ── Hero ── */}
       <section
         id="hero-section"
-        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[1000px]"
+        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[640px]"
       >
         {/* White trapezoid */}
         <div
-          className="absolute top-0 bottom-0 left-0 z-[5] pointer-events-none hidden md:block"
+          className="absolute top-0 bottom-0 left-0 z-5 pointer-events-none hidden lg:block "
           style={{
             right: "calc(-1 * (100vw - 100%) / 2)",
             clipPath:
@@ -78,13 +78,13 @@ export function HeroSection() {
           className="absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible"
           aria-hidden="true"
         >
-          <span className="flex-1 hero-outline-text align-right text-right text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-green select-none">
+          <span className="flex-1 hero-outline-text align-right text-right text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-green select-none">
             Catch up
           </span>
-          <span className="flex-1 hero-outline-text align-left text-left text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-teal select-none">
+          <span className="flex-1 hero-outline-text align-left text-left text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-teal select-none">
             to the
           </span>
-          <span className="flex-1 hero-outline-text align-right text-right text-[100px] sm:text-[150px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-blue select-none">
+          <span className="flex-1 hero-outline-text align-right text-right text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-blue select-none">
             future
           </span>
         </div>
@@ -137,7 +137,7 @@ export function HeroSection() {
         </div>
 
         {/* Character image */}
-        <div className="absolute -right-50 sm:-right-70 md:-right-70 lg:-right-85 xl:-right-70 top-10 md:top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-150 xl:w-[1000px] max-h-dvh overflow-visible">
+        <div className="absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible">
           <Image
             src="/anime-2.png"
             alt="mint"
