@@ -1,22 +1,6 @@
 import type { ComponentType, SVGProps } from "react";
 import { ExternalLink, Github, Mail, Globe } from "lucide-react";
-
-const XIcon = ({
-  size = 16,
-  className,
-  ...props
-}: SVGProps<SVGSVGElement> & { size?: number }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className={className}
-    {...props}
-  >
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.736-8.858L1.254 2.25H8.08l4.264 5.632 5.9-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
+import { XIcon } from "@/components/icons/XIcon";
 
 type ColorScheme = {
   border: string;
@@ -84,19 +68,13 @@ const SOCIAL_LINKS: readonly SocialLink[] = [
   },
 ] as const;
 
-const EXTERNAL_LINK_ATTRS = {
-  target: "_blank" as const,
-  rel: "noopener noreferrer",
-};
-
-// 2×2 square grid card (compact / Connect panel)
 function GridCard({ link }: { link: SocialLink }) {
   const { href, label, icon: Icon, color } = link;
   const isExternal = !href.startsWith("mailto:");
   return (
     <a
       href={href}
-      {...(isExternal ? EXTERNAL_LINK_ATTRS : {})}
+      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`group relative flex flex-col p-2 items-center justify-center gap-2.5 rounded-2xl bg-white/50 border border-white/70 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${color.bg} ${color.border} overflow-hidden`}
     >
       <div
@@ -115,14 +93,13 @@ function GridCard({ link }: { link: SocialLink }) {
   );
 }
 
-// Full-width row card (non-compact)
 function RowCard({ link }: { link: SocialLink }) {
   const { href, label, icon: Icon, color } = link;
   const isExternal = !href.startsWith("mailto:");
   return (
     <a
       href={href}
-      {...(isExternal ? EXTERNAL_LINK_ATTRS : {})}
+      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`group relative flex items-center gap-4 p-4 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5 bg-white/40 border border-white/60 backdrop-blur-md shadow-sm hover:shadow-md ${color.border} ${color.text} ${color.bg}`}
     >
       <div

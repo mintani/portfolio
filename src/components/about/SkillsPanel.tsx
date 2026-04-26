@@ -90,7 +90,7 @@ export function SkillsPanel() {
       </p>
       <div className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-white/70 border border-white/80 shadow-sm hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200 max-w-50">
         <div className="flex items-center gap-2 min-w-28">
-          <span className="text-[13px] font-semibold text-neutral-400  truncate">
+          <span className="text-[13px] font-semibold text-neutral-400 truncate">
             技術名
           </span>
         </div>

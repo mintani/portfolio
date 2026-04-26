@@ -1,4 +1,4 @@
-import { ArticleToc } from "@/app/blog/_components/ArticleToc";
+import { ArticleToc } from "@/components/blog/ArticleToc";
 import type { TocItem } from "@/lib/markdown";
 
 type ArticleContentProps = {

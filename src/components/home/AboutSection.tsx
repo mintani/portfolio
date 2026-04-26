@@ -1,75 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import type { ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
-
-import { SkillsPanel } from "./_components/SkillsPanel";
-import { CareerPanel } from "./_components/CareerPanel";
-import { LearningPanel } from "./_components/LearningPanel";
-import { SocialPanel } from "./_components/SocialPanel";
-
-// ─── Hooks ───────────────────────────────────────────────────────────────────
-
-function useInView(threshold = 0.05) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          obs.disconnect();
-        }
-      },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-
-  return { ref, inView };
-}
-
-// ─── Panel ───────────────────────────────────────────────────────────────────
-
-function Panel({
-  children,
-  className = "",
-  delay = 0,
-  inView,
-}: {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
-  inView: boolean;
-}) {
-  return (
-    <div
-      className={`rounded-2xl bg-white/50 backdrop-blur-xl border border-white/70 shadow-sm overflow-hidden transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}
-      style={{ transitionDelay: inView ? `${delay}ms` : "0ms" }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function PanelLabel({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex items-center gap-2 mb-6">
-      <div className="w-1 h-3.5 rounded-full bg-cyan-400/70" />
-      <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-neutral-400">
-        {children}
-      </span>
-    </div>
-  );
-}
-
-// ─── Main component ─────────────────────────────────────────────────────────
+import { useInView } from "@/hooks/use-in-view";
+import { Panel, PanelLabel } from "@/components/about/Panel";
+import { SkillsPanel } from "@/components/about/SkillsPanel";
+import { CareerPanel } from "@/components/about/CareerPanel";
+import { LearningPanel } from "@/components/about/LearningPanel";
+import { SocialPanel } from "@/components/about/SocialPanel";
 
 export function AboutSection() {
   const { ref, inView } = useInView(0.05);
@@ -97,7 +34,6 @@ export function AboutSection() {
 
         {/* ── Row 1: Profile (wide) + Socials ── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Profile — takes 2 cols */}
           <Panel
             className="lg:col-span-2 p-7 sm:p-8"
             delay={60}
@@ -138,7 +74,6 @@ export function AboutSection() {
             </div>
           </Panel>
 
-          {/* Social links — 1 col */}
           <Panel className="p-6 flex flex-col" delay={120} inView={inView}>
             <PanelLabel>Connect</PanelLabel>
             <SocialPanel compact />
@@ -153,13 +88,11 @@ export function AboutSection() {
 
         {/* ── Row 3: Career (narrow) + Projects ── */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          {/* Career — 2 cols */}
           <Panel className="lg:col-span-2 p-7" delay={240} inView={inView}>
             <PanelLabel>Career</PanelLabel>
             <CareerPanel />
           </Panel>
 
-          {/* Projects — 3 cols */}
           <Panel className="lg:col-span-3 p-7" delay={300} inView={inView}>
             <PanelLabel>Projects</PanelLabel>
             <LearningPanel />

@@ -119,7 +119,6 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
       className="w-full relative z-30 overflow-hidden flex flex-col items-center bg-[#ceefee]"
     >
       <div className="container mx-auto w-full py-20 px-4 sm:px-6 lg:px-10 flex flex-col gap-10">
-        {/* Section header */}
         <div className="flex flex-col gap-1.5">
           <span className="font-mono text-xs tracking-[0.35em] uppercase text-cyan-500/70">
             制作物 & 記事
@@ -129,14 +128,12 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
           </h2>
         </div>
 
-        {/* Works grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {WORKS.map((work) => (
             <WorkCard key={work.title} work={work} />
           ))}
         </div>
 
-        {/* Blog grid */}
         {articles.length > 0 && (
           <div className="flex flex-col gap-5">
             <div className="flex items-center justify-between">
