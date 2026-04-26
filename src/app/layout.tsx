@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Playwrite_US_Trad } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/shared/header/Header";
+import { Header } from "@/components/layout/Header";
 import { ThemeProvider } from "@/components/shared/theme-provider/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 

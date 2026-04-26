@@ -1,10 +1,10 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BLOG_CONFIG } from "@/lib/blog-config";
 import { getArticle } from "@/lib/github-blog";
 import { getPageMeta, markdownToHtml } from "@/lib/markdown";
-import { ArticleDetailHeader } from "@/app/blog/_components/ArticleDetailHeader";
-import { ArticleContent } from "@/app/blog/_components/ArticleContent";
+import { ArticleDetailHeader } from "@/components/blog/ArticleDetailHeader";
+import { ArticleContent } from "@/components/blog/ArticleContent";
 import { getRequestOrigin } from "@/lib/request-origin";
 import "./prose.css";
 

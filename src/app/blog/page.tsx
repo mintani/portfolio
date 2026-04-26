@@ -1,7 +1,7 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { BLOG_CONFIG } from "@/lib/blog-config";
 import { getArticlesList } from "@/lib/github-blog";
-import { ArticleCard } from "@/app/blog/_components/ArticleCard";
+import { ArticleCard } from "@/components/blog/ArticleCard";
 import { BookOpen } from "lucide-react";
 import { getRequestOrigin } from "@/lib/request-origin";
 

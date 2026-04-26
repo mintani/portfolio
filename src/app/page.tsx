@@ -1,7 +1,7 @@
-import { HeroSection } from "./_components/HeroSection";
-import { AboutSection } from "./_components/AboutSection";
-import { WorksSection } from "./_components/WorksSection";
-import { SiteFooter } from "./_components/Footer";
+import { HeroSection } from "@/components/home/HeroSection";
+import { AboutSection } from "@/components/home/AboutSection";
+import { WorksSection } from "@/components/home/WorksSection";
+import { SiteFooter } from "@/components/layout/Footer";
 import { getArticlesList } from "@/lib/github-blog";
 import { BLOG_CONFIG } from "@/lib/blog-config";
 import { getRequestOrigin } from "@/lib/request-origin";
