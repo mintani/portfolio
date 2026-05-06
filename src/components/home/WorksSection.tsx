@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import type { BlogArticleMeta } from "@/lib/github-blog";
 import { WORKS } from "@/data/about";
 import { BLOG_CONFIG } from "@/lib/blog-config";
@@ -11,18 +12,30 @@ function WorkCard({ work }: { work: (typeof WORKS)[number] }) {
       rel="noopener noreferrer"
       className="group flex flex-col rounded-2xl overflow-hidden bg-white/50 border border-white/60 shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300"
     >
-      <div
-        className="relative h-28 flex items-end p-4"
-        style={{
-          background: `linear-gradient(135deg, ${work.colorFrom}, ${work.colorTo})`,
-        }}
-      >
+      <div className="relative h-40 flex items-end p-4 overflow-hidden">
+        {work.image ? (
+          <>
+            <Image
+              src={work.image}
+              alt={work.title}
+              className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
+          </>
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(135deg, ${work.colorFrom}, ${work.colorTo})`,
+            }}
+          />
+        )}
         {work.award && (
-          <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-bold font-mono px-2.5 py-1 rounded-full bg-white/25 text-white border border-white/30 backdrop-blur-sm">
+          <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-bold font-mono px-2.5 py-1 rounded-full bg-white/25 text-white border border-white/30 backdrop-blur-sm z-10">
             🏆 {work.award}
           </span>
         )}
-        <span className="text-[10px] font-mono uppercase tracking-widest text-white/80 border border-white/30 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm">
+        <span className="relative z-10 text-[10px] font-mono uppercase tracking-widest text-white/80 border border-white/30 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm">
           {work.type === "hackathon" ? "Hackathon" : "Project"}
         </span>
       </div>
