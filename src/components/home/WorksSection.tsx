@@ -18,6 +18,7 @@ function WorkCard({ work }: { work: (typeof WORKS)[number] }) {
             <Image
               src={work.image}
               alt={work.title}
+              fill
               className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
