@@ -7,11 +7,12 @@ import {
   Hono,
   PostgreSQL,
   AmazonWebServicesDark,
-  VercelDark,
   Docker,
-  GitHubDark,
   Git,
   Figma,
+  Cloudflare,
+  GitHubLight,
+  VercelLight,
 } from "@ridemountainpig/svgl-react";
 import { SKILLS } from "@/data/about";
 import type { SkillCategory } from "@/data/about";
@@ -30,10 +31,11 @@ const SKILL_ICONS: Record<string, SvglIcon> = {
   Hono,
   PostgreSQL,
   AWS: AmazonWebServicesDark,
+  Cloudflare: Cloudflare,
   Proxmox: Docker,
-  Vercel: VercelDark,
+  Vercel: VercelLight,
   Docker,
-  "GitHub Actions": GitHubDark,
+  "GitHub Actions": GitHubLight,
   Git,
   Figma,
 };
@@ -105,7 +107,7 @@ export function SkillsPanel() {
             <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-neutral-400 mb-2.5">
               {CATEGORY_LABEL[cat]}
             </p>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
               {catSkills.map((skill) => {
                 const Icon = SKILL_ICONS[skill.name];
                 return (
