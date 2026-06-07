@@ -1,7 +1,8 @@
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/data/about";
+import { TagPill } from "@/components/shared/TagPill";
 
-export function LearningPanel() {
+export function ProjectsPanel() {
   return (
     <div className="flex flex-col gap-3 h-full">
       {PROJECTS.map((project) => (
@@ -27,12 +28,7 @@ export function LearningPanel() {
           {project.tags.length > 0 ? (
             <div className="flex flex-wrap gap-1.5 mt-0.5">
               {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-neutral-100/80 border border-neutral-200/60 text-neutral-500"
-                >
-                  {tag}
-                </span>
+                <TagPill key={tag}>{tag}</TagPill>
               ))}
             </div>
           ) : null}

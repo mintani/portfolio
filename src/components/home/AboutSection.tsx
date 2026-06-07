@@ -5,7 +5,7 @@ import { useInView } from "@/hooks/use-in-view";
 import { Panel, PanelLabel } from "@/components/about/Panel";
 import { SkillsPanel } from "@/components/about/SkillsPanel";
 import { CareerPanel } from "@/components/about/CareerPanel";
-import { LearningPanel } from "@/components/about/LearningPanel";
+import { ProjectsPanel } from "@/components/about/ProjectsPanel";
 import { SocialPanel } from "@/components/about/SocialPanel";
 
 export function AboutSection() {
@@ -95,7 +95,7 @@ export function AboutSection() {
 
           <Panel className="lg:col-span-3 p-7" delay={300} inView={inView}>
             <PanelLabel>Projects</PanelLabel>
-            <LearningPanel />
+            <ProjectsPanel />
           </Panel>
         </div>
       </div>
