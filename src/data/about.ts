@@ -146,3 +146,23 @@ export const PROJECTS = [
     url: "https://github.com/mintani",
   },
 ] as const satisfies readonly ProjectItem[];
+
+// ─── Certifications ───────────────────────────────────────────────────────────
+
+export type CertificationItem = {
+  readonly name: string;
+  readonly issuer: string;
+  readonly issued: string;
+  readonly image: string;
+  readonly url?: string;
+};
+
+export const CERTIFICATIONS = [
+  {
+    name: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    issued: "2026",
+    image: "/aws-certified-cloud-practitioner.png",
+    url: "https://www.credly.com/badges/aea9efc7-dadc-4b6a-a3ff-033456039065/public_url",
+  },
+] as const satisfies readonly CertificationItem[];

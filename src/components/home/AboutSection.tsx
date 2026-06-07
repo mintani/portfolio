@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useInView } from "@/hooks/use-in-view";
 import { Panel, PanelLabel } from "@/components/about/Panel";
 import { SkillsPanel } from "@/components/about/SkillsPanel";
+import { CertificationsPanel } from "@/components/about/CertificationsPanel";
 import { CareerPanel } from "@/components/about/CareerPanel";
 import { ProjectsPanel } from "@/components/about/ProjectsPanel";
 import { SocialPanel } from "@/components/about/SocialPanel";
@@ -82,7 +83,13 @@ export function AboutSection() {
           <SkillsPanel />
         </Panel>
 
-        {/* ── Row 3: Career (narrow) + Projects ── */}
+        {/* ── Row 3: Certifications ── */}
+        <Panel delay={220} inView={inView} className="p-7">
+          <PanelLabel>Certifications</PanelLabel>
+          <CertificationsPanel />
+        </Panel>
+
+        {/* ── Row 4: Career (narrow) + Projects ── */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
           <Panel className="lg:col-span-2 p-7" delay={240} inView={inView}>
             <PanelLabel>Career</PanelLabel>
