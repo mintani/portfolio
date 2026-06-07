@@ -14,16 +14,20 @@ import {
   GitHubLight,
   VercelLight,
 } from "@ridemountainpig/svgl-react";
+import { Server } from "lucide-react";
 import { SKILLS } from "@/data/about";
-import type { SkillCategory } from "@/data/about";
+import type { SkillCategory, SkillItem } from "@/data/about";
 
-type SvglIcon = ComponentType<{
+type SkillIcon = ComponentType<{
   className?: string;
   width?: number;
   height?: number;
 }>;
 
-const SKILL_ICONS: Record<string, SvglIcon> = {
+type Level = SkillItem["level"];
+
+// svgl has no Proxmox logo, so fall back to a neutral server icon.
+const SKILL_ICONS: Record<string, SkillIcon> = {
   React: ReactDark,
   "Next.js": Nextjs,
   TypeScript,
@@ -31,8 +35,8 @@ const SKILL_ICONS: Record<string, SvglIcon> = {
   Hono,
   PostgreSQL,
   AWS: AmazonWebServicesDark,
-  Cloudflare: Cloudflare,
-  Proxmox: Docker,
+  Cloudflare,
+  Proxmox: Server,
   Vercel: VercelLight,
   Docker,
   "GitHub Actions": GitHubLight,
@@ -40,27 +44,35 @@ const SKILL_ICONS: Record<string, SvglIcon> = {
   Figma,
 };
 
-const CATEGORY_LABEL: Record<SkillCategory, string> = {
-  frontend: "Frontend",
-  backend: "Backend",
-  infra: "Infra",
-  tools: "Tools",
-};
+const CATEGORIES: { key: SkillCategory; label: string }[] = [
+  { key: "frontend", label: "Frontend" },
+  { key: "backend", label: "Backend" },
+  { key: "infra", label: "Infra" },
+  { key: "tools", label: "Tools" },
+];
 
-const LEVEL_LABEL: Record<1 | 2 | 3, string> = {
+const LEVEL_LABEL: Record<Level, string> = {
   1: "触ったことがある",
   2: "個人開発で使った",
   3: "普段から活用",
 };
 
-function LevelBars({ level }: { level: 1 | 2 | 3 }) {
+const LEVELS: readonly Level[] = [1, 2, 3];
+
+// Ascending bar heights for levels 1–3.
+const BAR_HEIGHTS: Record<Level, string> = {
+  1: "h-2",
+  2: "h-3",
+  3: "h-4",
+};
+
+function LevelBars({ level }: { level: Level }) {
   return (
-    <div className="flex gap-[3px] items-end shrink-0">
-      {([1, 2, 3] as const).map((i) => (
+    <div className="flex items-end gap-0.5 shrink-0">
+      {LEVELS.map((i) => (
         <div
           key={i}
-          className={`w-[5px] rounded-sm ${i <= level ? "bg-cyan-500" : "bg-neutral-200"}`}
-          style={{ height: `${8 + i * 3}px` }}
+          className={`w-1 rounded-sm ${BAR_HEIGHTS[i]} ${i <= level ? "bg-cyan-500" : "bg-neutral-200"}`}
         />
       ))}
     </div>
@@ -69,11 +81,11 @@ function LevelBars({ level }: { level: 1 | 2 | 3 }) {
 
 function Legend() {
   return (
-    <div className="flex flex-wrap gap-5 mb-7 px-0.5">
-      {([1, 2, 3] as const).map((level) => (
-        <div key={level} className="flex items-center gap-2">
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+      {LEVELS.map((level) => (
+        <div key={level} className="flex items-center gap-1.5">
           <LevelBars level={level} />
-          <span className="text-[11px] text-neutral-400 font-mono">
+          <span className="font-mono text-[11px] text-neutral-400">
             {LEVEL_LABEL[level]}
           </span>
         </div>
@@ -82,55 +94,46 @@ function Legend() {
   );
 }
 
-const CATEGORIES: SkillCategory[] = ["frontend", "backend", "infra", "tools"];
+function CategoryHeader({ label }: { label: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-neutral-400 shrink-0">
+        {label}
+      </span>
+      <span className="h-px flex-1 bg-neutral-200/70" />
+    </div>
+  );
+}
+
+function SkillCard({ skill }: { skill: SkillItem }) {
+  const Icon = SKILL_ICONS[skill.name];
+  return (
+    <div className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-white/70 border border-white/80 shadow-sm hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200">
+      <div className="flex items-center gap-2 min-w-0">
+        {Icon && <Icon className="size-4 shrink-0" width={16} height={16} />}
+        <span className="text-sm font-semibold text-neutral-800 truncate">
+          {skill.name}
+        </span>
+      </div>
+      <LevelBars level={skill.level} />
+    </div>
+  );
+}
 
 export function SkillsPanel() {
   return (
-    <div className="flex flex-col gap-7">
-      <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-neutral-400">
-        表示例
-      </p>
-      <div className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-white/70 border border-white/80 shadow-sm hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200 max-w-50">
-        <div className="flex items-center gap-2 min-w-28">
-          <span className="text-[13px] font-semibold text-neutral-400 truncate">
-            技術名
-          </span>
-        </div>
-        <LevelBars level={1} />
-      </div>
+    <div className="flex flex-col gap-5">
       <Legend />
-      {CATEGORIES.map((cat) => {
-        const catSkills = SKILLS.filter((s) => s.category === cat);
+      {CATEGORIES.map(({ key, label }) => {
+        const catSkills = SKILLS.filter((s) => s.category === key);
         if (catSkills.length === 0) return null;
         return (
-          <div key={cat}>
-            <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-neutral-400 mb-2.5">
-              {CATEGORY_LABEL[cat]}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
-              {catSkills.map((skill) => {
-                const Icon = SKILL_ICONS[skill.name];
-                return (
-                  <div
-                    key={skill.name}
-                    className="flex items-center justify-between gap-2 px-3 py-2.5 max-w-60 rounded-xl bg-white/70 border border-white/80 shadow-sm hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200"
-                  >
-                    <div className="flex items-center gap-2 min-w-28">
-                      {Icon && (
-                        <Icon
-                          className="size-[15px] shrink-0"
-                          width={15}
-                          height={15}
-                        />
-                      )}
-                      <span className="text-[13px] font-semibold text-neutral-800 truncate">
-                        {skill.name}
-                      </span>
-                    </div>
-                    <LevelBars level={skill.level} />
-                  </div>
-                );
-              })}
+          <div key={key} className="flex flex-col gap-2.5">
+            <CategoryHeader label={label} />
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+              {catSkills.map((skill) => (
+                <SkillCard key={skill.name} skill={skill} />
+              ))}
             </div>
           </div>
         );
