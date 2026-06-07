@@ -16,7 +16,7 @@ export function CertificationsPanel() {
           <div className="relative size-16 sm:size-20 shrink-0">
             <Image
               src={cert.image}
-              alt={cert.name}
+              alt=""
               fill
               sizes="80px"
               className="object-contain"
