@@ -1,12 +1,12 @@
 import Link from "next/link";
 import type { ComponentProps } from "react";
 
+const NAV_LINK_CLASS =
+  "font-poppins relative text-[0.95rem] font-medium tracking-wide text-[#2f2f2f] after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#2f2f2f] after:transition-transform after:duration-300 hover:after:scale-x-100";
+
 function NavLink({ href, children }: ComponentProps<typeof Link>) {
   return (
-    <Link
-      href={href}
-      className="font-poppins relative text-[0.95rem] font-medium tracking-wide text-[#2f2f2f] after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-[#2f2f2f] after:transition-transform after:duration-300 hover:after:scale-x-100"
-    >
+    <Link href={href} className={NAV_LINK_CLASS}>
       {children}
     </Link>
   );
@@ -18,7 +18,9 @@ export function Header() {
       <NavLink href="/">Home</NavLink>
       <NavLink href="#about-section">About</NavLink>
       <NavLink href="/blog">Blog</NavLink>
-      <NavLink href="/contact">Contact</NavLink>
+      <a href="mailto:mi.2005.sub@gmail.com" className={NAV_LINK_CLASS}>
+        Contact
+      </a>
     </nav>
   );
 }

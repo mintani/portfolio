@@ -17,7 +17,7 @@ const OUTLINE_TEXT =
 const OUTLINE_LINES = [
   { text: "Catch up", align: "text-right", stroke: "stroke-green" },
   { text: "to the", align: "text-left", stroke: "stroke-teal" },
-  { text: "future", align: "text-right", stroke: "stroke-blue" },
+  { text: "future", align: "text-right", stroke: "stroke-pink" },
 ] as const;
 
 function scrollToSection(id: string) {
