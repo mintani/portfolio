@@ -3,6 +3,8 @@ import Image from "next/image";
 import type { BlogArticleMeta } from "@/lib/github-blog";
 import { WORKS } from "@/data/about";
 import { BLOG_CONFIG } from "@/lib/blog-config";
+import { TagPill } from "@/components/shared/TagPill";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 
 function WorkCard({ work }: { work: (typeof WORKS)[number] }) {
   return (
@@ -55,12 +57,7 @@ function WorkCard({ work }: { work: (typeof WORKS)[number] }) {
         </p>
         <div className="flex flex-wrap gap-1.5 mt-auto">
           {work.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-neutral-100 border border-neutral-200/60 text-neutral-500"
-            >
-              {tag}
-            </span>
+            <TagPill key={tag}>{tag}</TagPill>
           ))}
         </div>
       </div>
@@ -112,12 +109,9 @@ function BlogCard({ article }: { article: BlogArticleMeta }) {
         {article.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-auto">
             {article.tags.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-50 border border-amber-200/60 text-amber-600"
-              >
+              <TagPill key={tag} variant="amber">
                 {tag}
-              </span>
+              </TagPill>
             ))}
           </div>
         )}
@@ -133,14 +127,7 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
       className="w-full relative z-30 overflow-hidden flex flex-col items-center bg-[#ceefee]"
     >
       <div className="container mx-auto w-full py-20 px-4 sm:px-6 lg:px-10 flex flex-col gap-10">
-        <div className="flex flex-col gap-1.5">
-          <span className="font-mono text-xs tracking-[0.35em] uppercase text-cyan-500/70">
-            制作物 & 記事
-          </span>
-          <h2 className="text-5xl sm:text-6xl font-bold font-poppins italic text-neutral-800 leading-none">
-            Works
-          </h2>
-        </div>
+        <SectionHeading eyebrow="制作物 & 記事" title="Works" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {WORKS.map((work) => (

@@ -6,6 +6,20 @@ import { useEffect, useState } from "react";
 
 const SECTIONS = ["hero-section", "about-section", "works-section"];
 
+// Shared responsive sizing for the foreground heading lines.
+const HEADING_TEXT =
+  "font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#585858]";
+
+// Large stroked background lettering.
+const OUTLINE_TEXT =
+  "flex-1 hero-outline-text text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] select-none";
+
+const OUTLINE_LINES = [
+  { text: "Catch up", align: "text-right", stroke: "stroke-green" },
+  { text: "to the", align: "text-left", stroke: "stroke-teal" },
+  { text: "future", align: "text-right", stroke: "stroke-blue" },
+] as const;
+
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -63,7 +77,7 @@ export function HeroSection() {
       >
         {/* White trapezoid */}
         <div
-          className="absolute top-0 bottom-0 left-0 z-5 pointer-events-none hidden lg:block "
+          className="absolute top-0 bottom-0 left-0 z-[5] pointer-events-none hidden lg:block "
           style={{
             right: "calc(-1 * (100vw - 100%) / 2)",
             clipPath:
@@ -78,37 +92,25 @@ export function HeroSection() {
           className="absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible"
           aria-hidden="true"
         >
-          <span className="flex-1 hero-outline-text align-right text-right text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-green select-none">
-            Catch up
-          </span>
-          <span className="flex-1 hero-outline-text align-left text-left text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-teal select-none">
-            to the
-          </span>
-          <span className="flex-1 hero-outline-text align-right text-right text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] stroke-blue select-none">
-            future
-          </span>
+          {OUTLINE_LINES.map(({ text, align, stroke }) => (
+            <span key={text} className={`${OUTLINE_TEXT} ${align} ${stroke}`}>
+              {text}
+            </span>
+          ))}
         </div>
 
         {/* Main text */}
         <div className="relative z-20 flex flex-col pt-8 md:pt-16 lg:pt-20 pl-8 md:pl-20 gap-5 sm:gap-10 md:gap-10 xl:gap-20 overflow-visible">
           <div className="flex items-baseline leading-tight">
-            <span className="font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#585858] tracking-tight">
-              Here is
-            </span>
+            <span className={`${HEADING_TEXT} tracking-tight`}>Here is</span>
           </div>
           <div className="flex items-baseline leading-tight">
-            <span className="font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#585858] select-none">
-              the
-            </span>
-            <span className="font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#585858] select-none">
-              &ldquo;
-            </span>
+            <span className={`${HEADING_TEXT} select-none`}>the</span>
+            <span className={`${HEADING_TEXT} select-none`}>&ldquo;</span>
             <span className="font-playwrite text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#01c7ca] px-1 select-none">
               stylish
             </span>
-            <span className="font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#585858] select-none">
-              &rdquo;
-            </span>
+            <span className={`${HEADING_TEXT} select-none`}>&rdquo;</span>
           </div>
           <div className="flex items-baseline leading-none -mt-2">
             <span className="font-poppins font-bold italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[156px] text-[#2f2f2f] tracking-tight">

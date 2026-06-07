@@ -7,6 +7,7 @@ import { SkillsPanel } from "@/components/about/SkillsPanel";
 import { CareerPanel } from "@/components/about/CareerPanel";
 import { ProjectsPanel } from "@/components/about/ProjectsPanel";
 import { SocialPanel } from "@/components/about/SocialPanel";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 
 export function AboutSection() {
   const { ref, inView } = useInView(0.05);
@@ -21,16 +22,11 @@ export function AboutSection() {
         className="container mx-auto w-full py-20 px-4 sm:px-6 lg:px-10 flex flex-col gap-8"
       >
         {/* ── Section header ── */}
-        <div
-          className={`flex flex-col gap-1.5 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-        >
-          <span className="font-mono text-xs tracking-[0.35em] uppercase text-cyan-500/70">
-            自己紹介
-          </span>
-          <h2 className="text-5xl sm:text-6xl font-bold font-poppins italic text-neutral-800 leading-none">
-            About me
-          </h2>
-        </div>
+        <SectionHeading
+          eyebrow="自己紹介"
+          title="About me"
+          className={`transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        />
 
         {/* ── Row 1: Profile (wide) + Socials ── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
