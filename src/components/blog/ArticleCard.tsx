@@ -1,21 +1,13 @@
 import Link from "next/link";
-import { Calendar, Clock } from "lucide-react";
 import type { BlogArticleMeta } from "@/lib/github-blog";
-import { Badge } from "@/components/ui/badge";
+import { ArticleMeta } from "@/components/blog/ArticleMeta";
+import { ArticleTags } from "@/components/blog/ArticleTags";
 
 type ArticleCardProps = {
   article: BlogArticleMeta;
 };
 
 export const ArticleCard = ({ article }: ArticleCardProps) => {
-  const formattedDate = article.date
-    ? new Date(article.date).toLocaleDateString("ja-JP", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : "";
-
   return (
     <Link
       href={`/blog/${article.slug}`}
@@ -23,20 +15,11 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
     >
       <div className="flex h-full flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-6">
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-3 text-xs text-[#607065]">
-            {formattedDate ? (
-              <span className="inline-flex items-center gap-1.5">
-                <Calendar size={12} />
-                {formattedDate}
-              </span>
-            ) : null}
-            {article.readingTime ? (
-              <span className="inline-flex items-center gap-1.5">
-                <Clock size={12} />
-                {article.readingTime}
-              </span>
-            ) : null}
-          </div>
+          <ArticleMeta
+            date={article.date}
+            readingTime={article.readingTime}
+            className="gap-3 text-xs text-[#607065]"
+          />
 
           <h2 className="mt-3 font-poppins text-xl font-semibold tracking-tight text-[#111713] transition-colors duration-200 group-hover:text-[#275437] md:text-2xl">
             {article.title}
@@ -49,19 +32,11 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
           ) : null}
         </div>
 
-        {article.tags.length > 0 ? (
-          <div className="flex flex-wrap gap-2 md:max-w-52 md:justify-end">
-            {article.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="rounded-full border border-[#183f24]/14 bg-[#f1f5ef] px-3 py-1 text-xs font-medium text-[#356847]"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        ) : null}
+        <ArticleTags
+          tags={article.tags}
+          className="md:max-w-52 md:justify-end"
+          badgeClassName="bg-[#f1f5ef]"
+        />
       </div>
     </Link>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BLOG_CONFIG } from "@/lib/blog-config";
 import { getArticlesList } from "@/lib/github-blog";
 import { ArticleCard } from "@/components/blog/ArticleCard";
+import { BlogBackdrop } from "@/components/blog/BlogBackdrop";
 import { BookOpen } from "lucide-react";
 import { getRequestOrigin } from "@/lib/request-origin";
 
@@ -26,8 +27,7 @@ export default async function BlogPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#f4f6ef] text-[#142018]">
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(24,63,36,0.05)_1px,transparent_1px)] bg-size-[32px_32px] opacity-40" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[linear-gradient(180deg,rgba(28,78,44,0.08),transparent)]" />
+      <BlogBackdrop />
 
       <div className="container relative z-10 mx-auto max-w-4xl px-4 pb-20 pt-24 md:px-6 md:pt-28">
         {articles.length > 0 ? (

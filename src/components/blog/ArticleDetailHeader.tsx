@@ -1,21 +1,14 @@
 import type { BlogArticle } from "@/lib/github-blog";
-import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import { ArticleMeta } from "@/components/blog/ArticleMeta";
+import { ArticleTags } from "@/components/blog/ArticleTags";
 
 type ArticleDetailHeaderProps = {
   article: BlogArticle;
 };
 
 export const ArticleDetailHeader = ({ article }: ArticleDetailHeaderProps) => {
-  const formattedDate = article.date
-    ? new Date(article.date).toLocaleDateString("ja-JP", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : "";
-
   return (
     <header className="relative border-b border-[#183f24]/12 bg-[#f4f6ef]">
       <div className="container relative mx-auto max-w-4xl px-4 py-20 md:px-6 md:py-20">
@@ -32,34 +25,15 @@ export const ArticleDetailHeader = ({ article }: ArticleDetailHeaderProps) => {
             {article.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-[#4b5b51]">
-            {formattedDate ? (
-              <span className="inline-flex items-center gap-1.5">
-                <Calendar size={14} className="text-[#356847]" />
-                {formattedDate}
-              </span>
-            ) : null}
-            {article.readingTime ? (
-              <span className="inline-flex items-center gap-1.5">
-                <Clock size={14} className="text-[#356847]" />
-                {article.readingTime}
-              </span>
-            ) : null}
-          </div>
+          <ArticleMeta
+            date={article.date}
+            readingTime={article.readingTime}
+            iconSize={14}
+            className="gap-x-5 gap-y-2 text-sm text-[#4b5b51]"
+            iconClassName="text-[#356847]"
+          />
 
-          {article.tags.length > 0 ? (
-            <div className="flex flex-wrap gap-2">
-              {article.tags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant="secondary"
-                  className="rounded-full border border-[#183f24]/14 bg-white px-3 py-1 text-xs font-medium text-[#356847]"
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          ) : null}
+          <ArticleTags tags={article.tags} badgeClassName="bg-white" />
         </div>
       </div>
     </header>
