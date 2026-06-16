@@ -5,13 +5,13 @@ import { WORKS } from "@/data/about";
 import { BLOG_CONFIG } from "@/lib/blog-config";
 import { TagPill } from "@/components/shared/TagPill";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 function WorkCard({ work }: { work: (typeof WORKS)[number] }) {
   return (
     <a
       href={work.url ?? "#"}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...EXTERNAL_LINK_PROPS}
       className="group flex flex-col rounded-2xl overflow-hidden bg-white/50 border border-white/60 shadow-sm hover:shadow-lg hover:-translate-y-1.5 transition-all duration-300"
     >
       <div className="relative h-40 flex items-end p-4 overflow-hidden">
@@ -146,8 +146,7 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
               </div>
               <a
                 href={BLOG_CONFIG.SITE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 className="flex items-center gap-1 text-xs font-mono text-neutral-400 hover:text-neutral-600 transition-colors"
               >
                 すべて見る

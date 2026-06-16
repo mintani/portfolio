@@ -1,5 +1,6 @@
 import { Github, Mail } from "lucide-react";
 import { XIcon } from "@/components/icons/XIcon";
+import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 export function SiteFooter() {
   return (
@@ -19,8 +20,7 @@ export function SiteFooter() {
             <nav className="flex items-center gap-4">
               <a
                 href="https://github.com/mintani"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 aria-label="GitHub"
                 className="text-neutral-500 hover:text-white transition-colors duration-200"
               >
@@ -28,8 +28,7 @@ export function SiteFooter() {
               </a>
               <a
                 href="https://twitter.com/_mint76"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...EXTERNAL_LINK_PROPS}
                 aria-label="X (Twitter)"
                 className="text-neutral-500 hover:text-white transition-colors duration-200"
               >

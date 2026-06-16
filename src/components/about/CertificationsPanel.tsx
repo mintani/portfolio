@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { CERTIFICATIONS } from "@/data/about";
+import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 export function CertificationsPanel() {
   return (
@@ -9,8 +10,7 @@ export function CertificationsPanel() {
         <a
           key={cert.name}
           href={cert.url ?? "#"}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...EXTERNAL_LINK_PROPS}
           className="group flex items-center gap-4 sm:gap-5 p-4 rounded-xl bg-white/50 border border-white/70 shadow-sm hover:bg-white/70 hover:-translate-y-0.5 transition-all duration-200"
         >
           <div className="relative size-16 sm:size-20 shrink-0">

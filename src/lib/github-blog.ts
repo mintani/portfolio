@@ -270,19 +270,7 @@ export const getArticleFromGitHub = cache(
  * 「UI は Hono に問い合わせる」「GitHub I/O はサービス層が持つ」を分けるのが今回の狙い。
  */
 export const getArticlesList = cache(
-  async ({
-    owner: _owner,
-    repo: _repo,
-    articlesDir: _articlesDir,
-    githubToken: _githubToken,
-    baseUrl,
-  }: {
-    owner: string;
-    repo: string;
-    articlesDir?: string;
-    githubToken: string;
-    baseUrl: string;
-  }): Promise<BlogArticleMeta[]> => {
+  async ({ baseUrl }: { baseUrl: string }): Promise<BlogArticleMeta[]> => {
     try {
       const res = await fetch(`${baseUrl}/api/articles`, {
         next: { revalidate: 60 },
@@ -307,18 +295,10 @@ export const getArticlesList = cache(
  */
 export const getArticle = cache(
   async ({
-    owner: _owner,
-    repo: _repo,
     slug,
-    articlesDir: _articlesDir,
-    githubToken: _githubToken,
     baseUrl,
   }: {
-    owner: string;
-    repo: string;
     slug: string;
-    articlesDir?: string;
-    githubToken: string;
     baseUrl: string;
   }): Promise<BlogArticle> => {
     const res = await fetch(`${baseUrl}/api/articles/${slug}`, {

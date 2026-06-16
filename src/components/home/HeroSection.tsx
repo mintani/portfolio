@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Github, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 const SECTIONS = ["hero-section", "about-section", "works-section"];
 
@@ -122,8 +123,7 @@ export function HeroSection() {
           <div className="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-4">
             <a
               href="https://github.com/mintani"
-              target="_blank"
-              rel="noopener noreferrer"
+              {...EXTERNAL_LINK_PROPS}
               className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2f2f2f] text-white font-poppins font-medium text-sm sm:text-base hover:bg-[#585858] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <Github size={16} className="sm:size-4" />

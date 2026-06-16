@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { BLOG_CONFIG } from "@/lib/blog-config";
 import { getArticlesList } from "@/lib/github-blog";
 import { ArticleCard } from "@/components/blog/ArticleCard";
 import { BlogBackdrop } from "@/components/blog/BlogBackdrop";
@@ -16,13 +15,7 @@ export default async function BlogPage() {
   const apiBaseUrl = await getRequestOrigin();
 
   const articles = githubToken
-    ? await getArticlesList({
-        owner: BLOG_CONFIG.OWNER,
-        repo: BLOG_CONFIG.REPO,
-        articlesDir: BLOG_CONFIG.ARTICLES_DIR,
-        githubToken,
-        baseUrl: apiBaseUrl,
-      })
+    ? await getArticlesList({ baseUrl: apiBaseUrl })
     : [];
 
   return (

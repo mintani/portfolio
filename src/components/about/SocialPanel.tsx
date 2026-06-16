@@ -1,6 +1,7 @@
 import type { ComponentType, SVGProps } from "react";
 import { ExternalLink, Github, Mail, Globe } from "lucide-react";
 import { XIcon } from "@/components/icons/XIcon";
+import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 type ColorScheme = {
   border: string;
@@ -74,7 +75,7 @@ function GridCard({ link }: { link: SocialLink }) {
   return (
     <a
       href={href}
-      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(isExternal ? EXTERNAL_LINK_PROPS : {})}
       className={`group relative flex flex-col p-2 items-center justify-center gap-2.5 rounded-2xl bg-white/50 border border-white/70 shadow-sm backdrop-blur-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${color.bg} ${color.border} overflow-hidden`}
     >
       <div
@@ -99,7 +100,7 @@ function RowCard({ link }: { link: SocialLink }) {
   return (
     <a
       href={href}
-      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      {...(isExternal ? EXTERNAL_LINK_PROPS : {})}
       className={`group relative flex items-center gap-4 p-4 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5 bg-white/40 border border-white/60 backdrop-blur-md shadow-sm hover:shadow-md ${color.border} ${color.text} ${color.bg}`}
     >
       <div

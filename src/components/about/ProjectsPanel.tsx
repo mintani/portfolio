@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/data/about";
 import { TagPill } from "@/components/shared/TagPill";
+import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 export function ProjectsPanel() {
   return (
@@ -9,8 +10,7 @@ export function ProjectsPanel() {
         <a
           key={project.name}
           href={project.url ?? "#"}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...EXTERNAL_LINK_PROPS}
           className="group flex flex-col gap-2 p-4 rounded-xl bg-white/40 border border-white/60 hover:bg-white/60 hover:border-white/80 transition-all duration-200 hover:-translate-y-0.5"
         >
           <div className="flex items-start justify-between gap-2">

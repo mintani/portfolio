@@ -20,14 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const apiBaseUrl = await getRequestOrigin();
 
   try {
-    const article = await getArticle({
-      owner: BLOG_CONFIG.OWNER,
-      repo: BLOG_CONFIG.REPO,
-      slug,
-      articlesDir: BLOG_CONFIG.ARTICLES_DIR,
-      githubToken,
-      baseUrl: apiBaseUrl,
-    });
+    const article = await getArticle({ slug, baseUrl: apiBaseUrl });
     return getPageMeta(article);
   } catch {
     return { title: "記事が見つかりません | MinTani Blog" };
@@ -45,14 +38,7 @@ export default async function BlogDetailPage({ params }: Props) {
 
   let article;
   try {
-    article = await getArticle({
-      owner: BLOG_CONFIG.OWNER,
-      repo: BLOG_CONFIG.REPO,
-      slug,
-      articlesDir: BLOG_CONFIG.ARTICLES_DIR,
-      githubToken,
-      baseUrl: apiBaseUrl,
-    });
+    article = await getArticle({ slug, baseUrl: apiBaseUrl });
   } catch {
     notFound();
   }
