@@ -166,3 +166,18 @@ export const CERTIFICATIONS = [
     url: "https://www.credly.com/badges/aea9efc7-dadc-4b6a-a3ff-033456039065/public_url",
   },
 ] as const satisfies readonly CertificationItem[];
+
+// ─── Coding ratio ───────────────────────────────────────────────────────────
+
+export type CodingRatioItem = {
+  readonly label: string;
+  readonly weight: number;
+};
+
+/** Rough share of the code I write day to day. Percentages derive from weight. */
+export const CODING_RATIO = [
+  { label: "Frontend", weight: 4 },
+  { label: "Backend", weight: 3 },
+  { label: "Infra", weight: 2 },
+  { label: "Design", weight: 1 },
+] as const satisfies readonly CodingRatioItem[];

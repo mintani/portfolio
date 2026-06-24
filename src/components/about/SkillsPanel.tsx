@@ -59,20 +59,14 @@ const LEVEL_LABEL: Record<Level, string> = {
 
 const LEVELS: readonly Level[] = [1, 2, 3];
 
-// Ascending bar heights for levels 1–3.
-const BAR_HEIGHTS: Record<Level, string> = {
-  1: "h-2",
-  2: "h-3",
-  3: "h-4",
-};
-
-function LevelBars({ level }: { level: Level }) {
+// Slanted parallelogram bars; cyan up to the level, gray for the rest.
+function LevelMeter({ level }: { level: Level }) {
   return (
-    <div className="flex items-end gap-0.5 shrink-0">
+    <div className="flex items-center gap-1 shrink-0">
       {LEVELS.map((i) => (
-        <div
+        <span
           key={i}
-          className={`w-1 rounded-sm ${BAR_HEIGHTS[i]} ${i <= level ? "bg-cyan-500" : "bg-neutral-200"}`}
+          className={`h-4 w-1.5 -skew-x-12 rounded-[2px] ${i <= level ? "bg-cyan-500" : "bg-neutral-300"}`}
         />
       ))}
     </div>
@@ -84,7 +78,7 @@ function Legend() {
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
       {LEVELS.map((level) => (
         <div key={level} className="flex items-center gap-1.5">
-          <LevelBars level={level} />
+          <LevelMeter level={level} />
           <span className="font-mono text-[11px] text-neutral-400">
             {LEVEL_LABEL[level]}
           </span>
@@ -111,11 +105,11 @@ function SkillCard({ skill }: { skill: SkillItem }) {
     <div className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-white/70 border border-white/80 shadow-sm hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200">
       <div className="flex items-center gap-2 min-w-0">
         {Icon && <Icon className="size-4 shrink-0" width={16} height={16} />}
-        <span className="text-sm font-semibold text-neutral-800 truncate">
+        <span className="font-poppins text-sm font-semibold text-neutral-800 truncate">
           {skill.name}
         </span>
       </div>
-      <LevelBars level={skill.level} />
+      <LevelMeter level={skill.level} />
     </div>
   );
 }
@@ -130,7 +124,7 @@ export function SkillsPanel() {
         return (
           <div key={key} className="flex flex-col gap-2.5">
             <CategoryHeader label={label} />
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2">
               {catSkills.map((skill) => (
                 <SkillCard key={skill.name} skill={skill} />
               ))}

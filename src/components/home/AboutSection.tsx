@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useInView } from "@/hooks/use-in-view";
 import { Panel, PanelLabel } from "@/components/about/Panel";
 import { SkillsPanel } from "@/components/about/SkillsPanel";
+import { CodingRatioPanel } from "@/components/about/CodingRatioPanel";
 import { CertificationsPanel } from "@/components/about/CertificationsPanel";
 import { CareerPanel } from "@/components/about/CareerPanel";
 import { ProjectsPanel } from "@/components/about/ProjectsPanel";
@@ -77,11 +78,18 @@ export function AboutSection() {
           </Panel>
         </div>
 
-        {/* ── Row 2: Full-width skill grid ── */}
-        <Panel delay={180} inView={inView} className="p-7">
-          <PanelLabel>Skills</PanelLabel>
-          <SkillsPanel />
-        </Panel>
+        {/* ── Row 2: Skills + coding ratio, split in half ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <Panel delay={180} inView={inView} className="p-7">
+            <PanelLabel>Skills</PanelLabel>
+            <SkillsPanel />
+          </Panel>
+
+          <Panel delay={220} inView={inView} className="p-7 flex flex-col">
+            <PanelLabel>Code Ratio</PanelLabel>
+            <CodingRatioPanel />
+          </Panel>
+        </div>
 
         {/* ── Row 3: Certifications ── */}
         <Panel delay={220} inView={inView} className="p-7">
