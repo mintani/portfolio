@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Playwrite_US_Trad } from "next/font/google";
+import { Poppins, Playwrite_US_Trad, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { ThemeProvider } from "@/components/shared/theme-provider/ThemeProvider";
@@ -19,6 +19,12 @@ const playwrite = Playwrite_US_Trad({
   display: "swap",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "MinTani Portfolio",
   description: "Catch up to the stylish MinTani",
@@ -32,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} ${playwrite.variable} antialiased`}
+        className={`${poppins.variable} ${playwrite.variable} ${jetbrainsMono.variable} antialiased`}
         style={{
           fontFamily:
             '"Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "游ゴシック", YuGothic, sans-serif',
