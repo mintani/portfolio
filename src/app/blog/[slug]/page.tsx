@@ -67,7 +67,7 @@ export default async function BlogDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="relative min-h-screen bg-[#f4f6ef] text-[#142018]">
+      <div className="relative min-h-screen bg-[#e3f5f5] text-[#14302e]">
         <BlogBackdrop />
 
         <div className="relative z-10 ">
