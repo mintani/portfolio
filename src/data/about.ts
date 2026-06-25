@@ -37,24 +37,24 @@ export type CareerItem = {
 
 export const CAREER = [
   {
-    year: "2026",
-    title: "仕事探し中 / 個人開発",
+    year: "2026～現在",
+    title: "個人開発",
     place: "大学生・個人開発者",
-    desc: "就活しながらもWebサービス開発を継続。お仕事・インターンのご連絡はXのDMかメールへ。",
+    desc: "株式会社ソフィエイトに入社、趣味の個人開発も継続しつつ業務を行っています。",
     tags: ["個人開発", "フリーランス"],
   },
   {
     year: "2024",
     title: "ハッカソン出場",
     place: "サポーターズ / 技育CAMP",
-    desc: "技育CAMPハッカソン・技育博に複数回出場し、チーム開発を経験。企業賞・優秀賞を受賞。",
+    desc: "技育CAMPハッカソン・技育博に複数回出場し、チーム開発を経験。企業賞・優秀賞を受賞しました",
     tags: ["企業賞", "優秀賞"],
   },
   {
     year: "2017",
     title: "プログラミングを始める",
     place: "中学生時代",
-    desc: "Pythonに興味を持ち独学でコードを書き始める。それ以来ずっとコードを書いている。",
+    desc: "Pythonに興味を持ち独学でコードを書き始める。",
     tags: ["Python"],
   },
 ] as const satisfies readonly CareerItem[];
