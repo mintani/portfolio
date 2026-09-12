@@ -20,10 +20,10 @@ type RatioStyle = {
 const RATIO_STYLES: Record<string, RatioStyle> = {
   Frontend: {
     icon: MonitorSmartphone,
-    bg: "bg-gradient-to-br from-cyan-50 to-cyan-100/70",
-    border: "border-cyan-200/60",
-    number: "text-cyan-600",
-    iconText: "text-cyan-500",
+    bg: "bg-gradient-to-br from-indigo-50 to-indigo-100/70",
+    border: "border-indigo-200/60",
+    number: "text-indigo-600",
+    iconText: "text-indigo-500",
   },
   Backend: {
     icon: Server,
@@ -34,10 +34,10 @@ const RATIO_STYLES: Record<string, RatioStyle> = {
   },
   Infra: {
     icon: Cloud,
-    bg: "bg-gradient-to-br from-indigo-50 to-indigo-100/70",
-    border: "border-indigo-200/60",
-    number: "text-indigo-600",
-    iconText: "text-indigo-500",
+    bg: "bg-gradient-to-br from-sky-50 to-sky-100/70",
+    border: "border-sky-200/60",
+    number: "text-sky-600",
+    iconText: "text-sky-500",
   },
   Design: {
     icon: Palette,

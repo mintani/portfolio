@@ -17,7 +17,7 @@ export function AboutSection() {
   return (
     <section
       id="about-section"
-      className="w-full relative z-30 overflow-hidden flex flex-col items-center justify-center bg-[#EBFFFC]"
+      className="w-full relative z-30 overflow-hidden flex flex-col items-center justify-center bg-[#eef2fc]"
     >
       <div
         ref={ref}
@@ -39,7 +39,7 @@ export function AboutSection() {
           >
             <div className="flex flex-col sm:flex-row gap-6 h-full">
               <div className="shrink-0">
-                <div className="relative size-20 rounded-2xl overflow-hidden ring-2 ring-cyan-300 shadow-md">
+                <div className="relative size-20 rounded-2xl overflow-hidden ring-2 ring-indigo-300 shadow-md">
                   <Image
                     src="/mint.png"
                     alt="mintanaka"

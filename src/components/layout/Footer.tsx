@@ -4,7 +4,7 @@ import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 export function SiteFooter() {
   return (
-    <footer className="w-full bg-[#1c1c1c] text-white">
+    <footer className="w-full bg-[#181d2c] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-10 py-14">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
           <div className="flex flex-col gap-1.5">

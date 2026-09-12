@@ -59,14 +59,14 @@ const LEVEL_LABEL: Record<Level, string> = {
 
 const LEVELS: readonly Level[] = [1, 2, 3];
 
-// Slanted parallelogram bars; cyan up to the level, gray for the rest.
+// Slanted parallelogram bars; indigo up to the level, gray for the rest.
 function LevelMeter({ level }: { level: Level }) {
   return (
     <div className="flex items-center gap-1 shrink-0">
       {LEVELS.map((i) => (
         <span
           key={i}
-          className={`h-4 w-1.5 -skew-x-12 rounded-[2px] ${i <= level ? "bg-cyan-500" : "bg-neutral-300"}`}
+          className={`h-4 w-1.5 -skew-x-12 rounded-[2px] ${i <= level ? "bg-indigo-500" : "bg-neutral-300"}`}
         />
       ))}
     </div>

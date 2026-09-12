@@ -26,7 +26,7 @@ export function Panel({
 export function PanelLabel({ children }: { children: ReactNode }) {
   return (
     <div className="flex items-center gap-2 mb-6">
-      <div className="w-1 h-3.5 rounded-full bg-cyan-400/70" />
+      <div className="w-1 h-3.5 rounded-full bg-indigo-400/70" />
       <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-neutral-400">
         {children}
       </span>

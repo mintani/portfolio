@@ -9,16 +9,16 @@ const SECTIONS = ["hero-section", "about-section", "works-section"];
 
 // Shared responsive sizing for the foreground heading lines.
 const HEADING_TEXT =
-  "font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#585858]";
+  "font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#555e7e]";
 
 // Large stroked background lettering.
 const OUTLINE_TEXT =
   "flex-1 hero-outline-text text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] select-none";
 
 const OUTLINE_LINES = [
-  { text: "Catch up", align: "text-right", stroke: "stroke-green" },
-  { text: "to the", align: "text-left", stroke: "stroke-teal" },
-  { text: "future", align: "text-right", stroke: "stroke-pink" },
+  { text: "Catch up", align: "text-right", stroke: "stroke-periwinkle" },
+  { text: "to the", align: "text-left", stroke: "stroke-bluegray" },
+  { text: "future", align: "text-right", stroke: "stroke-blush" },
 ] as const;
 
 function scrollToSection(id: string) {
@@ -83,7 +83,7 @@ export function HeroSection() {
             right: "calc(-1 * (100vw - 100%) / 2)",
             clipPath:
               "polygon(calc(100% - 550px) 0%, 100% 0%, 100% 100%, calc(100% - 400px) 100%)",
-            background: "#e8f9fa",
+            background: "#e9eefb",
           }}
           aria-hidden="true"
         />
@@ -108,13 +108,13 @@ export function HeroSection() {
           <div className="flex items-baseline leading-tight">
             <span className={`${HEADING_TEXT} select-none`}>the</span>
             <span className={`${HEADING_TEXT} select-none`}>&ldquo;</span>
-            <span className="font-playwrite text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#01c7ca] px-1 select-none">
+            <span className="font-playwrite text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#4d5ec8] px-1 select-none">
               stylish
             </span>
             <span className={`${HEADING_TEXT} select-none`}>&rdquo;</span>
           </div>
           <div className="flex items-baseline leading-none -mt-2">
-            <span className="font-poppins font-bold italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[156px] text-[#2f2f2f] tracking-tight">
+            <span className="font-poppins font-bold italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[156px] text-[#2a3149] tracking-tight">
               MinTani
             </span>
           </div>
@@ -124,14 +124,14 @@ export function HeroSection() {
             <a
               href="https://github.com/mintani"
               {...EXTERNAL_LINK_PROPS}
-              className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2f2f2f] text-white font-poppins font-medium text-sm sm:text-base hover:bg-[#585858] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2a3149] text-white font-poppins font-medium text-sm sm:text-base hover:bg-[#555e7e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <Github size={16} className="sm:size-4" />
               Visit my GitHub
             </a>
             <button
               onClick={() => scrollToSection("about-section")}
-              className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-[#2f2f2f]/30 text-[#585858] font-poppins font-medium text-sm sm:text-base hover:border-[#2f2f2f] hover:text-[#2f2f2f] transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm cursor-pointer"
+              className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-[#2a3149]/30 text-[#555e7e] font-poppins font-medium text-sm sm:text-base hover:border-[#2a3149] hover:text-[#2a3149] transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm cursor-pointer"
             >
               Move to &ldquo;About me&rdquo;
             </button>
@@ -141,10 +141,10 @@ export function HeroSection() {
         {/* Character image */}
         <div className="absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible">
           <Image
-            src="/anime-2.png"
+            src="/scaled2x.png"
             alt="mint"
-            width={800}
-            height={800}
+            width={768}
+            height={1024}
             priority
             className="object-cover object-top"
           />

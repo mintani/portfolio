@@ -73,7 +73,7 @@ function BlogCard({ article }: { article: BlogArticleMeta }) {
     >
       <div
         className="relative h-28 flex items-end p-4"
-        style={{ background: "linear-gradient(135deg, #f59e0b, #b45309)" }}
+        style={{ background: "linear-gradient(135deg, #7b8fd9, #414f96)" }}
       >
         {article.date && (
           <span className="absolute top-3 right-3 text-[10px] font-mono text-white/60">
@@ -109,7 +109,7 @@ function BlogCard({ article }: { article: BlogArticleMeta }) {
         {article.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-auto">
             {article.tags.slice(0, 3).map((tag) => (
-              <TagPill key={tag} variant="amber">
+              <TagPill key={tag} variant="accent">
                 {tag}
               </TagPill>
             ))}
@@ -124,7 +124,7 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
   return (
     <section
       id="works-section"
-      className="w-full relative z-30 overflow-hidden flex flex-col items-center bg-[#ceefee]"
+      className="w-full relative z-30 overflow-hidden flex flex-col items-center bg-[#dce4f8]"
     >
       <div className="container mx-auto w-full py-20 px-4 sm:px-6 lg:px-10 flex flex-col gap-10">
         <SectionHeading eyebrow="制作物 & 記事" title="Works" />
@@ -139,7 +139,7 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
           <div className="flex flex-col gap-5">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="w-1 h-3.5 rounded-full bg-amber-400/70" />
+                <div className="w-1 h-3.5 rounded-full bg-indigo-400/70" />
                 <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-neutral-400">
                   Blog
                 </span>

@@ -102,7 +102,7 @@ export const WORKS: readonly WorkItem[] = [
     desc: "画像からカラーを抽出して3D空間で可視化・パレット編集・テーマファイルとしてエクスポートできるカラーツール。K-meansクラスタリングとThree.jsを活用した個人開発プロダクト。",
     tags: ["Next.js", "Three.js", "Hono", "PostgreSQL"],
     url: "https://github.com/mintani/iroiro",
-    image: "/anime-2.png",
+    image: "/scaled2x.png",
     colorFrom: "#a855f7",
     colorTo: "#6366f1",
   },

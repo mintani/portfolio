@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 const VARIANTS = {
   neutral: "bg-neutral-100 border-neutral-200/60 text-neutral-500",
-  amber: "bg-amber-50 border-amber-200/60 text-amber-600",
+  accent: "bg-indigo-50 border-indigo-200/60 text-indigo-600",
 } as const;
 
 type TagPillProps = {

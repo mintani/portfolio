@@ -2,7 +2,7 @@
 
 .blog-prose {
   max-width: 42rem;
-  color: #23403d;
+  color: #2a3557;
   font-size: 1.02rem;
   line-height: 1.95;
 }
@@ -13,7 +13,7 @@
   font-size: 1.875rem;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #14302e;
+  color: #1d2947;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   line-height: 1.3;
@@ -24,11 +24,11 @@
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.02em;
-  color: #14302e;
+  color: #1d2947;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(10, 91, 93, 0.14);
+  border-bottom: 1px solid rgba(53, 66, 154, 0.14);
   line-height: 1.4;
 }
 
@@ -36,7 +36,7 @@
   font-family: var(--font-poppins), "Poppins", sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #14302e;
+  color: #1d2947;
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
   line-height: 1.4;
@@ -46,7 +46,7 @@
   font-family: var(--font-poppins), "Poppins", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #14302e;
+  color: #1d2947;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
@@ -58,7 +58,7 @@
 
 /* Links */
 .blog-prose a {
-  color: #0c7173;
+  color: #4353b8;
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
@@ -66,7 +66,7 @@
 }
 
 .blog-prose a:hover {
-  color: #0a5b5d;
+  color: #35429a;
 }
 
 /* Anchor headings */
@@ -106,22 +106,22 @@
 
 /* Blockquotes */
 .blog-prose blockquote {
-  border-left: 3px solid rgba(15, 138, 140, 0.5);
+  border-left: 3px solid rgba(74, 92, 192, 0.5);
   border-radius: 0 1rem 1rem 0;
   background: rgba(255, 255, 255, 0.82);
   padding: 1rem 1.25rem;
-  color: #2f4a47;
+  color: #333f66;
   margin: 1.5rem 0;
-  box-shadow: 0 14px 28px rgba(17, 23, 19, 0.04);
+  box-shadow: 0 14px 28px rgba(23, 26, 44, 0.04);
 }
 
 /* Images */
 .blog-prose img {
   max-width: 100%;
   height: auto;
-  border: 1px solid rgba(10, 91, 93, 0.12);
+  border: 1px solid rgba(53, 66, 154, 0.12);
   border-radius: 1rem;
-  box-shadow: 0 18px 38px rgba(17, 23, 19, 0.08);
+  box-shadow: 0 18px 38px rgba(23, 26, 44, 0.08);
   margin: 1.5rem 0;
 }
 
@@ -131,21 +131,21 @@
   border-radius: 0.45rem;
   padding: 0.15rem 0.45rem;
   font-size: 0.875em;
-  color: #0a5b5d;
+  color: #35429a;
   font-weight: 500;
-  border: 1px solid rgba(10, 91, 93, 0.08);
+  border: 1px solid rgba(53, 66, 154, 0.08);
 }
 
 /* Code blocks (rehype-pretty-code) */
 .blog-prose pre {
-  border: 1px solid rgba(10, 91, 93, 0.1);
+  border: 1px solid rgba(53, 66, 154, 0.1);
   border-radius: 1rem;
   padding: 1rem 1.25rem;
   overflow-x: auto;
   margin: 1.5rem 0;
   font-size: 0.875rem;
   line-height: 1.7;
-  box-shadow: 0 18px 38px rgba(17, 23, 19, 0.08);
+  box-shadow: 0 18px 38px rgba(23, 26, 44, 0.08);
 }
 
 .blog-prose pre > code {
@@ -178,7 +178,7 @@
   background: rgba(255, 255, 255, 0.06);
   margin: 0 -1.25rem;
   padding: 0 1.25rem;
-  border-left: 2px solid #0f8a8c;
+  border-left: 2px solid #4a5cc0;
 }
 
 /* rehype-pretty-code: line numbers */
@@ -193,13 +193,13 @@
   width: 1rem;
   margin-right: 1rem;
   text-align: right;
-  color: #7b8b89;
+  color: #7f89a8;
 }
 
 /* Horizontal rules */
 .blog-prose hr {
   border: none;
-  border-top: 1px solid rgba(10, 91, 93, 0.14);
+  border-top: 1px solid rgba(53, 66, 154, 0.14);
   margin: 2rem 0;
 }
 
@@ -212,27 +212,27 @@
   overflow: hidden;
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 18px 38px rgba(17, 23, 19, 0.05);
+  box-shadow: 0 18px 38px rgba(23, 26, 44, 0.05);
 }
 
 .blog-prose th {
-  background: #dcf2f2;
+  background: #dfe6f7;
   font-weight: 600;
   text-align: left;
   padding: 0.625rem 0.75rem;
-  border-bottom: 1px solid rgba(10, 91, 93, 0.12);
-  color: #14302e;
+  border-bottom: 1px solid rgba(53, 66, 154, 0.12);
+  color: #1d2947;
 }
 
 .blog-prose td {
   padding: 0.625rem 0.75rem;
-  border-bottom: 1px solid rgba(10, 91, 93, 0.08);
+  border-bottom: 1px solid rgba(53, 66, 154, 0.08);
 }
 
 /* Strong / emphasis */
 .blog-prose strong {
   font-weight: 600;
-  color: #14302e;
+  color: #1d2947;
 }
 
 .blog-prose em {
@@ -242,14 +242,14 @@
 /* Task lists (GFM) */
 .blog-prose input[type="checkbox"] {
   margin-right: 0.5rem;
-  accent-color: #0f8a8c;
+  accent-color: #4a5cc0;
 }
 
 /* Footnotes */
 .blog-prose .footnotes {
   font-size: 0.875rem;
-  color: #4b5f5d;
-  border-top: 1px solid rgba(10, 91, 93, 0.14);
+  color: #4d597f;
+  border-top: 1px solid rgba(53, 66, 154, 0.14);
   margin-top: 3rem;
   padding-top: 1.5rem;
 }

@@ -20,7 +20,7 @@ export function ArticleTags({
           key={tag}
           variant="secondary"
           className={cn(
-            "rounded-full border border-[#0a5b5d]/14 px-3 py-1 text-xs font-medium text-[#0f8a8c]",
+            "rounded-full border border-[#35429a]/14 px-3 py-1 text-xs font-medium text-[#4a5cc0]",
             badgeClassName
           )}
         >

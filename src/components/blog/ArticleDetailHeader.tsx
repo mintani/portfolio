@@ -10,18 +10,18 @@ type ArticleDetailHeaderProps = {
 
 export const ArticleDetailHeader = ({ article }: ArticleDetailHeaderProps) => {
   return (
-    <header className="relative border-b border-[#0a5b5d]/12 bg-[#e3f5f5]">
+    <header className="relative border-b border-[#35429a]/12 bg-[#e6ebf9]">
       <div className="container relative mx-auto max-w-4xl px-4 py-20 md:px-6 md:py-20">
         <Link
           href="/blog"
-          className="mb-6 inline-flex items-center gap-1.5 text-sm text-[#4b5f5d] transition-colors hover:text-[#14302e]"
+          className="mb-6 inline-flex items-center gap-1.5 text-sm text-[#4d597f] transition-colors hover:text-[#1d2947]"
         >
           <ArrowLeft size={14} />
           記事一覧に戻る
         </Link>
 
         <div className="space-y-5">
-          <h1 className="font-poppins text-3xl font-semibold tracking-tight text-[#14302e] md:text-5xl">
+          <h1 className="font-poppins text-3xl font-semibold tracking-tight text-[#1d2947] md:text-5xl">
             {article.title}
           </h1>
 
@@ -29,8 +29,8 @@ export const ArticleDetailHeader = ({ article }: ArticleDetailHeaderProps) => {
             date={article.date}
             readingTime={article.readingTime}
             iconSize={14}
-            className="gap-x-5 gap-y-2 text-sm text-[#4b5f5d]"
-            iconClassName="text-[#0f8a8c]"
+            className="gap-x-5 gap-y-2 text-sm text-[#4d597f]"
+            iconClassName="text-[#4a5cc0]"
           />
 
           <ArticleTags tags={article.tags} badgeClassName="bg-white" />

@@ -27,7 +27,7 @@ export function CertificationsPanel() {
               {cert.name}
             </span>
             <span className="text-xs text-neutral-400">{cert.issuer}</span>
-            <span className="mt-1.5 inline-flex w-fit items-center gap-1 font-mono text-[10px] tracking-wide text-cyan-600/90 group-hover:text-cyan-700 transition-colors">
+            <span className="mt-1.5 inline-flex w-fit items-center gap-1 font-mono text-[10px] tracking-wide text-indigo-600/90 group-hover:text-indigo-700 transition-colors">
               資格を検証
               <ExternalLink size={11} />
             </span>

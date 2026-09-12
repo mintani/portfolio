@@ -3,12 +3,12 @@ import { CAREER } from "@/data/about";
 export function CareerPanel() {
   return (
     <div className="relative flex flex-col">
-      <div className="absolute left-[5px] top-3 bottom-3 w-px bg-gradient-to-b from-cyan-300/70 via-cyan-200/40 to-transparent" />
+      <div className="absolute left-[5px] top-3 bottom-3 w-px bg-gradient-to-b from-indigo-300/70 via-indigo-200/40 to-transparent" />
 
       {CAREER.map((item) => (
         <div key={item.year} className="relative flex gap-5 pb-8 last:pb-0">
           <div className="shrink-0 mt-1.5 z-10">
-            <div className="size-[11px] rounded-full border-2 border-cyan-400 bg-white shadow-sm" />
+            <div className="size-[11px] rounded-full border-2 border-indigo-400 bg-white shadow-sm" />
           </div>
 
           <div className="flex flex-col gap-1 flex-1 min-w-0 -mt-0.5">
