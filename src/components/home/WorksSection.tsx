@@ -1,4 +1,4 @@
-import { ArrowUpRight, Cog, Trophy } from "lucide-react";
+import { ArrowUpRight, Settings, Terminal, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -115,10 +115,16 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
       id="works-section"
       className="w-full relative overflow-hidden bg-paper py-20 lg:py-28"
     >
-      <Cog
+      {/* Background decoration, continuing the About section's alternation */}
+      <Terminal
+        aria-hidden
+        strokeWidth={0.5}
+        className="pointer-events-none absolute z-0 -top-[10vw] -right-[14vw] size-[52vw] lg:size-[36rem] lg:-top-32 lg:-right-36 rotate-[10deg] text-accent opacity-[0.1]"
+      />
+      <Settings
         aria-hidden
         strokeWidth={0.6}
-        className="pointer-events-none absolute z-0 -bottom-[14vw] -left-[12vw] size-[56vw] lg:size-[40rem] lg:-bottom-56 lg:-left-40 -rotate-12 text-ink-2 opacity-[0.14]"
+        className="pointer-events-none absolute z-0 -bottom-[14vw] -left-[12vw] size-[56vw] lg:size-[40rem] lg:-bottom-56 lg:-left-40 -rotate-[18deg] text-ink-2 opacity-[0.14]"
       />
 
       <div className="container relative z-10 mx-auto px-5 sm:px-8 lg:px-12">

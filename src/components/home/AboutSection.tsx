@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
-import { ArrowUpRight, CodeXml } from "lucide-react";
+import { ArrowUpRight, CodeXml, Server } from "lucide-react";
 import { CareerPanel } from "@/components/about/CareerPanel";
 import { CodingRatioPanel } from "@/components/about/CodingRatioPanel";
 import { SkillsPanel } from "@/components/about/SkillsPanel";
@@ -40,10 +40,16 @@ export function AboutSection() {
       id="about-section"
       className="w-full relative z-30 overflow-hidden bg-paper-2 py-24 lg:py-32"
     >
+      {/* Background decoration: one icon top-right, one bottom-left, alternating down the page */}
       <CodeXml
         aria-hidden
         strokeWidth={0.5}
-        className="pointer-events-none absolute z-0 -top-[8vw] -right-[10vw] size-[56vw] lg:size-[40rem] lg:-top-36 lg:-right-24 text-accent opacity-[0.12]"
+        className="pointer-events-none absolute z-0 -top-[8vw] -right-[10vw] size-[56vw] lg:size-[40rem] lg:-top-36 lg:-right-24 rotate-12 text-accent opacity-[0.12]"
+      />
+      <Server
+        aria-hidden
+        strokeWidth={0.5}
+        className="pointer-events-none absolute z-0 -bottom-[10vw] -left-[12vw] size-[50vw] lg:size-[34rem] lg:-bottom-40 lg:-left-32 -rotate-12 text-ink-2 opacity-[0.1]"
       />
 
       <div className="container relative z-10 mx-auto px-5 sm:px-8 lg:px-12">
