@@ -1,6 +1,14 @@
-import type { ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 import Image from "next/image";
-import { ArrowUpRight, CodeXml, Server } from "lucide-react";
+import {
+  ArrowUpRight,
+  CodeXml,
+  Github,
+  Globe,
+  Mail,
+  Server,
+} from "lucide-react";
+import { XIcon } from "@/components/icons/XIcon";
 import { CareerPanel } from "@/components/about/CareerPanel";
 import { CodingRatioPanel } from "@/components/about/CodingRatioPanel";
 import { SkillsPanel } from "@/components/about/SkillsPanel";
@@ -15,6 +23,15 @@ const FOCUS_RING =
 
 const UNDERLINE =
   "underline underline-offset-4 decoration-rule group-hover:decoration-accent";
+
+type LinkIcon = ComponentType<{ size?: number; className?: string }>;
+
+const LINK_ICONS: Record<string, LinkIcon> = {
+  GitHub: Github,
+  X: XIcon,
+  "Runa.dev": Globe,
+  Email: Mail,
+};
 
 const BIO = [
   "日本工業大学データサイエンス学科の学生（28卒）です。中学のころ独学でプログラミングを始めて、今もコードを書き続けています。最近はチームで開発する機会も増えてきてフロントエンドだけでなくインフラやバックエンドなど、日々新しいことに挑戦しています。",
@@ -62,6 +79,28 @@ export function AboutSection() {
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+              {SOCIAL_LINKS.map((link) => {
+                const Icon = LINK_ICONS[link.label];
+                return (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      {...(link.external ? EXTERNAL_LINK_PROPS : {})}
+                      className={`group inline-flex min-h-11 items-center gap-2 font-display text-sm font-medium text-ink whitespace-nowrap ${FOCUS_RING}`}
+                    >
+                      {Icon ? (
+                        <Icon
+                          size={18}
+                          className="text-ink-2 transition-colors duration-200 group-hover:text-accent"
+                        />
+                      ) : null}
+                      <span className={UNDERLINE}>{link.label}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
 
           <div className="lg:col-span-5 lg:col-start-8 lg:pt-16 min-w-0">
@@ -126,22 +165,6 @@ export function AboutSection() {
                     </span>
                   </span>
                 </a>
-              </SpecRow>
-
-              <SpecRow label="Links">
-                <span className="flex flex-wrap gap-x-3 gap-y-1.5">
-                  {SOCIAL_LINKS.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      {...(link.external ? EXTERNAL_LINK_PROPS : {})}
-                      className={`group inline-flex items-center gap-1 text-sm text-ink whitespace-nowrap ${UNDERLINE} ${FOCUS_RING}`}
-                    >
-                      {link.label}
-                      {link.external ? <ArrowUpRight size={12} /> : null}
-                    </a>
-                  ))}
-                </span>
               </SpecRow>
             </dl>
           </div>
