@@ -1,4 +1,4 @@
-import { ArrowUpRight, Trophy } from "lucide-react";
+import { ArrowUpRight, Cog, Trophy } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -115,12 +115,11 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
       id="works-section"
       className="w-full relative overflow-hidden bg-paper py-20 lg:py-28"
     >
-      <span
+      <Cog
         aria-hidden
-        className="hero-outline-text stroke-bluegray pointer-events-none select-none absolute -bottom-10 -left-6 text-[22vw] lg:text-[16rem] leading-none opacity-30"
-      >
-        Works
-      </span>
+        strokeWidth={0.6}
+        className="pointer-events-none absolute z-0 -bottom-[14vw] -left-[12vw] size-[56vw] lg:size-[40rem] lg:-bottom-56 lg:-left-40 -rotate-12 text-ink-2 opacity-[0.14]"
+      />
 
       <div className="container relative z-10 mx-auto px-5 sm:px-8 lg:px-12">
         <SectionHeading

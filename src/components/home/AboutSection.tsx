@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CodeXml } from "lucide-react";
 import { CareerPanel } from "@/components/about/CareerPanel";
 import { CodingRatioPanel } from "@/components/about/CodingRatioPanel";
 import { SkillsPanel } from "@/components/about/SkillsPanel";
@@ -40,12 +40,11 @@ export function AboutSection() {
       id="about-section"
       className="w-full relative z-30 overflow-hidden bg-paper-2 py-24 lg:py-32"
     >
-      <span
+      <CodeXml
         aria-hidden
-        className="hero-outline-text stroke-periwinkle pointer-events-none select-none absolute z-0 -top-8 -right-8 text-[22vw] lg:text-[16rem] leading-none opacity-30"
-      >
-        About
-      </span>
+        strokeWidth={0.5}
+        className="pointer-events-none absolute z-0 -top-[8vw] -right-[10vw] size-[56vw] lg:size-[40rem] lg:-top-36 lg:-right-24 text-accent opacity-[0.12]"
+      />
 
       <div className="container relative z-10 mx-auto px-5 sm:px-8 lg:px-12">
         {/* ── Profile diptych ── */}
