@@ -1,113 +1,160 @@
-"use client";
-
+import type { ReactNode } from "react";
 import Image from "next/image";
-import { useInView } from "@/hooks/use-in-view";
-import { Panel, PanelLabel } from "@/components/about/Panel";
-import { SkillsPanel } from "@/components/about/SkillsPanel";
-import { CodingRatioPanel } from "@/components/about/CodingRatioPanel";
-import { CertificationsPanel } from "@/components/about/CertificationsPanel";
+import { ArrowUpRight } from "lucide-react";
 import { CareerPanel } from "@/components/about/CareerPanel";
-import { ProjectsPanel } from "@/components/about/ProjectsPanel";
-import { SocialPanel } from "@/components/about/SocialPanel";
+import { CodingRatioPanel } from "@/components/about/CodingRatioPanel";
+import { SkillsPanel } from "@/components/about/SkillsPanel";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { CERTIFICATIONS, PROFILE, SOCIAL_LINKS } from "@/data/about";
+import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
+const CERTIFICATION = CERTIFICATIONS[0];
+
+const FOCUS_RING =
+  "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus";
+
+const UNDERLINE =
+  "underline underline-offset-4 decoration-rule group-hover:decoration-accent";
+
+const BIO = [
+  "日本工業大学データサイエンス学科の学生（28卒）です。中学のころ独学でプログラミングを始めて、今もコードを書き続けています。最近はチームで開発する機会も増えてきてフロントエンドだけでなくインフラやバックエンドなど、日々新しいことに挑戦しています。",
+  "自宅サーバーを運用していて、サーバーに友人と遊ぶためのゲームサーバーを立てたり、ウェブサイトをデプロイしたり、このサイトも自宅サーバーから配信しています。",
+];
+
+/** One labelled row of the profile spec sheet. */
+function SpecRow({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="grid grid-cols-[7.5rem_minmax(0,1fr)] sm:grid-cols-[9rem_minmax(0,1fr)] gap-4 py-3.5">
+      <dt className="font-mono text-xs uppercase tracking-[0.14em] text-ink-3 pt-0.5">
+        {label}
+      </dt>
+      <dd className="text-sm text-ink min-w-0">{children}</dd>
+    </div>
+  );
+}
+
+/** About: profile diptych, skills, code ratio and career. */
 export function AboutSection() {
-  const { ref, inView } = useInView(0.05);
-
   return (
     <section
       id="about-section"
-      className="w-full relative z-30 overflow-hidden flex flex-col items-center justify-center bg-[#eef2fc]"
+      className="w-full relative z-30 overflow-hidden bg-paper-2 py-24 lg:py-32"
     >
-      <div
-        ref={ref}
-        className="container mx-auto w-full py-20 px-4 sm:px-6 lg:px-10 flex flex-col gap-8"
+      <span
+        aria-hidden
+        className="hero-outline-text stroke-periwinkle pointer-events-none select-none absolute z-0 -top-6 -right-8 text-[22vw] lg:text-[16rem] leading-none opacity-70"
       >
-        {/* ── Section header ── */}
-        <SectionHeading
-          eyebrow="自己紹介"
-          title="About me"
-          className={`transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-        />
+        About
+      </span>
 
-        {/* ── Row 1: Profile (wide) + Socials ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <Panel
-            className="lg:col-span-2 p-7 sm:p-8"
-            delay={60}
-            inView={inView}
-          >
-            <div className="flex flex-col sm:flex-row gap-6 h-full">
-              <div className="shrink-0">
-                <div className="relative size-20 rounded-2xl overflow-hidden ring-2 ring-indigo-300 shadow-md">
-                  <Image
-                    src="/mint.png"
-                    alt="mintanaka"
-                    fill
-                    className="object-cover object-top"
-                    sizes="80px"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col gap-3 flex-1">
-                <div className="flex flex-col gap-0.5">
-                  <span className="font-poppins font-bold text-xl text-neutral-900 leading-tight">
-                    MinTani
-                  </span>
-                  <span className="font-mono text-xs text-neutral-400 tracking-wide">
-                    @mintanaka
-                  </span>
-                </div>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  日本工業大学データサイエンス学科の学生（28卒）です。
-                  中学のころ独学でプログラミングを始めて、今もコードを書き続けています。
-                  最近はチームで開発する機会も増えてきてフロントエンドだけでなく
-                  インフラやバックエンドなど、日々新しいことに挑戦しています。
-                </p>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  自宅サーバーを運用していて、サーバーに友人と遊ぶためのゲームサーバーを立てたり、ウェブサイトをデプロイしたり
-                  このサイトも自宅サーバーから配信しています。
-                </p>
-              </div>
+      <div className="container relative z-10 mx-auto px-5 sm:px-8 lg:px-12">
+        {/* ── Profile diptych ── */}
+        <div className="grid lg:grid-cols-12 gap-x-12 gap-y-12">
+          <div className="lg:col-span-7 min-w-0">
+            <SectionHeading kicker="Nice to meet you" title="About" />
+            <div className="mt-8 space-y-5 text-[15px] sm:text-base leading-[1.9] text-ink-2 max-w-[60ch]">
+              {BIO.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </div>
-          </Panel>
+          </div>
 
-          <Panel className="p-6 flex flex-col" delay={120} inView={inView}>
-            <PanelLabel>Connect</PanelLabel>
-            <SocialPanel compact />
-          </Panel>
+          <div className="lg:col-span-5 lg:col-start-8 lg:pt-16 min-w-0">
+            <div className="size-14 rounded-xl border border-rule overflow-hidden">
+              <Image
+                src={PROFILE.avatar}
+                alt="MinTani のアイコン"
+                width={56}
+                height={56}
+                className="size-full object-cover object-top"
+              />
+            </div>
+
+            <dl className="mt-6 divide-y divide-rule border-y border-rule">
+              <SpecRow label="Name">
+                <span className="font-display font-semibold">
+                  {PROFILE.name}
+                </span>
+                <span className="font-mono text-xs text-ink-3 ml-2">
+                  {PROFILE.handle}
+                </span>
+              </SpecRow>
+
+              <SpecRow label="School">{PROFILE.school}</SpecRow>
+
+              <SpecRow label="Graduation">
+                <span className="tabular-nums">{PROFILE.graduation}</span>
+                <span className="text-ink-3">{PROFILE.graduationNote}</span>
+              </SpecRow>
+
+              <SpecRow label="Coding since">
+                <span className="tabular-nums">{PROFILE.codingSince}</span>
+                <span className="text-ink-3">
+                  {" · "}
+                  {PROFILE.codingSinceNote}
+                </span>
+              </SpecRow>
+
+              <SpecRow label="Home lab">{PROFILE.homeLab}</SpecRow>
+
+              <SpecRow label="Certification">
+                <a
+                  href={CERTIFICATION.url}
+                  {...EXTERNAL_LINK_PROPS}
+                  className={`group flex items-center gap-2 ${FOCUS_RING}`}
+                >
+                  <Image
+                    src={CERTIFICATION.image}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="size-8 shrink-0"
+                  />
+                  <span className="min-w-0">
+                    <span className={UNDERLINE}>{CERTIFICATION.name}</span>
+                    <ArrowUpRight
+                      size={12}
+                      className="inline align-middle ml-1 text-ink-3"
+                    />
+                    <span className="block font-mono text-xs text-ink-3 tabular-nums">
+                      {CERTIFICATION.issued}
+                    </span>
+                  </span>
+                </a>
+              </SpecRow>
+
+              <SpecRow label="Links">
+                <span className="flex flex-wrap gap-x-3 gap-y-1.5">
+                  {SOCIAL_LINKS.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      {...(link.external ? EXTERNAL_LINK_PROPS : {})}
+                      className={`group inline-flex items-center gap-1 text-sm text-ink whitespace-nowrap ${UNDERLINE} ${FOCUS_RING}`}
+                    >
+                      {link.label}
+                      {link.external ? <ArrowUpRight size={12} /> : null}
+                    </a>
+                  ))}
+                </span>
+              </SpecRow>
+            </dl>
+          </div>
         </div>
 
-        {/* ── Row 2: Skills + coding ratio, split in half ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <Panel delay={180} inView={inView} className="p-7">
-            <PanelLabel>Skills</PanelLabel>
-            <SkillsPanel />
-          </Panel>
-
-          <Panel delay={220} inView={inView} className="p-7 flex flex-col">
-            <PanelLabel>Code Ratio</PanelLabel>
-            <CodingRatioPanel />
-          </Panel>
+        {/* ── Skills ── */}
+        <div className="mt-20 lg:mt-24">
+          <SkillsPanel />
         </div>
 
-        {/* ── Row 3: Certifications ── */}
-        <Panel delay={220} inView={inView} className="p-7">
-          <PanelLabel>Certifications</PanelLabel>
-          <CertificationsPanel />
-        </Panel>
+        {/* ── Code ratio ── */}
+        <div className="mt-12">
+          <CodingRatioPanel />
+        </div>
 
-        {/* ── Row 4: Career (narrow) + Projects ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          <Panel className="lg:col-span-2 p-7" delay={240} inView={inView}>
-            <PanelLabel>Career</PanelLabel>
-            <CareerPanel />
-          </Panel>
-
-          <Panel className="lg:col-span-3 p-7" delay={300} inView={inView}>
-            <PanelLabel>Projects</PanelLabel>
-            <ProjectsPanel />
-          </Panel>
+        {/* ── Career ── */}
+        <div className="mt-20 lg:mt-24">
+          <CareerPanel />
         </div>
       </div>
     </section>
