@@ -3,20 +3,22 @@ import { AboutSection } from "@/components/home/AboutSection";
 import { WorksSection } from "@/components/home/WorksSection";
 import { SiteFooter } from "@/components/layout/Footer";
 import { getArticlesList } from "@/lib/github-blog";
+import { getGithubStats } from "@/lib/github-stats";
 import { getRequestOrigin } from "@/lib/request-origin";
 
 export default async function Home() {
   const githubToken = process.env.GITHUB_TOKEN;
   const baseUrl = await getRequestOrigin();
 
-  const articles = githubToken
-    ? await getArticlesList({ baseUrl }).catch(() => [])
-    : [];
+  const [articles, github] = await Promise.all([
+    githubToken ? getArticlesList({ baseUrl }).catch(() => []) : [],
+    getGithubStats("mintani"),
+  ]);
 
   return (
-    <div className="w-full bg-[#dce4f8] relative flex flex-col items-center overflow-x-hidden">
+    <div className="w-full bg-paper relative flex flex-col items-center overflow-x-clip">
       <HeroSection />
-      <AboutSection />
+      <AboutSection github={github} />
       <WorksSection articles={articles} />
       <SiteFooter />
     </div>

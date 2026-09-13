@@ -1,32 +1,35 @@
 import { CAREER } from "@/data/about";
 
+// The data is newest first; the step sequence reads oldest first.
+const STEPS = [...CAREER].reverse();
+
+/** Career as a three-step sequence, horizontal from md up. */
 export function CareerPanel() {
   return (
-    <div className="relative flex flex-col">
-      <div className="absolute left-[5px] top-3 bottom-3 w-px bg-gradient-to-b from-indigo-300/70 via-indigo-200/40 to-transparent" />
-
-      {CAREER.map((item) => (
-        <div key={item.year} className="relative flex gap-5 pb-8 last:pb-0">
-          <div className="shrink-0 mt-1.5 z-10">
-            <div className="size-[11px] rounded-full border-2 border-indigo-400 bg-white shadow-sm" />
-          </div>
-
-          <div className="flex flex-col gap-1 flex-1 min-w-0 -mt-0.5">
-            <span className="font-mono text-[10px] tracking-[0.2em] text-neutral-400 uppercase">
+    <div>
+      <h3 className="font-display font-bold text-2xl sm:text-3xl tracking-[-0.02em] text-ink">
+        Career
+      </h3>
+      <div className="border-t border-rule mt-4" />
+      <ol className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8 mt-5">
+        {STEPS.map((item) => (
+          <li key={item.year} className="border-t border-rule pt-4 min-w-0">
+            <span className="block font-display font-bold text-3xl tracking-[-0.02em] text-ink tabular-nums whitespace-nowrap">
               {item.year}
             </span>
-            <span className="font-semibold text-sm text-neutral-800 leading-snug">
-              {item.title}
-            </span>
-            <span className="text-[11px] text-neutral-400">{item.place}</span>
-            {item.desc ? (
-              <p className="text-xs text-neutral-500 leading-relaxed mt-0.5">
-                {item.desc}
+            <h4 className="font-semibold text-ink mt-2">{item.title}</h4>
+            <p className="text-xs text-ink-3">{item.place}</p>
+            <p className="text-sm text-ink-2 leading-relaxed mt-2">
+              {item.desc}
+            </p>
+            {item.tags.length > 0 ? (
+              <p className="font-mono text-xs text-ink-3 mt-2">
+                {item.tags.join(" · ")}
               </p>
             ) : null}
-          </div>
-        </div>
-      ))}
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }

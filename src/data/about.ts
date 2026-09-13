@@ -1,3 +1,47 @@
+// ─── Profile ─────────────────────────────────────────────────────────────────
+
+export type ProfileFacts = {
+  readonly name: string;
+  readonly handle: string;
+  readonly school: string;
+  readonly graduation: string;
+  readonly graduationNote: string;
+  readonly codingSince: string;
+  readonly codingSinceNote: string;
+  readonly homeLab: string;
+  readonly avatar: string;
+};
+
+/** Facts listed in the About spec sheet. */
+export const PROFILE = {
+  name: "MinTani",
+  handle: "@mintanaka",
+  school: "日本工業大学 データサイエンス学科",
+  graduation: "2028",
+  graduationNote: "（28卒）",
+  codingSince: "2017",
+  codingSinceNote: "Python を独学で始めました",
+  homeLab:
+    "Proxmox で自宅サーバーを運用しています。このサイトもここから配信しています。",
+  avatar: "/mint.png",
+} as const satisfies ProfileFacts;
+
+// ─── Social links ────────────────────────────────────────────────────────────
+
+export type SocialLinkItem = {
+  readonly href: string;
+  readonly label: string;
+  /** Opens in a new tab. mailto links stay in the same tab. */
+  readonly external: boolean;
+};
+
+export const SOCIAL_LINKS = [
+  { href: "https://github.com/mintani", label: "GitHub", external: true },
+  { href: "https://twitter.com/_mint76", label: "X", external: true },
+  { href: "https://runa.dev", label: "Runa.dev", external: true },
+  { href: "mailto:mi.2005.sub@gmail.com", label: "Email", external: false },
+] as const satisfies readonly SocialLinkItem[];
+
 // ─── Skills ──────────────────────────────────────────────────────────────────
 
 export type SkillCategory = "frontend" | "backend" | "infra" | "tools";
@@ -69,8 +113,6 @@ export type WorkItem = {
   readonly url?: string;
   readonly award?: string;
   readonly image?: string;
-  readonly colorFrom: string;
-  readonly colorTo: string;
 };
 
 export const WORKS: readonly WorkItem[] = [
@@ -82,8 +124,6 @@ export const WORKS: readonly WorkItem[] = [
     url: "https://github.com/runa-devs/clothify",
     award: "優秀賞 / DeNA賞 / CARTA賞",
     image: "/clothify.webp",
-    colorFrom: "#ec4899",
-    colorTo: "#8b5cf6",
   },
   {
     type: "hackathon",
@@ -93,8 +133,6 @@ export const WORKS: readonly WorkItem[] = [
     url: "https://github.com/runa-devs/yoncomic-studio",
     award: "努力賞",
     image: "/yoncomic-studio.webp",
-    colorFrom: "#f97316",
-    colorTo: "#dc2626",
   },
   {
     type: "project",
@@ -103,8 +141,6 @@ export const WORKS: readonly WorkItem[] = [
     tags: ["Next.js", "Three.js", "Hono", "PostgreSQL"],
     url: "https://github.com/mintani/iroiro",
     image: "/scaled2x.png",
-    colorFrom: "#a855f7",
-    colorTo: "#6366f1",
   },
   {
     type: "project",
@@ -112,40 +148,9 @@ export const WORKS: readonly WorkItem[] = [
     desc: "Next.js + Tailwind CSSで設計・実装したポートフォリオサイト。GitHub APIでブログ記事を動的取得し、Vercelで自動デプロイ。",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     url: "https://github.com/mintani/portfolio",
-    colorFrom: "#10b981",
-    colorTo: "#059669",
+    image: "/portfolio.webp",
   },
 ] as const satisfies readonly WorkItem[];
-
-// ─── Projects (About section compact view) ────────────────────────────────────
-
-export type ProjectItem = {
-  readonly name: string;
-  readonly desc: string;
-  readonly tags: readonly string[];
-  readonly url?: string;
-};
-
-export const PROJECTS = [
-  {
-    name: "このポートフォリオ",
-    desc: "Next.js + Tailwind CSS で構築したポートフォリオサイト。GitHub Actionsで自動デプロイ。",
-    tags: ["Next.js", "TypeScript", "Vercel"],
-    url: "https://github.com/mintani",
-  },
-  {
-    name: "ハッカソンプロジェクト",
-    desc: "技育CAMPで企業賞を受賞したチームプロダクト。Hono + PostgreSQL によるAPIサーバー。",
-    tags: ["Hono", "PostgreSQL", "Docker"],
-    url: "https://github.com/mintani",
-  },
-  {
-    name: "個人Webサービス",
-    desc: "個人で企画・設計・実装まで一人で行ったフルスタックWebアプリ。",
-    tags: ["React", "AWS", "TypeScript"],
-    url: "https://github.com/mintani",
-  },
-] as const satisfies readonly ProjectItem[];
 
 // ─── Certifications ───────────────────────────────────────────────────────────
 
