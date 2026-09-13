@@ -59,79 +59,84 @@ const LEVEL_LABEL: Record<Level, string> = {
 
 const LEVELS: readonly Level[] = [1, 2, 3];
 
-// Slanted parallelogram bars; indigo up to the level, gray for the rest.
+/** Slanted bars: accent up to the level, hairline grey beyond it. */
 function LevelMeter({ level }: { level: Level }) {
   return (
-    <div className="flex items-center gap-1 shrink-0">
+    <span className="flex items-center gap-1 shrink-0">
       {LEVELS.map((i) => (
         <span
           key={i}
-          className={`h-4 w-1.5 -skew-x-12 rounded-[2px] ${i <= level ? "bg-indigo-500" : "bg-neutral-300"}`}
+          className={`h-4 w-1.5 -skew-x-12 rounded-[2px] ${i <= level ? "bg-accent" : "bg-rule"}`}
         />
       ))}
-    </div>
+    </span>
   );
 }
 
 function Legend() {
   return (
-    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+    <div className="flex flex-wrap gap-x-4 gap-y-1.5">
       {LEVELS.map((level) => (
-        <div key={level} className="flex items-center gap-1.5">
+        <span key={level} className="flex items-center gap-1.5">
           <LevelMeter level={level} />
-          <span className="font-mono text-[11px] text-neutral-400">
+          <span className="font-mono text-xs text-ink-3">
             {LEVEL_LABEL[level]}
           </span>
-        </div>
+        </span>
       ))}
     </div>
   );
 }
 
-function CategoryHeader({ label }: { label: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-neutral-400 shrink-0">
-        {label}
-      </span>
-      <span className="h-px flex-1 bg-neutral-200/70" />
-    </div>
-  );
-}
-
-function SkillCard({ skill }: { skill: SkillItem }) {
-  const Icon = SKILL_ICONS[skill.name];
-  return (
-    <div className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-white/70 border border-white/80 shadow-sm hover:bg-white/90 hover:-translate-y-0.5 transition-all duration-200">
-      <div className="flex items-center gap-2 min-w-0">
-        {Icon && <Icon className="size-4 shrink-0" width={16} height={16} />}
-        <span className="font-poppins text-sm font-semibold text-neutral-800 truncate">
-          {skill.name}
-        </span>
-      </div>
-      <LevelMeter level={skill.level} />
-    </div>
-  );
-}
-
+/** Skills split into one hairline-ruled column per category. */
 export function SkillsPanel() {
   return (
-    <div className="flex flex-col gap-5">
-      <Legend />
-      {CATEGORIES.map(({ key, label }) => {
-        const catSkills = SKILLS.filter((s) => s.category === key);
-        if (catSkills.length === 0) return null;
-        return (
-          <div key={key} className="flex flex-col gap-2.5">
-            <CategoryHeader label={label} />
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2">
-              {catSkills.map((skill) => (
-                <SkillCard key={skill.name} skill={skill} />
-              ))}
+    <div>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+        <h3 className="font-display font-bold text-2xl sm:text-3xl tracking-[-0.02em] text-ink">
+          Skills
+        </h3>
+        <Legend />
+      </div>
+      <div className="border-t border-rule mt-4" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-8 mt-6">
+        {CATEGORIES.map(({ key, label }) => {
+          const items = SKILLS.filter((skill) => skill.category === key);
+          if (items.length === 0) return null;
+          return (
+            <div key={key} className="min-w-0">
+              <h4 className="font-mono text-xs uppercase tracking-[0.14em] text-ink-3 pb-2 border-b border-rule">
+                {label}
+              </h4>
+              <ul>
+                {items.map((skill) => {
+                  const Icon = SKILL_ICONS[skill.name];
+                  return (
+                    <li
+                      key={skill.name}
+                      className="flex items-center justify-between gap-3 py-2.5"
+                    >
+                      <span className="flex items-center gap-2 min-w-0">
+                        {Icon ? (
+                          <Icon
+                            className="size-4 shrink-0"
+                            width={16}
+                            height={16}
+                          />
+                        ) : null}
+                        <span className="font-display text-sm font-medium text-ink truncate">
+                          {skill.name}
+                        </span>
+                      </span>
+                      <LevelMeter level={skill.level} />
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
