@@ -20,8 +20,8 @@ export const PROFILE = {
   graduation: "2028",
   graduationNote: "（28卒）",
   codingSince: "2017",
-  codingSinceNote: "Python から独学で",
-  homeLab: "自宅サーバー（Proxmox）— このサイトもここから配信",
+  codingSinceNote: "Python を独学で始めました",
+  homeLab: "Proxmox で自宅サーバーを運用しています。このサイトもここから配信しています。",
   avatar: "/mint.png",
 } as const satisfies ProfileFacts;
 

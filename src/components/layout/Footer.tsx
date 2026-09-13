@@ -15,9 +15,6 @@ export function SiteFooter() {
         <p className="max-w-[20ch] font-display text-[clamp(1.9rem,5vw,3.5rem)] leading-[1.02] font-bold tracking-[-0.03em]">
           Catch up to the future.
         </p>
-        <p className="mt-5 max-w-[44ch] text-sm text-paper-2/70">
-          ハッカソンと個人開発の記録。次に作るものも、ここに足していきます。
-        </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-paper-2/15 pt-5">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
