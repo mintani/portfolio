@@ -11,9 +11,11 @@ import {
 import { XIcon } from "@/components/icons/XIcon";
 import { CareerPanel } from "@/components/about/CareerPanel";
 import { CodingRatioPanel } from "@/components/about/CodingRatioPanel";
+import { GithubPanel } from "@/components/about/GithubPanel";
 import { SkillsPanel } from "@/components/about/SkillsPanel";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { CERTIFICATIONS, PROFILE, SOCIAL_LINKS } from "@/data/about";
+import type { GithubStats } from "@/lib/github-stats";
 import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 const CERTIFICATION = CERTIFICATIONS[0];
@@ -50,8 +52,8 @@ function SpecRow({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-/** About: profile diptych, skills, code ratio and career. */
-export function AboutSection() {
+/** About: profile diptych, skills, code ratio, GitHub activity and career. */
+export function AboutSection({ github }: { github: GithubStats | null }) {
   return (
     <section
       id="about-section"
@@ -180,6 +182,13 @@ export function AboutSection() {
         <div className="mt-10">
           <CodingRatioPanel />
         </div>
+
+        {/* ── GitHub ── */}
+        {github ? (
+          <div className="mt-10">
+            <GithubPanel stats={github} />
+          </div>
+        ) : null}
 
         {/* ── Career ── */}
         <div className="mt-16 lg:mt-20">
