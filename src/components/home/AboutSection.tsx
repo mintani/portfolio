@@ -42,7 +42,7 @@ export function AboutSection() {
     >
       <span
         aria-hidden
-        className="hero-outline-text stroke-periwinkle pointer-events-none select-none absolute z-0 -top-6 -right-8 text-[22vw] lg:text-[16rem] leading-none opacity-70"
+        className="hero-outline-text stroke-periwinkle pointer-events-none select-none absolute z-0 -top-8 -right-8 text-[22vw] lg:text-[16rem] leading-none opacity-30"
       >
         About
       </span>
@@ -51,7 +51,7 @@ export function AboutSection() {
         {/* ── Profile diptych ── */}
         <div className="grid lg:grid-cols-12 gap-x-12 gap-y-12">
           <div className="lg:col-span-7 min-w-0">
-            <SectionHeading kicker="Nice to meet you" title="About" />
+            <SectionHeading title="About" />
             <div className="mt-8 space-y-5 text-[15px] sm:text-base leading-[1.9] text-ink-2 max-w-[60ch]">
               {BIO.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>

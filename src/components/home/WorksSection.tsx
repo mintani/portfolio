@@ -117,7 +117,7 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
     >
       <span
         aria-hidden
-        className="hero-outline-text stroke-bluegray pointer-events-none select-none absolute -bottom-8 -left-6 text-[22vw] lg:text-[16rem] leading-none opacity-70"
+        className="hero-outline-text stroke-bluegray pointer-events-none select-none absolute -bottom-10 -left-6 text-[22vw] lg:text-[16rem] leading-none opacity-30"
       >
         Works
       </span>
@@ -125,7 +125,7 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
       <div className="container relative z-10 mx-auto px-5 sm:px-8 lg:px-12">
         <SectionHeading
           title="Works"
-          lede="ハッカソンと個人開発。2024年からの制作物。"
+          lede="ハッカソンで作ったものと、個人で開発しているものです。"
         />
         <div className="border-t border-rule mt-10" />
 
