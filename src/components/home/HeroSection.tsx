@@ -74,7 +74,7 @@ export function HeroSection() {
       {/* ── Hero ── */}
       <section
         id="hero-section"
-        className="container relative mx-0 md:mx-auto flex-1 flex flex-col md:flex-row items-start pt-16 pb-0 md:pb-16 overflow-visible md:min-h-[800px]"
+        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[800px]"
       >
         {/* White trapezoid */}
         <div
@@ -120,34 +120,33 @@ export function HeroSection() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-2 sm:mt-4">
+          <div className="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-4">
             <a
               href="https://github.com/mintani"
               {...EXTERNAL_LINK_PROPS}
-              className="group flex items-center gap-2 whitespace-nowrap px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2a3149] text-white font-poppins font-medium text-sm sm:text-base hover:bg-[#555e7e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2a3149] text-white font-poppins font-medium text-sm sm:text-base hover:bg-[#555e7e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <Github size={16} className="sm:size-4" />
               Visit my GitHub
             </a>
             <button
               onClick={() => scrollToSection("about-section")}
-              className="group flex items-center gap-2 whitespace-nowrap px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-[#2a3149]/30 text-[#555e7e] font-poppins font-medium text-sm sm:text-base hover:border-[#2a3149] hover:text-[#2a3149] transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm cursor-pointer"
+              className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-[#2a3149]/30 text-[#555e7e] font-poppins font-medium text-sm sm:text-base hover:border-[#2a3149] hover:text-[#2a3149] transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm cursor-pointer"
             >
               Move to &ldquo;About me&rdquo;
             </button>
           </div>
         </div>
 
-        {/* Character image: stacked under the copy on phones, floated to the right from md up */}
-        <div className="relative z-10 self-end -mt-5 -mr-4 sm:-mr-10 w-[70%] max-w-[360px] sm:max-w-[440px] max-h-[62svh] overflow-hidden pointer-events-none md:absolute md:self-auto md:mt-0 md:mr-0 md:-right-40 lg:-right-60 md:top-20 md:z-30 md:w-125 lg:w-140 xl:w-[800px] md:max-w-none md:max-h-dvh md:overflow-visible">
+        {/* Character image */}
+        <div className="absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible">
           <Image
             src="/scaled2x.png"
-            alt="MinTani のキャラクターイラスト"
+            alt="mint"
             width={768}
             height={1024}
             priority
-            sizes="(min-width: 1280px) 800px, (min-width: 1024px) 560px, (min-width: 768px) 500px, 70vw"
-            className="w-full h-auto object-cover object-top"
+            className="object-cover object-top"
           />
         </div>
 
