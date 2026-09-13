@@ -11,7 +11,7 @@ export function CareerPanel() {
         Career
       </h3>
       <div className="border-t border-rule mt-4" />
-      <ol className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-10 mt-6">
+      <ol className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8 mt-5">
         {STEPS.map((item) => (
           <li key={item.year} className="border-t border-rule pt-4 min-w-0">
             <span className="block font-display font-bold text-3xl tracking-[-0.02em] text-ink tabular-nums whitespace-nowrap">

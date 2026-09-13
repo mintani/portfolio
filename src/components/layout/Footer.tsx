@@ -11,12 +11,12 @@ const ICON_LINK_CLASS = `inline-flex size-11 items-center justify-center rounded
 export function SiteFooter() {
   return (
     <footer className="w-full bg-night text-paper-2">
-      <div className="container mx-auto px-5 pt-16 pb-8 sm:px-8 lg:px-12">
+      <div className="container mx-auto px-5 pt-12 pb-6 sm:px-8 lg:px-12">
         <p className="max-w-[20ch] font-display text-[clamp(1.9rem,5vw,3.5rem)] leading-[1.02] font-bold tracking-[-0.03em]">
           Catch up to the future.
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-paper-2/15 pt-5">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-paper-2/15 pt-5">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="font-display text-lg font-bold italic">
               MinTani

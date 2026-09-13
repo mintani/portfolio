@@ -99,7 +99,7 @@ export function SkillsPanel() {
         <Legend />
       </div>
       <div className="border-t border-rule mt-4" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-8 mt-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-6 mt-5">
         {CATEGORIES.map(({ key, label }) => {
           const items = SKILLS.filter((skill) => skill.category === key);
           if (items.length === 0) return null;

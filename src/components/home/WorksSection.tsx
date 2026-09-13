@@ -113,7 +113,7 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
   return (
     <section
       id="works-section"
-      className="w-full relative overflow-hidden bg-paper py-20 lg:py-28"
+      className="w-full relative overflow-hidden bg-paper py-16 lg:py-24"
     >
       {/* Background decoration, continuing the About section's alternation */}
       <Terminal
@@ -132,9 +132,9 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
           title="Works"
           lede="ハッカソンで作ったものと、個人で開発しているものです。"
         />
-        <div className="border-t border-rule mt-10" />
+        <div className="border-t border-rule mt-8" />
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 mt-10">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 mt-8">
           {WORKS.map((work) => (
             <li key={work.title} className="min-w-0">
               <WorkCard work={work} />
@@ -143,7 +143,7 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
         </ul>
 
         {articles.length > 0 ? (
-          <div className="mt-20">
+          <div className="mt-14">
             <div className="flex items-baseline justify-between gap-4 border-b border-rule pb-3">
               <h3 className="font-display font-bold text-2xl sm:text-3xl tracking-[-0.02em] text-ink">
                 Blog

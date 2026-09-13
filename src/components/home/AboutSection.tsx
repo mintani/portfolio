@@ -55,7 +55,7 @@ export function AboutSection() {
   return (
     <section
       id="about-section"
-      className="w-full relative z-30 overflow-hidden bg-paper-2 py-24 lg:py-32"
+      className="w-full relative z-30 overflow-hidden bg-paper-2 py-16 lg:py-24"
     >
       {/* Background decoration: one icon top-right, one bottom-left, alternating down the page */}
       <CodeXml
@@ -71,15 +71,15 @@ export function AboutSection() {
 
       <div className="container relative z-10 mx-auto px-5 sm:px-8 lg:px-12">
         {/* ── Profile diptych ── */}
-        <div className="grid lg:grid-cols-12 gap-x-12 gap-y-12">
+        <div className="grid lg:grid-cols-12 gap-x-12 gap-y-10">
           <div className="lg:col-span-7 min-w-0">
             <SectionHeading title="About" />
-            <div className="mt-8 space-y-5 text-[15px] sm:text-base leading-[1.9] text-ink-2 max-w-[60ch]">
+            <div className="mt-6 space-y-4 text-[15px] sm:text-base leading-[1.9] text-ink-2 max-w-[60ch]">
               {BIO.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
               {SOCIAL_LINKS.map((link) => {
                 const Icon = LINK_ICONS[link.label];
                 return (
@@ -103,7 +103,7 @@ export function AboutSection() {
             </ul>
           </div>
 
-          <div className="lg:col-span-5 lg:col-start-8 lg:pt-16 min-w-0">
+          <div className="lg:col-span-5 lg:col-start-8 lg:pt-6 min-w-0">
             <div className="size-14 rounded-xl border border-rule overflow-hidden">
               <Image
                 src={PROFILE.avatar}
@@ -114,7 +114,7 @@ export function AboutSection() {
               />
             </div>
 
-            <dl className="mt-6 divide-y divide-rule border-y border-rule">
+            <dl className="mt-5 divide-y divide-rule border-y border-rule">
               <SpecRow label="Name">
                 <span className="font-display font-semibold">
                   {PROFILE.name}
@@ -171,17 +171,17 @@ export function AboutSection() {
         </div>
 
         {/* ── Skills ── */}
-        <div className="mt-20 lg:mt-24">
+        <div className="mt-16 lg:mt-20">
           <SkillsPanel />
         </div>
 
         {/* ── Code ratio ── */}
-        <div className="mt-12">
+        <div className="mt-10">
           <CodingRatioPanel />
         </div>
 
         {/* ── Career ── */}
-        <div className="mt-20 lg:mt-24">
+        <div className="mt-16 lg:mt-20">
           <CareerPanel />
         </div>
       </div>
