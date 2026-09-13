@@ -14,7 +14,7 @@ export default async function Home() {
     : [];
 
   return (
-    <div className="w-full bg-[#dce4f8] relative flex flex-col items-center overflow-x-hidden">
+    <div className="w-full bg-paper relative flex flex-col items-center overflow-x-clip">
       <HeroSection />
       <AboutSection />
       <WorksSection articles={articles} />
