@@ -41,8 +41,8 @@ const BIO = [
 /** One labelled row of the profile spec sheet. */
 function SpecRow({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className="grid grid-cols-[7.5rem_minmax(0,1fr)] sm:grid-cols-[9rem_minmax(0,1fr)] gap-4 py-3.5">
-      <dt className="font-mono text-xs uppercase tracking-[0.14em] text-ink-3 pt-0.5">
+    <div className="grid grid-cols-[7.5rem_minmax(0,1fr)] sm:grid-cols-[9rem_minmax(0,1fr)] gap-4 py-3">
+      <dt className="font-mono text-xs uppercase tracking-[0.14em] text-ink-3 self-center">
         {label}
       </dt>
       <dd className="text-sm text-ink min-w-0">{children}</dd>
@@ -61,7 +61,7 @@ export function AboutSection() {
       <CodeXml
         aria-hidden
         strokeWidth={0.5}
-        className="pointer-events-none absolute z-0 -top-[8vw] -right-[10vw] size-[56vw] lg:size-[40rem] lg:-top-36 lg:-right-24 rotate-12 text-accent opacity-[0.12]"
+        className="pointer-events-none absolute z-0 -top-[8vw] -right-[10vw] size-[56vw] lg:size-[40rem] lg:-top-44 lg:-right-32 rotate-12 text-accent opacity-[0.1]"
       />
       <Server
         aria-hidden
@@ -103,24 +103,25 @@ export function AboutSection() {
             </ul>
           </div>
 
-          <div className="lg:col-span-5 lg:col-start-8 lg:pt-6 min-w-0">
-            <div className="size-14 rounded-xl border border-rule overflow-hidden">
-              <Image
-                src={PROFILE.avatar}
-                alt="MinTani のアイコン"
-                width={56}
-                height={56}
-                className="size-full object-cover object-top"
-              />
-            </div>
-
-            <dl className="mt-5 divide-y divide-rule border-y border-rule">
+          <div className="lg:col-span-5 lg:col-start-8 lg:pt-5 min-w-0">
+            <dl className="divide-y divide-rule border-y border-rule">
               <SpecRow label="Name">
-                <span className="font-display font-semibold">
-                  {PROFILE.name}
-                </span>
-                <span className="font-mono text-xs text-ink-3 ml-2">
-                  {PROFILE.handle}
+                <span className="flex items-center gap-3">
+                  <Image
+                    src={PROFILE.avatar}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="size-10 shrink-0 rounded-lg border border-rule object-cover object-top"
+                  />
+                  <span className="flex flex-wrap items-baseline gap-x-2">
+                    <span className="font-display font-semibold">
+                      {PROFILE.name}
+                    </span>
+                    <span className="font-mono text-xs text-ink-3">
+                      {PROFILE.handle}
+                    </span>
+                  </span>
                 </span>
               </SpecRow>
 
