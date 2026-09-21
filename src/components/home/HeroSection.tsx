@@ -208,7 +208,7 @@ export function HeroSection() {
           <div className="relative flex items-center gap-3 sm:gap-4 mt-2 sm:mt-4">
             <div
               aria-hidden="true"
-              className="hero-lines absolute z-[7] -left-[50vw] -top-9 w-[calc(50vw+260px)] h-36 origin-right -rotate-12 [--fade:180px] md:-top-20 md:w-[calc(50vw+460px)] md:h-60 md:[--fade:320px] [--line:rgba(136,158,208,0.35)]"
+              className="hero-lines absolute z-[7] -left-[50vw] -top-6 w-[calc(50vw+260px)] h-64 origin-right -rotate-12 [--fade:180px] md:-top-12 md:w-[calc(50vw+460px)] md:h-[480px] md:[--fade:320px] [--line:rgba(136,158,208,0.35)]"
             />
             <a
               href="https://github.com/mintani"
