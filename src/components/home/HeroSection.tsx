@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { Github, ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { RefObject } from "react";
 import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
 const SECTIONS = ["hero-section", "about-section", "works-section"];
@@ -26,8 +27,91 @@ function scrollToSection(id: string) {
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+const IDLE_MS = 4000;
+const SETTLE_MS = 500; // matches the .hero-layer transition
+
+/**
+ * Hero parallax. Writes the pointer's offset from the viewport centre (-1..1) into
+ * --mx / --my on the hero so each .hero-layer can translate from it. Without a mouse
+ * (touch devices, or the pointer resting for IDLE_MS) the hero drifts on a CSS loop
+ * instead, and the loop pauses while the hero is scrolled out of view.
+ */
+function useHeroParallax(ref: RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let visible = true;
+    const io = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      el.classList.toggle("is-offscreen", !visible);
+    });
+    io.observe(el);
+    el.classList.add("is-drifting");
+
+    if (window.matchMedia("(hover: none)").matches) {
+      return () => io.disconnect();
+    }
+
+    let frame = 0;
+    let idleTimer = 0;
+    let settleTimer = 0;
+    const setVars = (x: number, y: number) => {
+      el.style.setProperty("--mx", x.toFixed(3));
+      el.style.setProperty("--my", y.toFixed(3));
+    };
+    const startDrift = () => {
+      setVars(0, 0); // ease the layers back to rest, then loop from there
+      settleTimer = window.setTimeout(
+        () => el.classList.add("is-drifting"),
+        SETTLE_MS
+      );
+    };
+    const art = el.querySelector<HTMLElement>("[data-hero-art]");
+    const stopDrift = () => {
+      window.clearTimeout(settleTimer);
+      if (!el.classList.contains("is-drifting")) return;
+      // Freeze the sway where it is so the hand-off to the pointer does not snap:
+      // every layer shares one phase, so the art layer's offset gives --mx / --my.
+      if (art) {
+        const cs = getComputedStyle(art);
+        const [tx = 0, ty = 0] = cs.translate.split(" ").map(parseFloat);
+        setVars(
+          tx / (parseFloat(cs.getPropertyValue("--px")) || 1),
+          ty / (parseFloat(cs.getPropertyValue("--py")) || 1)
+        );
+      }
+      el.classList.remove("is-drifting");
+    };
+    const onMove = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse" || !visible) return;
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = (e.clientY / window.innerHeight) * 2 - 1;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        stopDrift();
+        setVars(x, y);
+      });
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(startDrift, IDLE_MS);
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      io.disconnect();
+      cancelAnimationFrame(frame);
+      window.clearTimeout(idleTimer);
+      window.clearTimeout(settleTimer);
+      window.removeEventListener("pointermove", onMove);
+    };
+  }, [ref]);
+}
+
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  useHeroParallax(sectionRef);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -74,11 +158,12 @@ export function HeroSection() {
       {/* ── Hero ── */}
       <section
         id="hero-section"
-        className="container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[800px]"
+        ref={sectionRef}
+        className="hero-parallax container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[800px]"
       >
         {/* White trapezoid */}
         <div
-          className="absolute top-0 bottom-0 left-0 z-[5] pointer-events-none hidden lg:block "
+          className="absolute top-0 bottom-0 left-0 z-[5] pointer-events-none hidden lg:block"
           style={{
             right: "calc(-1 * (100vw - 100%) / 2)",
             clipPath:
@@ -90,7 +175,7 @@ export function HeroSection() {
 
         {/* Background shapes: halftone dots behind the ghost lettering */}
         <div
-          className="absolute inset-0 z-[6] pointer-events-none"
+          className="hero-layer absolute inset-0 z-[6] pointer-events-none [--px:-3px] [--py:-3px]"
           aria-hidden="true"
         >
           <div className="hero-dots absolute -top-10 -left-12 size-56 md:-top-20 md:-left-20 md:size-[440px] rounded-full [--dot:rgba(216,168,205,0.75)]" />
@@ -99,7 +184,7 @@ export function HeroSection() {
 
         {/* Background outline text */}
         <div
-          className="absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible"
+          className="hero-layer absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible [--px:-2px] [--py:-2px]"
           aria-hidden="true"
         >
           {OUTLINE_LINES.map(({ text, align, stroke }) => (
@@ -152,11 +237,14 @@ export function HeroSection() {
         </div>
 
         {/* Character image */}
-        <div className="absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible">
+        <div
+          className="hero-layer absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible [--px:8px] [--py:6px]"
+          data-hero-art
+        >
           {/* Offset silhouette in white stripes: a second copy of the art, flattened to white and masked by a stripe pattern. */}
           <div
             aria-hidden="true"
-            className="absolute top-0 left-0 w-full translate-x-[3%] translate-y-[2%] mask-[repeating-linear-gradient(135deg,#000_0_6px,transparent_6px_12px)]"
+            className="hero-layer absolute top-0 left-0 w-full [--bx:3%] [--by:2%] [--px:-2px] [--py:-2px] mask-[repeating-linear-gradient(135deg,#000_0_6px,transparent_6px_12px)]"
           >
             <Image
               src="/clip.png"
