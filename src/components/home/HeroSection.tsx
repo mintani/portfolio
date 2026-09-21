@@ -141,10 +141,10 @@ export function HeroSection() {
         {/* Character image */}
         <div className="absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible">
           <Image
-            src="/scaled2x.png"
+            src="/clip.png"
             alt="mint"
-            width={768}
-            height={1024}
+            width={966}
+            height={1479}
             priority
             className="object-cover object-top"
           />
