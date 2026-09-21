@@ -27,18 +27,14 @@ function scrollToSection(id: string) {
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-const IDLE_MS = 4000;
-const SETTLE_MS = 500; // matches the .hero-layer transition
-
 /**
- * Hero parallax. Writes the pointer's offset from the viewport centre (-1..1) into
- * --mx / --my on the hero so each .hero-layer can translate from it. Without a mouse
- * (touch devices, or the pointer resting for IDLE_MS) the hero drifts on a CSS loop
- * instead, and the loop pauses while the hero is scrolled out of view. Scrolling also
- * slides every [data-scroll] layer by that many px over the hero's height (far layers
- * lag behind with +, the art leads with -), so the depth reads even without a mouse.
+ * Hero motion. Writes the pointer's offset from the viewport centre (-1..1) into
+ * --mx / --my on the hero so each .hero-layer can translate from it (mouse only; touch
+ * devices skip it), and slides every [data-scroll] layer by that many px over the hero's
+ * height as the page scrolls (far layers lag behind with +, the art leads with -). The
+ * art's own up-and-down bob is pure CSS and pauses while the hero is scrolled out of view.
  */
-function useHeroParallax(ref: RefObject<HTMLElement | null>) {
+function useHeroMotion(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -50,7 +46,6 @@ function useHeroParallax(ref: RefObject<HTMLElement | null>) {
       el.classList.toggle("is-offscreen", !visible);
     });
     io.observe(el);
-    el.classList.add("is-drifting");
 
     const scrollers = Array.from(
       el.querySelectorAll<HTMLElement>("[data-scroll]")
@@ -67,68 +62,27 @@ function useHeroParallax(ref: RefObject<HTMLElement | null>) {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    const stopScroll = () => {
-      cancelAnimationFrame(scrollFrame);
-      window.removeEventListener("scroll", onScroll);
-    };
-
-    if (window.matchMedia("(hover: none)").matches) {
-      return () => {
-        io.disconnect();
-        stopScroll();
-      };
-    }
 
     let frame = 0;
-    let idleTimer = 0;
-    let settleTimer = 0;
-    const setVars = (x: number, y: number) => {
-      el.style.setProperty("--mx", x.toFixed(3));
-      el.style.setProperty("--my", y.toFixed(3));
-    };
-    const startDrift = () => {
-      setVars(0, 0); // ease the layers back to rest, then loop from there
-      settleTimer = window.setTimeout(
-        () => el.classList.add("is-drifting"),
-        SETTLE_MS
-      );
-    };
-    const art = el.querySelector<HTMLElement>("[data-hero-art]");
-    const stopDrift = () => {
-      window.clearTimeout(settleTimer);
-      if (!el.classList.contains("is-drifting")) return;
-      // Freeze the sway where it is so the hand-off to the pointer does not snap:
-      // every layer shares one phase, so the art layer's offset gives --mx / --my.
-      if (art) {
-        const cs = getComputedStyle(art);
-        const [tx = 0, ty = 0] = cs.translate.split(" ").map(parseFloat);
-        setVars(
-          tx / (parseFloat(cs.getPropertyValue("--px")) || 1),
-          ty / (parseFloat(cs.getPropertyValue("--py")) || 1)
-        );
-      }
-      el.classList.remove("is-drifting");
-    };
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== "mouse" || !visible) return;
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        stopDrift();
-        setVars(x, y);
+        el.style.setProperty("--mx", x.toFixed(3));
+        el.style.setProperty("--my", y.toFixed(3));
       });
-      window.clearTimeout(idleTimer);
-      idleTimer = window.setTimeout(startDrift, IDLE_MS);
     };
+    if (!window.matchMedia("(hover: none)").matches) {
+      window.addEventListener("pointermove", onMove, { passive: true });
+    }
 
-    window.addEventListener("pointermove", onMove, { passive: true });
     return () => {
       io.disconnect();
-      stopScroll();
+      cancelAnimationFrame(scrollFrame);
       cancelAnimationFrame(frame);
-      window.clearTimeout(idleTimer);
-      window.clearTimeout(settleTimer);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onMove);
     };
   }, [ref]);
@@ -137,7 +91,7 @@ function useHeroParallax(ref: RefObject<HTMLElement | null>) {
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
-  useHeroParallax(sectionRef);
+  useHeroMotion(sectionRef);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
@@ -201,7 +155,7 @@ export function HeroSection() {
 
         {/* Background shapes: halftone dots behind the ghost lettering */}
         <div
-          className="hero-layer absolute inset-0 z-[6] pointer-events-none [--px:-3px] [--py:-3px]"
+          className="hero-layer absolute inset-0 z-[6] pointer-events-none [--px:-10px] [--py:-8px]"
           data-scroll="120"
           aria-hidden="true"
         >
@@ -211,7 +165,7 @@ export function HeroSection() {
 
         {/* Background outline text */}
         <div
-          className="hero-layer absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible [--px:-2px] [--py:-2px]"
+          className="hero-layer absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible [--px:-6px] [--py:-4px]"
           data-scroll="180"
           aria-hidden="true"
         >
@@ -266,32 +220,34 @@ export function HeroSection() {
 
         {/* Character image */}
         <div
-          className="hero-layer absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible [--px:8px] [--py:6px]"
-          data-hero-art
+          className="hero-layer absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible [--px:30px] [--py:22px]"
           data-scroll="-80"
         >
-          {/* Offset silhouette in white stripes: a second copy of the art, flattened to white and masked by a stripe pattern. */}
-          <div
-            aria-hidden="true"
-            className="hero-layer absolute top-0 left-0 w-full [--bx:3%] [--by:2%] [--px:-2px] [--py:-2px] mask-[repeating-linear-gradient(135deg,#000_0_6px,transparent_6px_12px)]"
-          >
+          {/* The art bobs up and down on its own; the shadow rides along inside. */}
+          <div className="hero-bob relative">
+            {/* Offset silhouette in white stripes: a second copy of the art, flattened to white and masked by a stripe pattern. */}
+            <div
+              aria-hidden="true"
+              className="hero-layer absolute top-0 left-0 w-full [--bx:3%] [--by:2%] [--px:-6px] [--py:-4px] mask-[repeating-linear-gradient(135deg,#000_0_6px,transparent_6px_12px)]"
+            >
+              <Image
+                src="/clip.png"
+                alt=""
+                width={966}
+                height={1479}
+                priority
+                className="object-cover object-top brightness-0 invert"
+              />
+            </div>
             <Image
               src="/clip.png"
-              alt=""
+              alt="mint"
               width={966}
               height={1479}
               priority
-              className="object-cover object-top brightness-0 invert"
+              className="relative object-cover object-top hero-art-edge"
             />
           </div>
-          <Image
-            src="/clip.png"
-            alt="mint"
-            width={966}
-            height={1479}
-            priority
-            className="relative object-cover object-top hero-art-edge"
-          />
         </div>
 
         {/* Chevron Down */}
