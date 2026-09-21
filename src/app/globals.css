@@ -168,8 +168,100 @@
   -webkit-text-stroke: 2px rgba(216, 168, 205, 0.6);
 }
 
+/* Hero motion. Each .hero-layer sits at its base offset (--bx, --by) plus the pointer
+   offset (--mx, --my: -1..1) scaled by its own depth (--px, --py); HeroSection writes
+   --mx / --my from the mouse. The art also bobs up and down on its own (.hero-bob), mouse
+   or not, on a separate element so the two never fight. */
+.hero-parallax {
+  --mx: 0;
+  --my: 0;
+}
+
+.hero-layer {
+  translate: calc(var(--bx, 0px) + var(--mx) * var(--px, 0px))
+    calc(var(--by, 0px) + var(--my) * var(--py, 0px));
+  transition: translate 400ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.hero-bob {
+  --bob: 8px;
+  animation: hero-bob 4s ease-in-out infinite;
+}
+
+.is-offscreen .hero-bob {
+  animation-play-state: paused;
+}
+
+@keyframes hero-bob {
+  0%,
+  100% {
+    translate: 0 calc(-1 * var(--bob));
+  }
+  50% {
+    translate: 0 var(--bob);
+  }
+}
+
+/* Below lg the art sits close to the copy, so it only breathes and ignores the mouse. */
+@media (width < 64rem) {
+  .hero-bob {
+    --bob: 3px;
+  }
+  .hero-layer {
+    --px: 0px;
+    --py: 0px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-layer {
+    transition: none;
+  }
+  .hero-bob {
+    animation: none;
+  }
+}
+
+/* Halftone dot grid that thins out toward the bottom-right. Tint per instance with --dot. */
+.hero-dots {
+  background-image: radial-gradient(
+    circle,
+    var(--dot) 1.6px,
+    transparent 2.3px
+  );
+  background-size: 14px 14px;
+  mask-image: linear-gradient(135deg, #000 20%, transparent 85%);
+}
+
+/* Diagonal hatch band that fades out over its last --fade px on the right. Tint with --line. */
+.hero-lines {
+  background-image: repeating-linear-gradient(
+    -35deg,
+    var(--line) 0 2px,
+    transparent 2px 11px
+  );
+  mask-image: linear-gradient(
+    90deg,
+    #000 calc(100% - var(--fade, 220px)),
+    transparent 100%
+  );
+}
+
+/* 2px white sticker edge around the hero art: four 1px offsets, applied twice. */
+.hero-art-edge {
+  --hero-art-edge: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff)
+    drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
+  filter: var(--hero-art-edge) var(--hero-art-edge);
+}
+
 /* Decorative overflow (hero art, ghost lettering) must never scroll the page sideways. */
 html,
 body {
   overflow-x: clip;
+}
+
+/* The root paints the overscroll (rubber-band) area, so give it the page's paper colour
+   instead of the default white. */
+html {
+  background-color: var(--paper);
 }
