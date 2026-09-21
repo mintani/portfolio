@@ -140,13 +140,27 @@ export function HeroSection() {
 
         {/* Character image */}
         <div className="absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible">
+          {/* Offset silhouette in white stripes: a second copy of the art, flattened to white and masked by a stripe pattern. */}
+          <div
+            aria-hidden="true"
+            className="absolute top-0 left-0 w-full translate-x-[3%] translate-y-[2%] mask-[repeating-linear-gradient(135deg,#000_0_6px,transparent_6px_12px)]"
+          >
+            <Image
+              src="/clip.png"
+              alt=""
+              width={966}
+              height={1479}
+              priority
+              className="object-cover object-top brightness-0 invert"
+            />
+          </div>
           <Image
             src="/clip.png"
             alt="mint"
             width={966}
             height={1479}
             priority
-            className="object-cover object-top"
+            className="relative object-cover object-top hero-art-edge"
           />
         </div>
 
