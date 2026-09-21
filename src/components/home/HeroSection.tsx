@@ -229,7 +229,7 @@ export function HeroSection() {
 
         {/* Character image */}
         <div
-          className="hero-layer absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible [--px:30px] [--py:22px]"
+          className="hero-layer absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-76 sm:w-120 md:w-120 lg:w-132 xl:w-[760px] max-h-dvh overflow-visible [--px:30px] [--py:22px]"
           data-scroll="-80"
         >
           {/* The art bobs up and down on its own; the shadow rides along inside. */}
