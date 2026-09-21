@@ -109,12 +109,12 @@ export function HeroSection() {
           ))}
         </div>
 
-        {/* Main text */}
-        <div className="relative z-20 flex flex-col pt-8 md:pt-16 lg:pt-20 pl-8 md:pl-20 gap-5 sm:gap-10 md:gap-10 xl:gap-20 overflow-visible">
-          <div className="flex items-baseline leading-tight">
+        {/* Main text. Rows carry z-20 themselves so the hatch band below can sit under the ghost lettering. */}
+        <div className="relative flex flex-col pt-8 md:pt-16 lg:pt-20 pl-8 md:pl-20 gap-5 sm:gap-10 md:gap-10 xl:gap-20 overflow-visible">
+          <div className="relative z-20 flex items-baseline leading-tight">
             <span className={`${HEADING_TEXT} tracking-tight`}>Here is</span>
           </div>
-          <div className="flex items-baseline leading-tight">
+          <div className="relative z-20 flex items-baseline leading-tight">
             <span className={`${HEADING_TEXT} select-none`}>the</span>
             <span className={`${HEADING_TEXT} select-none`}>&ldquo;</span>
             <span className="font-playwrite text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#4d5ec8] px-1 select-none">
@@ -122,7 +122,7 @@ export function HeroSection() {
             </span>
             <span className={`${HEADING_TEXT} select-none`}>&rdquo;</span>
           </div>
-          <div className="flex items-baseline leading-none -mt-2">
+          <div className="relative z-20 flex items-baseline leading-none -mt-2">
             <span className="font-poppins font-bold italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[156px] text-[#2a3149] tracking-tight">
               MinTani
             </span>
@@ -132,19 +132,19 @@ export function HeroSection() {
           <div className="relative flex items-center gap-3 sm:gap-4 mt-2 sm:mt-4">
             <div
               aria-hidden="true"
-              className="hero-lines absolute -z-10 -left-[50vw] -top-9 w-[calc(50vw+260px)] h-36 origin-right -rotate-12 [--fade:180px] md:-top-20 md:w-[calc(50vw+460px)] md:h-60 md:[--fade:320px] [--line:rgba(136,158,208,0.7)]"
+              className="hero-lines absolute z-[7] -left-[50vw] -top-9 w-[calc(50vw+260px)] h-36 origin-right -rotate-12 [--fade:180px] md:-top-20 md:w-[calc(50vw+460px)] md:h-60 md:[--fade:320px] [--line:rgba(136,158,208,0.7)]"
             />
             <a
               href="https://github.com/mintani"
               {...EXTERNAL_LINK_PROPS}
-              className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2a3149] text-white font-poppins font-medium text-sm sm:text-base hover:bg-[#555e7e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="group relative z-20 flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2a3149] text-white font-poppins font-medium text-sm sm:text-base hover:bg-[#555e7e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <Github size={16} className="sm:size-4" />
               Visit my GitHub
             </a>
             <button
               onClick={() => scrollToSection("about-section")}
-              className="group flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-[#2a3149]/30 text-[#555e7e] font-poppins font-medium text-sm sm:text-base hover:border-[#2a3149] hover:text-[#2a3149] transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm cursor-pointer"
+              className="group relative z-20 flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-[#2a3149]/30 text-[#555e7e] font-poppins font-medium text-sm sm:text-base hover:border-[#2a3149] hover:text-[#2a3149] transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm cursor-pointer"
             >
               Move to &ldquo;About me&rdquo;
             </button>
