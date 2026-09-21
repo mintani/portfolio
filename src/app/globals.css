@@ -184,6 +184,7 @@
 }
 
 .hero-bob {
+  --bob: 8px;
   animation: hero-bob 4s ease-in-out infinite;
 }
 
@@ -194,10 +195,21 @@
 @keyframes hero-bob {
   0%,
   100% {
-    translate: 0 -8px;
+    translate: 0 calc(-1 * var(--bob));
   }
   50% {
-    translate: 0 8px;
+    translate: 0 var(--bob);
+  }
+}
+
+/* Below lg the art sits close to the copy, so it only breathes and ignores the mouse. */
+@media (width < 64rem) {
+  .hero-bob {
+    --bob: 3px;
+  }
+  .hero-layer {
+    --px: 0px;
+    --py: 0px;
   }
 }
 

@@ -29,8 +29,8 @@ function scrollToSection(id: string) {
 
 /**
  * Hero motion. Writes the pointer's offset from the viewport centre (-1..1) into
- * --mx / --my on the hero so each .hero-layer can translate from it (mouse only; touch
- * devices skip it), and slides every [data-scroll] layer by that many px over the hero's
+ * --mx / --my on the hero so each .hero-layer can translate from it (mouse only, wide
+ * viewports only), and slides every [data-scroll] layer by that many px over the hero's
  * height as the page scrolls (far layers lag behind with +, the art leads with -). The
  * art's own up-and-down bob is pure CSS and pauses while the hero is scrolled out of view.
  */
@@ -63,9 +63,17 @@ function useHeroMotion(ref: RefObject<HTMLElement | null>) {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
+    // Mouse tracking only on wide viewports: below lg the art already sits close to the copy.
+    const wide = window.matchMedia("(min-width: 64rem)");
+    const onWideChange = () => {
+      if (wide.matches) return;
+      el.style.setProperty("--mx", "0");
+      el.style.setProperty("--my", "0");
+    };
+    wide.addEventListener("change", onWideChange);
     let frame = 0;
     const onMove = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse" || !visible) return;
+      if (e.pointerType !== "mouse" || !visible || !wide.matches) return;
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
       cancelAnimationFrame(frame);
@@ -82,6 +90,7 @@ function useHeroMotion(ref: RefObject<HTMLElement | null>) {
       io.disconnect();
       cancelAnimationFrame(scrollFrame);
       cancelAnimationFrame(frame);
+      wide.removeEventListener("change", onWideChange);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("pointermove", onMove);
     };
