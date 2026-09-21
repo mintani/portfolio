@@ -128,11 +128,11 @@ export function HeroSection() {
             </span>
           </div>
 
-          {/* CTA Buttons, with a hatch-line block tucked behind the GitHub button */}
+          {/* CTA Buttons, with a hatch-line band running in from the left edge behind the GitHub button */}
           <div className="relative flex items-center gap-3 sm:gap-4 mt-2 sm:mt-4">
             <div
               aria-hidden="true"
-              className="hero-lines absolute -z-10 -left-8 -top-5 w-56 h-20 md:-left-12 md:-top-8 md:w-[360px] md:h-32 -rotate-12 rounded-2xl [--line:rgba(136,158,208,0.7)]"
+              className="hero-lines absolute -z-10 -left-[50vw] -top-9 w-[calc(50vw+260px)] h-36 origin-right -rotate-12 [--fade:180px] md:-top-20 md:w-[calc(50vw+460px)] md:h-60 md:[--fade:320px] [--line:rgba(136,158,208,0.7)]"
             />
             <a
               href="https://github.com/mintani"

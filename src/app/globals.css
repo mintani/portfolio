@@ -179,14 +179,18 @@
   mask-image: linear-gradient(135deg, #000 20%, transparent 85%);
 }
 
-/* Diagonal hatch lines that fade out to the right. Tint per instance with --line. */
+/* Diagonal hatch band that fades out over its last --fade px on the right. Tint with --line. */
 .hero-lines {
   background-image: repeating-linear-gradient(
     -35deg,
     var(--line) 0 2px,
     transparent 2px 11px
   );
-  mask-image: linear-gradient(90deg, #000 45%, transparent 100%);
+  mask-image: linear-gradient(
+    90deg,
+    #000 calc(100% - var(--fade, 220px)),
+    transparent 100%
+  );
 }
 
 /* 2px white sticker edge around the hero art: four 1px offsets, applied twice. */
