@@ -340,3 +340,9 @@ html,
 body {
   overflow-x: clip;
 }
+
+/* The root paints the overscroll (rubber-band) area, so give it the page's paper colour
+   instead of the default white. */
+html {
+  background-color: var(--paper);
+}
