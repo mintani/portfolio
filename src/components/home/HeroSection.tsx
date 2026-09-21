@@ -34,7 +34,9 @@ const SETTLE_MS = 500; // matches the .hero-layer transition
  * Hero parallax. Writes the pointer's offset from the viewport centre (-1..1) into
  * --mx / --my on the hero so each .hero-layer can translate from it. Without a mouse
  * (touch devices, or the pointer resting for IDLE_MS) the hero drifts on a CSS loop
- * instead, and the loop pauses while the hero is scrolled out of view.
+ * instead, and the loop pauses while the hero is scrolled out of view. Scrolling also
+ * slides every [data-scroll] layer by that many px over the hero's height (far layers
+ * lag behind with +, the art leads with -), so the depth reads even without a mouse.
  */
 function useHeroParallax(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
@@ -50,8 +52,31 @@ function useHeroParallax(ref: RefObject<HTMLElement | null>) {
     io.observe(el);
     el.classList.add("is-drifting");
 
+    const scrollers = Array.from(
+      el.querySelectorAll<HTMLElement>("[data-scroll]")
+    ).map((node) => [node, Number(node.dataset.scroll)] as const);
+    let scrollFrame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(scrollFrame);
+      scrollFrame = requestAnimationFrame(() => {
+        const p = Math.min(Math.max(window.scrollY / el.offsetHeight, 0), 1.5);
+        for (const [node, depth] of scrollers) {
+          node.style.transform = `translate3d(0, ${(p * depth).toFixed(1)}px, 0)`;
+        }
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    const stopScroll = () => {
+      cancelAnimationFrame(scrollFrame);
+      window.removeEventListener("scroll", onScroll);
+    };
+
     if (window.matchMedia("(hover: none)").matches) {
-      return () => io.disconnect();
+      return () => {
+        io.disconnect();
+        stopScroll();
+      };
     }
 
     let frame = 0;
@@ -100,6 +125,7 @@ function useHeroParallax(ref: RefObject<HTMLElement | null>) {
     window.addEventListener("pointermove", onMove, { passive: true });
     return () => {
       io.disconnect();
+      stopScroll();
       cancelAnimationFrame(frame);
       window.clearTimeout(idleTimer);
       window.clearTimeout(settleTimer);
@@ -176,6 +202,7 @@ export function HeroSection() {
         {/* Background shapes: halftone dots behind the ghost lettering */}
         <div
           className="hero-layer absolute inset-0 z-[6] pointer-events-none [--px:-3px] [--py:-3px]"
+          data-scroll="120"
           aria-hidden="true"
         >
           <div className="hero-dots absolute -top-10 -left-12 size-56 md:-top-20 md:-left-20 md:size-[440px] rounded-full [--dot:rgba(216,168,205,0.75)]" />
@@ -185,6 +212,7 @@ export function HeroSection() {
         {/* Background outline text */}
         <div
           className="hero-layer absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible [--px:-2px] [--py:-2px]"
+          data-scroll="180"
           aria-hidden="true"
         >
           {OUTLINE_LINES.map(({ text, align, stroke }) => (
@@ -240,6 +268,7 @@ export function HeroSection() {
         <div
           className="hero-layer absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-80 sm:w-125 md:w-125 lg:w-140 xl:w-[800px] max-h-dvh overflow-visible [--px:8px] [--py:6px]"
           data-hero-art
+          data-scroll="-80"
         >
           {/* Offset silhouette in white stripes: a second copy of the art, flattened to white and masked by a stripe pattern. */}
           <div
