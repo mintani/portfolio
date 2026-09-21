@@ -88,6 +88,16 @@ export function HeroSection() {
           aria-hidden="true"
         />
 
+        {/* Background shapes: halftone dots and hatch lines behind the ghost lettering */}
+        <div
+          className="absolute inset-0 z-[6] pointer-events-none"
+          aria-hidden="true"
+        >
+          <div className="hero-dots absolute -top-10 -left-12 size-56 md:-top-20 md:-left-20 md:size-[440px] rounded-full [--dot:rgba(216,168,205,0.75)]" />
+          <div className="hero-dots absolute hidden md:block md:-top-10 md:-right-40 size-80 rounded-full [--dot:rgba(103,116,206,0.55)]" />
+          <div className="hero-lines absolute top-[372px] -left-4 w-52 h-14 md:top-[560px] md:left-auto md:right-[120px] md:w-[560px] md:h-36 -rotate-12 rounded-2xl [--line:rgba(136,158,208,0.7)]" />
+        </div>
+
         {/* Background outline text */}
         <div
           className="absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible"
