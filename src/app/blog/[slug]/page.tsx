@@ -5,7 +5,6 @@ import { getArticle } from "@/lib/github-blog";
 import { getPageMeta, markdownToHtml } from "@/lib/markdown";
 import { ArticleDetailHeader } from "@/components/blog/ArticleDetailHeader";
 import { ArticleContent } from "@/components/blog/ArticleContent";
-import { BlogBackdrop } from "@/components/blog/BlogBackdrop";
 import { getRequestOrigin } from "@/lib/request-origin";
 import "./prose.css";
 
@@ -67,16 +66,12 @@ export default async function BlogDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="relative min-h-screen bg-[#e6ebf9] text-[#1d2947]">
-        <BlogBackdrop />
+      <div className="min-h-screen bg-surface text-on-surface">
+        <ArticleDetailHeader article={article} />
 
-        <div className="relative z-10 ">
-          <ArticleDetailHeader article={article} />
-
-          <article className="container mx-auto max-w-4xl px-4 py-8 md:py-12">
-            <ArticleContent htmlContent={htmlContent} toc={toc} />
-          </article>
-        </div>
+        <article className="container mx-auto max-w-4xl px-4 py-8 md:px-6 md:py-12">
+          <ArticleContent htmlContent={htmlContent} toc={toc} />
+        </article>
       </div>
     </>
   );

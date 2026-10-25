@@ -1,4 +1,4 @@
-/* Hallmark · macrostructure: Marquee Hero · tone: playful-stylish · anchor hue: periwinkle 270 · theme: custom (paper oklch(91.9% 0.029 268) · accent oklch(52.6% 0.165 273) · Poppins + Hiragino/Meiryo + JetBrains Mono, Playwrite outlier) · nav: N5 · footer: Ft5 · enrichment: none */
+/* Material 3 flavour · seed #4d5ec8 (periwinkle) · core palettes: primary C57, secondary C16, tertiary hue+60 C24, neutral C10 · Google Sans + Hiragino/Meiryo, Google Sans Code, Playwrite outlier */
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -7,10 +7,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans:
+    var(--font-google-sans), "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "游ゴシック", YuGothic,
+    sans-serif;
   --font-mono:
-    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-poppins: var(--font-poppins);
+    var(--font-google-sans-code), ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-playwrite: var(--font-playwrite);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -41,48 +43,98 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  /* With --radius at 8px: sm 4 / lg 8 / xl 12 line up with the M3 shape scale. */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* ── Site design tokens (periwinkle palette taken from the hero) ── */
-  --color-paper: var(--paper);
-  --color-paper-2: var(--paper-2);
-  --color-ink: var(--ink);
-  --color-ink-2: var(--ink-2);
-  --color-ink-3: var(--ink-3);
-  --color-rule: var(--rule);
-  --color-accent: var(--accent);
-  --color-blush: var(--blush);
-  --color-night: var(--night);
-  --color-focus: var(--focus);
-  --font-display: var(--font-poppins), "Poppins", sans-serif;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  /* ── Material 3 colour roles ── */
+  --color-on-primary: var(--md-on-primary);
+  --color-primary-container: var(--md-primary-container);
+  --color-on-primary-container: var(--md-on-primary-container);
+  --color-primary-fixed-dim: var(--md-primary-fixed-dim);
+  --color-secondary-container: var(--md-secondary-container);
+  --color-on-secondary-container: var(--md-on-secondary-container);
+  --color-tertiary: var(--md-tertiary);
+  --color-tertiary-container: var(--md-tertiary-container);
+  --color-on-tertiary-container: var(--md-on-tertiary-container);
+  --color-surface: var(--md-surface);
+  --color-surface-container-lowest: var(--md-surface-container-lowest);
+  --color-surface-container-low: var(--md-surface-container-low);
+  --color-surface-container: var(--md-surface-container);
+  --color-surface-container-high: var(--md-surface-container-high);
+  --color-surface-container-highest: var(--md-surface-container-highest);
+  --color-on-surface: var(--md-on-surface);
+  --color-on-surface-variant: var(--md-on-surface-variant);
+  --color-outline: var(--md-outline);
+  --color-outline-variant: var(--md-outline-variant);
+  --color-inverse-surface: var(--md-inverse-surface);
+  --color-inverse-on-surface: var(--md-inverse-on-surface);
+  --color-inverse-primary: var(--md-inverse-primary);
+
+  /* M3 elevation levels 1-4 (key + ambient shadow). */
+  --shadow-level-1:
+    0 1px 2px 0 rgb(26 27 37 / 0.3), 0 1px 3px 1px rgb(26 27 37 / 0.15);
+  --shadow-level-2:
+    0 1px 2px 0 rgb(26 27 37 / 0.3), 0 2px 6px 2px rgb(26 27 37 / 0.15);
+  --shadow-level-3:
+    0 1px 3px 0 rgb(26 27 37 / 0.3), 0 4px 8px 3px rgb(26 27 37 / 0.15);
+  --shadow-level-4:
+    0 2px 3px 0 rgb(26 27 37 / 0.3), 0 6px 10px 4px rgb(26 27 37 / 0.15);
+
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.5 0.155 275);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.945 0.016 275);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.945 0.016 275);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.945 0.016 275);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.5 0.155 275);
+  --radius: 0.5rem;
+
+  /* Material 3 light scheme, generated from seed #4d5ec8 with material-color-utilities. */
+  --md-primary: #4354be;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #dee0ff;
+  --md-on-primary-container: #283aa5;
+  --md-primary-fixed-dim: #bbc3ff;
+  --md-secondary: #5b5d72;
+  --md-secondary-container: #e0e1f9;
+  --md-on-secondary-container: #434559;
+  --md-tertiary: #77536d;
+  --md-tertiary-container: #ffd7f1;
+  --md-on-tertiary-container: #5d3c54;
+  --md-error: #ba1a1a;
+  --md-surface: #fbf8ff;
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-container-low: #f4f2ff;
+  --md-surface-container: #eeecfb;
+  --md-surface-container-high: #e8e7f5;
+  --md-surface-container-highest: #e2e1ef;
+  --md-on-surface: #1a1b25;
+  --md-on-surface-variant: #444656;
+  --md-outline: #747688;
+  --md-outline-variant: #c4c5d9;
+  --md-inverse-surface: #2f303a;
+  --md-inverse-on-surface: #f1effe;
+  --md-inverse-primary: #bbc3ff;
+
+  /* shadcn/ui tokens, pointed at the M3 roles. */
+  --background: var(--md-surface);
+  --foreground: var(--md-on-surface);
+  --card: var(--md-surface-container-low);
+  --card-foreground: var(--md-on-surface);
+  --popover: var(--md-surface-container);
+  --popover-foreground: var(--md-on-surface);
+  --primary: var(--md-primary);
+  --primary-foreground: var(--md-on-primary);
+  --secondary: var(--md-secondary-container);
+  --secondary-foreground: var(--md-on-secondary-container);
+  --muted: var(--md-surface-container-high);
+  --muted-foreground: var(--md-on-surface-variant);
+  --accent: var(--md-secondary-container);
+  --accent-foreground: var(--md-on-secondary-container);
+  --destructive: var(--md-error);
+  --border: var(--md-outline-variant);
+  --input: var(--md-outline);
+  --ring: var(--md-primary);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -132,81 +184,114 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-:root {
-  /* Periwinkle palette. Hex twins of the hero colours, kept in OKLCH. */
-  --paper: oklch(91.9% 0.029 268); /* #dce4f8 page ground */
-  --paper-2: oklch(94.9% 0.018 269); /* #e9eefb raised band */
-  --ink: oklch(31.8% 0.044 271); /* #2a3149 */
-  --ink-2: oklch(48.7% 0.053 272); /* #555e7e */
-  --ink-3: oklch(62% 0.045 270); /* muted labels */
-  --rule: oklch(82% 0.035 270); /* hairlines */
-  --accent: oklch(52.6% 0.165 273); /* #4d5ec8 */
-  --blush: oklch(78.7% 0.074 335); /* #d8a8cd, hero stroke */
-  --night: oklch(23.3% 0.03 270); /* #181d2c footer */
-  --focus: oklch(52.6% 0.165 273);
+@layer base {
+  body {
+    background-color: var(--md-surface);
+    color: var(--md-on-surface);
+  }
+
+  /* M3 focus indicator: 3px secondary outline, 2px out. */
+  :focus-visible {
+    outline: 3px solid var(--md-secondary);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--md-primary-container);
+    color: var(--md-on-primary-container);
+  }
 }
 
-/* ===== Hero background outline text - requires -webkit-text-stroke ===== */
-.hero-outline-text {
-  font-family: var(--font-poppins), "Poppins", sans-serif;
+@layer components {
+  /* M3 state layer: a currentColor wash on hover, focus and press. RippleEffect also
+     draws its press waves inside these hosts, so they clip their own overflow. Utilities
+     such as `absolute` or `fixed` still override the position set here. */
+  .state-layer {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .state-layer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: currentColor;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms linear;
+  }
+
+  @media (hover: hover) {
+    .state-layer:hover::before {
+      opacity: 0.08;
+    }
+  }
+
+  .state-layer:focus-visible::before,
+  .state-layer:active::before {
+    opacity: 0.1;
+  }
+
+  .ripple-wave {
+    position: absolute;
+    border-radius: 50%;
+    background-color: currentColor;
+    pointer-events: none;
+    animation: ripple 600ms cubic-bezier(0.2, 0, 0, 1) forwards;
+  }
+}
+
+@keyframes ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.2;
+  }
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Slow turn for the decorative M3 shapes. Set the period with --spin. */
+.shape-spin {
+  animation: shape-spin var(--spin, 80s) linear infinite;
+}
+
+.is-offscreen .shape-spin {
+  animation-play-state: paused;
+}
+
+@keyframes shape-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+/* Big background lettering in the hero. */
+.hero-ghost-text {
   font-weight: 700;
   font-style: italic;
-  color: transparent;
   line-height: 1;
   white-space: nowrap;
 }
 
-.stroke-periwinkle {
-  -webkit-text-stroke: 2px rgba(103, 116, 206, 0.45);
-}
-
-.stroke-bluegray {
-  -webkit-text-stroke: 2px rgba(136, 158, 208, 0.55);
-}
-
-.stroke-blush {
-  -webkit-text-stroke: 2px rgba(216, 168, 205, 0.6);
-}
-
-/* Hero motion. Each .hero-layer sits at its base offset (--bx, --by) plus the pointer
-   offset (--mx, --my: -1..1) scaled by its own depth (--px, --py); HeroSection writes
-   --mx / --my from the mouse. The art also bobs up and down on its own (.hero-bob), mouse
-   or not, on a separate element so the two never fight. */
+/* Hero motion. Each .hero-layer moves by the pointer offset (--mx, --my: -1..1) scaled
+   by its own depth (--px, --py); HeroSection writes --mx / --my from the mouse. */
 .hero-parallax {
   --mx: 0;
   --my: 0;
 }
 
 .hero-layer {
-  translate: calc(var(--bx, 0px) + var(--mx) * var(--px, 0px))
-    calc(var(--by, 0px) + var(--my) * var(--py, 0px));
+  translate: calc(var(--mx) * var(--px, 0px)) calc(var(--my) * var(--py, 0px));
   transition: translate 400ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.hero-bob {
-  --bob: 8px;
-  animation: hero-bob 4s ease-in-out infinite;
-}
-
-.is-offscreen .hero-bob {
-  animation-play-state: paused;
-}
-
-@keyframes hero-bob {
-  0%,
-  100% {
-    translate: 0 calc(-1 * var(--bob));
-  }
-  50% {
-    translate: 0 var(--bob);
-  }
-}
-
-/* Below lg the art sits close to the copy, so it only breathes and ignores the mouse. */
+/* Below lg the layers ignore the mouse. */
 @media (width < 64rem) {
-  .hero-bob {
-    --bob: 3px;
-  }
   .hero-layer {
     --px: 0px;
     --py: 0px;
@@ -217,51 +302,19 @@
   .hero-layer {
     transition: none;
   }
-  .hero-bob {
+  .shape-spin {
     animation: none;
   }
 }
 
-/* Halftone dot grid that thins out toward the bottom-right. Tint per instance with --dot. */
-.hero-dots {
-  background-image: radial-gradient(
-    circle,
-    var(--dot) 1.6px,
-    transparent 2.3px
-  );
-  background-size: 14px 14px;
-  mask-image: linear-gradient(135deg, #000 20%, transparent 85%);
-}
-
-/* Diagonal hatch band that fades out over its last --fade px on the right. Tint with --line. */
-.hero-lines {
-  background-image: repeating-linear-gradient(
-    -35deg,
-    var(--line) 0 2px,
-    transparent 2px 11px
-  );
-  mask-image: linear-gradient(
-    90deg,
-    #000 calc(100% - var(--fade, 220px)),
-    transparent 100%
-  );
-}
-
-/* 2px white sticker edge around the hero art: four 1px offsets, applied twice. */
-.hero-art-edge {
-  --hero-art-edge: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff)
-    drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
-  filter: var(--hero-art-edge) var(--hero-art-edge);
-}
-
-/* Decorative overflow (hero art, ghost lettering) must never scroll the page sideways. */
+/* Decorative overflow (hero shapes, ghost lettering) must never scroll the page sideways. */
 html,
 body {
   overflow-x: clip;
 }
 
-/* The root paints the overscroll (rubber-band) area, so give it the page's paper colour
+/* The root paints the overscroll (rubber-band) area, so give it the page's surface colour
    instead of the default white. */
 html {
-  background-color: var(--paper);
+  background-color: var(--md-surface);
 }

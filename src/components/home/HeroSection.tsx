@@ -1,25 +1,35 @@
 "use client";
 
-import Image from "next/image";
-import { Github, ChevronDown } from "lucide-react";
+import {
+  ArrowDown,
+  BriefcaseBusiness,
+  Github,
+  House,
+  UserRound,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { RefObject } from "react";
+import { ExpressiveShape } from "@/components/shared/ExpressiveShape";
 import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
-const SECTIONS = ["hero-section", "about-section", "works-section"];
+const SECTIONS = [
+  { id: "hero-section", label: "Home", icon: House },
+  { id: "about-section", label: "About", icon: UserRound },
+  { id: "works-section", label: "Works", icon: BriefcaseBusiness },
+] as const;
 
 // Shared responsive sizing for the foreground heading lines.
 const HEADING_TEXT =
-  "font-poppins font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-[#555e7e]";
+  "font-medium italic text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-on-primary-container";
 
-// Large stroked background lettering.
-const OUTLINE_TEXT =
-  "flex-1 hero-outline-text text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] select-none";
+// Large tonal background lettering.
+const GHOST_TEXT =
+  "flex-1 hero-ghost-text text-[130px] sm:text-[170px] md:text-[200px] lg:text-[300px] xl:text-[350px] select-none";
 
-const OUTLINE_LINES = [
-  { text: "Catch up", align: "text-right", stroke: "stroke-periwinkle" },
-  { text: "to the", align: "text-left", stroke: "stroke-bluegray" },
-  { text: "future", align: "text-right", stroke: "stroke-blush" },
+const GHOST_LINES = [
+  { text: "Catch up", align: "text-right", tone: "text-white/45" },
+  { text: "to the", align: "text-left", tone: "text-primary-fixed-dim/45" },
+  { text: "future", align: "text-right", tone: "text-tertiary-container/80" },
 ] as const;
 
 function scrollToSection(id: string) {
@@ -31,8 +41,8 @@ function scrollToSection(id: string) {
  * Hero motion. Writes the pointer's offset from the viewport centre (-1..1) into
  * --mx / --my on the hero so each .hero-layer can translate from it (mouse only, wide
  * viewports only), and slides every [data-scroll] layer by that many px over the hero's
- * height as the page scrolls (far layers lag behind with +, the art leads with -). The
- * art's own up-and-down bob is pure CSS and pauses while the hero is scrolled out of view.
+ * height as the page scrolls (far layers lag behind with +, near ones lead with -). The
+ * shapes' spin is pure CSS and pauses while the hero is scrolled out of view.
  */
 function useHeroMotion(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
@@ -63,7 +73,7 @@ function useHeroMotion(ref: RefObject<HTMLElement | null>) {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // Mouse tracking only on wide viewports: below lg the art already sits close to the copy.
+    // Mouse tracking only on wide viewports; below lg the layers stay put.
     const wide = window.matchMedia("(min-width: 64rem)");
     const onWideChange = () => {
       if (wide.matches) return;
@@ -105,7 +115,7 @@ export function HeroSection() {
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
-    SECTIONS.forEach((id, index) => {
+    SECTIONS.forEach(({ id }, index) => {
       const el = document.getElementById(id);
       if (!el) return;
 
@@ -125,148 +135,139 @@ export function HeroSection() {
 
   return (
     <>
-      {/* Page indicator */}
+      {/* Navigation rail: one destination per home section */}
       <nav
-        aria-label="Page indicator"
-        className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-8 "
+        aria-label="Page sections"
+        className="fixed left-4 top-1/2 z-50 hidden -translate-y-1/2 flex-col items-center gap-3 rounded-[28px] bg-surface-container/90 px-3 py-4 shadow-level-2 backdrop-blur-md xl:flex"
       >
-        {SECTIONS.map((id, index) => (
-          <button
-            key={id}
-            onClick={() => scrollToSection(id)}
-            aria-label={`Section ${index + 1}`}
-            className={`size-6 rounded-full border-2 transition-all duration-300 cursor-pointer hidden lg:block ${
-              activeIndex === index
-                ? "bg-white border-white scale-110"
-                : "bg-transparent border-white hover:scale-110"
-            }`}
-          />
-        ))}
+        {SECTIONS.map(({ id, label, icon: Icon }, index) => {
+          const active = activeIndex === index;
+          return (
+            <button
+              key={id}
+              type="button"
+              onClick={() => scrollToSection(id)}
+              aria-current={active ? "true" : undefined}
+              className="flex cursor-pointer flex-col items-center gap-1 rounded-2xl"
+            >
+              <span
+                className={`state-layer flex h-8 w-14 items-center justify-center rounded-full transition-colors duration-300 ease-emphasized ${
+                  active
+                    ? "bg-secondary-container text-on-secondary-container"
+                    : "text-on-surface-variant"
+                }`}
+              >
+                <Icon size={20} />
+              </span>
+              <span
+                className={`text-xs font-medium ${
+                  active ? "text-on-surface" : "text-on-surface-variant"
+                }`}
+              >
+                {label}
+              </span>
+            </button>
+          );
+        })}
       </nav>
 
-      {/* ── Hero ── */}
+      {/* ── Hero: one primary-container panel inset from the viewport edge ── */}
       <section
         id="hero-section"
         ref={sectionRef}
-        className="hero-parallax container relative mx-0 md:mx-auto lg:mx-auto flex-1 flex items-start pt-16 pb-16 overflow-visible md:min-h-[800px]"
+        className="hero-parallax w-full px-2 pt-2 sm:px-3 sm:pt-3"
       >
-        {/* White trapezoid */}
-        <div
-          className="absolute top-0 bottom-0 left-0 z-[5] pointer-events-none hidden lg:block"
-          style={{
-            right: "calc(-1 * (100vw - 100%) / 2)",
-            clipPath:
-              "polygon(calc(100% - 550px) 0%, 100% 0%, 100% 100%, calc(100% - 400px) 100%)",
-            background: "#e9eefb",
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Background shapes: halftone dots behind the ghost lettering */}
-        <div
-          className="hero-layer absolute inset-0 z-[6] pointer-events-none [--px:-10px] [--py:-8px]"
-          data-scroll="120"
-          aria-hidden="true"
-        >
-          <div className="hero-dots absolute -top-10 -left-12 size-56 md:-top-20 md:-left-20 md:size-[440px] rounded-full [--dot:rgba(216,168,205,0.75)]" />
-          <div className="hero-dots absolute hidden md:block md:-top-10 md:-right-40 size-80 rounded-full [--dot:rgba(103,116,206,0.55)]" />
-        </div>
-
-        {/* Background outline text */}
-        <div
-          className="hero-layer absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible [--px:-6px] [--py:-4px]"
-          data-scroll="180"
-          aria-hidden="true"
-        >
-          {OUTLINE_LINES.map(({ text, align, stroke }) => (
-            <span key={text} className={`${OUTLINE_TEXT} ${align} ${stroke}`}>
-              {text}
-            </span>
-          ))}
-        </div>
-
-        {/* Main text. Rows carry z-20 themselves so the hatch band below can sit under the ghost lettering. */}
-        <div className="relative flex flex-col pt-8 md:pt-16 lg:pt-20 pl-8 md:pl-20 gap-5 sm:gap-10 md:gap-10 xl:gap-20 overflow-visible">
-          <div className="relative z-20 flex items-baseline leading-tight">
-            <span className={`${HEADING_TEXT} tracking-tight`}>Here is</span>
-          </div>
-          <div className="relative z-20 flex items-baseline leading-tight">
-            <span className={`${HEADING_TEXT} select-none`}>the</span>
-            <span className={`${HEADING_TEXT} select-none`}>&ldquo;</span>
-            <span className="font-playwrite text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#4d5ec8] px-1 select-none">
-              stylish
-            </span>
-            <span className={`${HEADING_TEXT} select-none`}>&rdquo;</span>
-          </div>
-          <div className="relative z-20 flex items-baseline leading-none -mt-2">
-            <span className="font-poppins font-bold italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[156px] text-[#2a3149] tracking-tight">
-              MinTani
-            </span>
-          </div>
-
-          {/* CTA Buttons, with a hatch-line band running in from the left edge behind the GitHub button */}
-          <div className="relative flex items-center gap-3 sm:gap-4 mt-2 sm:mt-4">
+        <div className="relative overflow-hidden rounded-[28px] bg-primary-container sm:rounded-[48px]">
+          <div className="container relative mx-auto flex items-start pt-16 pb-16 md:min-h-[800px]">
+            {/* M3 clover behind the lettering, top-left */}
             <div
+              className="hero-layer absolute inset-0 z-[6] pointer-events-none [--px:-10px] [--py:-8px]"
+              data-scroll="120"
               aria-hidden="true"
-              className="hero-lines absolute z-[7] -left-[50vw] -top-6 w-[calc(50vw+260px)] h-64 origin-right -rotate-12 [--fade:180px] md:-top-12 md:w-[calc(50vw+460px)] md:h-[480px] md:[--fade:320px] [--line:rgba(136,158,208,0.35)]"
-            />
-            <a
-              href="https://github.com/mintani"
-              {...EXTERNAL_LINK_PROPS}
-              className="group relative z-20 flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2a3149] text-white font-poppins font-medium text-sm sm:text-base hover:bg-[#555e7e] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
-              <Github size={16} className="sm:size-4" />
-              Visit my GitHub
-            </a>
+              <ExpressiveShape
+                kind="clover"
+                className="shape-spin absolute -top-20 -left-24 size-64 text-tertiary-container [--spin:90s] md:-top-28 md:-left-28 md:size-[440px]"
+              />
+            </div>
+
+            {/* Cookie on the right, leading the scroll */}
+            <div
+              className="hero-layer absolute inset-0 z-[6] pointer-events-none [--px:16px] [--py:12px]"
+              data-scroll="-40"
+              aria-hidden="true"
+            >
+              <ExpressiveShape
+                kind="cookie"
+                className="shape-spin absolute top-24 -right-24 size-80 text-primary-fixed-dim sm:size-[460px] lg:top-16 lg:-right-16 lg:size-[680px]"
+              />
+            </div>
+
+            {/* Background lettering */}
+            <div
+              className="hero-layer absolute inset-0 z-10 flex flex-col justify-start pt-8 pointer-events-none overflow-visible [--px:-6px] [--py:-4px]"
+              data-scroll="180"
+              aria-hidden="true"
+            >
+              {GHOST_LINES.map(({ text, align, tone }) => (
+                <span key={text} className={`${GHOST_TEXT} ${align} ${tone}`}>
+                  {text}
+                </span>
+              ))}
+            </div>
+
+            {/* Main text */}
+            <div className="relative z-20 flex flex-col pt-8 md:pt-16 lg:pt-20 pl-6 md:pl-20 gap-5 sm:gap-10 xl:gap-20">
+              <div className="flex items-baseline leading-tight">
+                <span className={`${HEADING_TEXT} tracking-tight`}>
+                  Here is
+                </span>
+              </div>
+              <div className="flex items-baseline leading-tight">
+                <span className={`${HEADING_TEXT} select-none`}>the</span>
+                <span className={`${HEADING_TEXT} select-none`}>&ldquo;</span>
+                <span className="font-playwrite text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-tertiary px-1 select-none">
+                  stylish
+                </span>
+                <span className={`${HEADING_TEXT} select-none`}>&rdquo;</span>
+              </div>
+              <div className="flex items-baseline leading-none -mt-2">
+                <span className="font-bold italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[156px] text-on-surface tracking-tight">
+                  MinTani
+                </span>
+              </div>
+
+              {/* M3 buttons: filled for the main action, elevated for the in-page jump */}
+              <div className="flex flex-wrap items-center gap-3 mt-2 sm:mt-4">
+                <a
+                  href="https://github.com/mintani"
+                  {...EXTERNAL_LINK_PROPS}
+                  className="state-layer flex h-12 items-center gap-2 whitespace-nowrap rounded-full bg-primary px-6 text-sm font-medium text-on-primary shadow-level-1 transition-shadow duration-200 hover:shadow-level-2 sm:h-14 sm:px-7 sm:text-base"
+                >
+                  <Github size={20} />
+                  Visit my GitHub
+                </a>
+                <button
+                  type="button"
+                  onClick={() => scrollToSection("about-section")}
+                  className="state-layer flex h-12 cursor-pointer items-center whitespace-nowrap rounded-full bg-surface-container-low px-6 text-sm font-medium text-primary shadow-level-1 transition-shadow duration-200 hover:shadow-level-2 sm:h-14 sm:px-7 sm:text-base"
+                >
+                  Move to &ldquo;About me&rdquo;
+                </button>
+              </div>
+            </div>
+
+            {/* Scroll cue as a surface FAB */}
             <button
+              type="button"
               onClick={() => scrollToSection("about-section")}
-              className="group relative z-20 flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full border-2 border-[#2a3149]/30 text-[#555e7e] font-poppins font-medium text-sm sm:text-base hover:border-[#2a3149] hover:text-[#2a3149] transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm cursor-pointer"
+              aria-label="Scroll to next section"
+              className="state-layer absolute bottom-8 left-1/2 z-30 hidden size-14 -translate-x-1/2 cursor-pointer items-center justify-center rounded-2xl bg-surface-container-high text-primary shadow-level-3 transition-shadow duration-200 hover:shadow-level-4 md:flex"
             >
-              Move to &ldquo;About me&rdquo;
+              <ArrowDown size={24} />
             </button>
           </div>
         </div>
-
-        {/* Character image */}
-        <div
-          className="hero-layer absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-76 sm:w-120 md:w-120 lg:w-132 xl:w-[760px] max-h-dvh overflow-visible [--px:30px] [--py:22px]"
-          data-scroll="-80"
-        >
-          {/* The art bobs up and down on its own; the shadow rides along inside. */}
-          <div className="hero-bob relative">
-            {/* Offset silhouette in white stripes: a second copy of the art, flattened to white and masked by a stripe pattern. */}
-            <div
-              aria-hidden="true"
-              className="hero-layer absolute top-0 left-0 w-full [--bx:3%] [--by:2%] [--px:-6px] [--py:-4px] mask-[repeating-linear-gradient(135deg,#000_0_6px,transparent_6px_12px)]"
-            >
-              <Image
-                src="/clip.png"
-                alt=""
-                width={966}
-                height={1479}
-                priority
-                className="object-cover object-top brightness-0 invert"
-              />
-            </div>
-            <Image
-              src="/clip.png"
-              alt="mint"
-              width={966}
-              height={1479}
-              priority
-              className="relative object-cover object-top hero-art-edge"
-            />
-          </div>
-        </div>
-
-        {/* Chevron Down */}
-        <button
-          onClick={() => scrollToSection("about-section")}
-          aria-label="Scroll to next section"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-neutral-400 hover:text-neutral-600 transition-colors duration-300 animate-bounce hidden md:block cursor-pointer"
-        >
-          <ChevronDown size={48} strokeWidth={1.5} />
-        </button>
       </section>
     </>
   );

@@ -1,27 +1,34 @@
 import type { Metadata } from "next";
-import { Poppins, Playwrite_US_Trad, JetBrains_Mono } from "next/font/google";
+import {
+  Google_Sans,
+  Google_Sans_Code,
+  Playwrite_US_Trad,
+} from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
+import { BackToTopFab } from "@/components/shared/BackToTopFab";
+import { RippleEffect } from "@/components/shared/RippleEffect";
 import { ThemeProvider } from "@/components/shared/theme-provider/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 
-const poppins = Poppins({
+const googleSans = Google_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
   style: ["normal", "italic"],
-  variable: "--font-poppins",
+  variable: "--font-google-sans",
   display: "swap",
+  // next/font has no metrics for Google Sans to build a size-adjusted fallback from.
+  adjustFontFallback: false,
+});
+
+const googleSansCode = Google_Sans_Code({
+  subsets: ["latin"],
+  variable: "--font-google-sans-code",
+  display: "swap",
+  adjustFontFallback: false,
 });
 
 const playwrite = Playwrite_US_Trad({
   weight: ["400"],
   variable: "--font-playwrite",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -36,22 +43,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" suppressHydrationWarning>
-      <body
-        className={`${poppins.variable} ${playwrite.variable} ${jetbrainsMono.variable} antialiased`}
-        style={{
-          fontFamily:
-            '"Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ", Meiryo, "游ゴシック", YuGothic, sans-serif',
-        }}
-      >
+    <html
+      lang="ja"
+      suppressHydrationWarning
+      className={`${googleSans.variable} ${googleSansCode.variable} ${playwrite.variable}`}
+    >
+      <body className="antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
           {children}
+          <BackToTopFab />
+          <RippleEffect />
           <Toaster richColors position="top-center" />
         </ThemeProvider>
       </body>
