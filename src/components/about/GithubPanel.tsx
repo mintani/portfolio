@@ -27,15 +27,22 @@ const MONTHS = [
   "Dec",
 ];
 
-/** Month label for a week when it opens a new month, otherwise empty. */
+/**
+ * Month label for a week when it opens a new month, otherwise empty. A label with the
+ * next one under three weeks away (the partial month at the start) is dropped, since the
+ * two would run into each other.
+ */
 const monthLabels = (weeks: ContributionWeek[]) => {
   let last = -1;
-  return weeks.map((week) => {
+  const labels = weeks.map((week) => {
     const month = new Date(week.days[0].date).getUTCMonth();
     if (month === last) return "";
     last = month;
     return MONTHS[month];
   });
+  return labels.map((label, i) =>
+    label && labels.slice(i + 1, i + 3).some(Boolean) ? "" : label
+  );
 };
 
 const formatPercent = (value: number) =>
@@ -108,8 +115,8 @@ function Calendar({
         {weeks.map((week, i) => (
           <div
             key={week.days[0].date}
-            className={`grid grid-rows-[auto_repeat(7,minmax(0,1fr))] gap-[3px] ${
-              i < firstMobileWeek ? "hidden md:grid" : ""
+            className={`flex-col gap-[3px] ${
+              i < firstMobileWeek ? "hidden md:flex" : "flex"
             }`}
           >
             <span className="h-4 font-mono text-[10px] leading-4 text-on-surface-variant whitespace-nowrap overflow-visible">
@@ -119,7 +126,7 @@ function Calendar({
               <span
                 key={day.date}
                 title={`${day.date}: ${day.count} contributions`}
-                className={`aspect-square rounded-[3px] ${LEVEL_CLASS[day.level]}`}
+                className={`aspect-square w-full rounded-[3px] ${LEVEL_CLASS[day.level]}`}
               />
             ))}
           </div>
