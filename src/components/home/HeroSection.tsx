@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import {
   ArrowDown,
   BriefcaseBusiness,
@@ -42,8 +41,8 @@ function scrollToSection(id: string) {
  * Hero motion. Writes the pointer's offset from the viewport centre (-1..1) into
  * --mx / --my on the hero so each .hero-layer can translate from it (mouse only, wide
  * viewports only), and slides every [data-scroll] layer by that many px over the hero's
- * height as the page scrolls (far layers lag behind with +, the art leads with -). The
- * art's own up-and-down bob is pure CSS and pauses while the hero is scrolled out of view.
+ * height as the page scrolls (far layers lag behind with +, near ones lead with -). The
+ * shapes' spin is pure CSS and pauses while the hero is scrolled out of view.
  */
 function useHeroMotion(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
@@ -74,7 +73,7 @@ function useHeroMotion(ref: RefObject<HTMLElement | null>) {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // Mouse tracking only on wide viewports: below lg the art already sits close to the copy.
+    // Mouse tracking only on wide viewports; below lg the layers stay put.
     const wide = window.matchMedia("(min-width: 64rem)");
     const onWideChange = () => {
       if (wide.matches) return;
@@ -192,7 +191,7 @@ export function HeroSection() {
               />
             </div>
 
-            {/* Cookie behind the art, leading the scroll with it */}
+            {/* Cookie on the right, leading the scroll */}
             <div
               className="hero-layer absolute inset-0 z-[6] pointer-events-none [--px:16px] [--py:12px]"
               data-scroll="-40"
@@ -255,38 +254,6 @@ export function HeroSection() {
                 >
                   Move to &ldquo;About me&rdquo;
                 </button>
-              </div>
-            </div>
-
-            {/* Character image */}
-            <div
-              className="hero-layer absolute -right-20 sm:-right-40 md:-right-40 lg:-right-60 xl:-right-60 top-20 z-10 md:z-30 pointer-events-none w-76 sm:w-120 md:w-120 lg:w-132 xl:w-[760px] max-h-dvh overflow-visible [--px:30px] [--py:22px]"
-              data-scroll="-80"
-            >
-              {/* The art bobs up and down on its own; the shadow rides along inside. */}
-              <div className="hero-bob relative">
-                {/* Offset silhouette in white stripes: a second copy of the art, flattened to white and masked by a stripe pattern. */}
-                <div
-                  aria-hidden="true"
-                  className="hero-layer absolute top-0 left-0 w-full [--bx:3%] [--by:2%] [--px:-6px] [--py:-4px] mask-[repeating-linear-gradient(135deg,#000_0_6px,transparent_6px_12px)]"
-                >
-                  <Image
-                    src="/clip.png"
-                    alt=""
-                    width={966}
-                    height={1479}
-                    priority
-                    className="object-cover object-top brightness-0 invert"
-                  />
-                </div>
-                <Image
-                  src="/clip.png"
-                  alt="mint"
-                  width={966}
-                  height={1479}
-                  priority
-                  className="relative object-cover object-top hero-art-edge"
-                />
               </div>
             </div>
 
