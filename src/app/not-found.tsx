@@ -1,21 +1,30 @@
-import { FileQuestion } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { ExpressiveShape } from "@/components/shared/ExpressiveShape";
 
 export default function NotFound() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-6">
-      <div className="flex flex-col items-center gap-4">
-        <FileQuestion className="h-16 w-16 text-muted-foreground" />
-        <h1 className="font-bold text-6xl">404</h1>
-        <h2 className="font-semibold text-2xl">Page Not Found</h2>
-        <p className="max-w-md text-center text-muted-foreground">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-surface px-6 text-center">
+      <div className="relative grid size-56 place-items-center text-primary-container">
+        <ExpressiveShape
+          kind="cookie"
+          className="shape-spin absolute inset-0 size-full"
+        />
+        <span className="relative text-6xl font-medium text-on-primary-container">
+          404
+        </span>
+      </div>
+      <div className="flex flex-col items-center gap-3">
+        <h1 className="text-3xl font-medium text-on-surface">Page Not Found</h1>
+        <p className="max-w-md text-on-surface-variant">
           The page you're looking for doesn't exist or may have been moved.
         </p>
       </div>
-      <Button asChild>
-        <Link href="/">Return to Home</Link>
-      </Button>
+      <Link
+        href="/"
+        className="state-layer inline-flex h-12 items-center rounded-full bg-primary px-6 text-sm font-medium text-on-primary"
+      >
+        Return to Home
+      </Link>
     </div>
   );
 }

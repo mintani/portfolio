@@ -16,7 +16,7 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="w-full bg-paper relative flex flex-col items-center overflow-x-clip">
+    <div className="w-full bg-surface relative flex flex-col items-center overflow-x-clip">
       <HeroSection />
       <AboutSection github={github} />
       <WorksSection articles={articles} />
