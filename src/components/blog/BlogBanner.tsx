@@ -14,7 +14,7 @@ export function BlogBanner({ children }: { children: ReactNode }) {
           kind="clover"
           className="shape-spin pointer-events-none absolute -bottom-20 -left-16 hidden size-48 text-tertiary-container [--spin:90s] [animation-direction:reverse] md:block"
         />
-        <div className="container relative mx-auto max-w-4xl px-5 pt-28 pb-12 md:px-6 md:pt-32 md:pb-16">
+        <div className="container relative mx-auto max-w-4xl px-5 pt-12 pb-12 md:px-6 md:pt-16 md:pb-16">
           {children}
         </div>
       </header>

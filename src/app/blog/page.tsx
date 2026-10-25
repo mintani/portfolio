@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getArticlesList } from "@/lib/github-blog";
 import { ArticleCard } from "@/components/blog/ArticleCard";
 import { BlogBanner } from "@/components/blog/BlogBanner";
-import { BookOpen } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
+import Link from "next/link";
 import { ExpressiveShape } from "@/components/shared/ExpressiveShape";
 import { getRequestOrigin } from "@/lib/request-origin";
 
@@ -22,6 +23,13 @@ export default async function BlogPage() {
   return (
     <div className="min-h-screen bg-surface pb-20 text-on-surface">
       <BlogBanner>
+        <Link
+          href="/"
+          className="state-layer -ml-4 mb-6 inline-flex h-10 items-center gap-2 rounded-full px-4 text-sm font-medium text-on-primary-container"
+        >
+          <ArrowLeft size={18} />
+          ホームに戻る
+        </Link>
         <p className="text-sm font-medium text-on-primary-container">Journal</p>
         <h1 className="mt-2 text-4xl font-medium tracking-tight text-on-surface md:text-6xl">
           記事一覧

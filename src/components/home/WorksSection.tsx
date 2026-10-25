@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   ArrowUpRight,
   BriefcaseBusiness,
   ChevronRight,
@@ -11,7 +12,6 @@ import { Chip } from "@/components/shared/Chip";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import type { WorkItem } from "@/data/about";
 import { WORKS } from "@/data/about";
-import { BLOG_CONFIG } from "@/lib/blog-config";
 import type { BlogArticleMeta } from "@/lib/github-blog";
 import { EXTERNAL_LINK_PROPS } from "@/lib/utils";
 
@@ -145,14 +145,13 @@ export function WorksSection({ articles }: { articles: BlogArticleMeta[] }) {
             <div className="mt-14 rounded-[28px] bg-surface-container-lowest p-2 sm:p-3">
               <div className="flex items-center justify-between gap-4 pt-2 pr-1 pb-2 pl-4">
                 <h3 className="text-2xl font-medium text-on-surface">Blog</h3>
-                <a
-                  href={BLOG_CONFIG.SITE_URL}
-                  {...EXTERNAL_LINK_PROPS}
+                <Link
+                  href="/blog"
                   className="state-layer inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full px-4 text-sm font-medium text-primary"
                 >
                   すべて見る
-                  <ArrowUpRight size={18} />
-                </a>
+                  <ArrowRight size={18} />
+                </Link>
               </div>
               <ol className="flex flex-col gap-1">
                 {articles.slice(0, 3).map((article) => (

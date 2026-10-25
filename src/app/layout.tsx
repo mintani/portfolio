@@ -5,7 +5,6 @@ import {
   Playwrite_US_Trad,
 } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/Header";
 import { BackToTopFab } from "@/components/shared/BackToTopFab";
 import { RippleEffect } from "@/components/shared/RippleEffect";
 import { ThemeProvider } from "@/components/shared/theme-provider/ThemeProvider";
@@ -56,7 +55,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
           {children}
           <BackToTopFab />
           <RippleEffect />
