@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { getArticlesList } from "@/lib/github-blog";
 import { ArticleCard } from "@/components/blog/ArticleCard";
-import { BlogBackdrop } from "@/components/blog/BlogBackdrop";
+import { BlogBanner } from "@/components/blog/BlogBanner";
 import { BookOpen } from "lucide-react";
+import { ExpressiveShape } from "@/components/shared/ExpressiveShape";
 import { getRequestOrigin } from "@/lib/request-origin";
 
 export const metadata: Metadata = {
@@ -19,48 +20,42 @@ export default async function BlogPage() {
     : [];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#e6ebf9] text-[#1d2947]">
-      <BlogBackdrop />
+    <div className="min-h-screen bg-surface pb-20 text-on-surface">
+      <BlogBanner>
+        <p className="text-sm font-medium text-on-primary-container">Journal</p>
+        <h1 className="mt-2 text-4xl font-medium tracking-tight text-on-surface md:text-6xl">
+          記事一覧
+        </h1>
+        <p className="mt-3 max-w-2xl text-base leading-8 text-on-primary-container md:text-lg">
+          技術メモや自分用のメモ
+        </p>
+      </BlogBanner>
 
-      <div className="container relative z-10 mx-auto max-w-4xl px-4 pb-20 pt-24 md:px-6 md:pt-28">
+      <div className="container mx-auto max-w-4xl px-4 pt-8 md:px-6 md:pt-10">
         {articles.length > 0 ? (
-          <>
-            <header className="border-b border-[#35429a]/16 pb-8 md:pb-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[#4a5cc0]">
-                Journal
-              </p>
-              <div className="mt-4">
-                <h1 className="font-poppins text-4xl font-semibold tracking-tight text-[#1d2947] md:text-5xl">
-                  記事一覧
-                </h1>
-                <p className="mt-3 max-w-2xl text-base leading-8 text-[#4d597f]">
-                  技術メモや自分用のメモ
-                </p>
-              </div>
-            </header>
-
-            <section className="mt-8 space-y-4 md:mt-10">
-              {articles.map((article) => (
-                <ArticleCard key={article.slug} article={article} />
-              ))}
-            </section>
-          </>
+          <section className="flex flex-col gap-3">
+            {articles.map((article) => (
+              <ArticleCard key={article.slug} article={article} />
+            ))}
+          </section>
         ) : (
-          <div className="mx-auto flex max-w-xl flex-col items-center justify-center rounded-4xl border border-[#35429a]/14 bg-white px-6 py-20 text-center shadow-[0_24px_60px_rgba(23,26,44,0.06)]">
-            <div className="rounded-full border border-[#35429a]/12 bg-[#dfe6f7] p-4">
-              <BookOpen size={32} className="text-[#4a5cc0]" />
-            </div>
-            <div className="mt-5 text-center">
-              <h1 className="font-poppins text-4xl font-bold tracking-tight text-[#1d2947] md:text-5xl">
-                Blog
-              </h1>
-              <h2 className="mt-4 font-poppins text-lg font-semibold text-[#1d2947]">
-                記事がまだありません
-              </h2>
-              <p className="mt-2 text-sm leading-7 text-[#4d597f]">
-                最初の記事をお楽しみに！
-              </p>
-            </div>
+          <div className="mx-auto flex max-w-xl flex-col items-center rounded-[28px] bg-surface-container-low px-6 py-16 text-center">
+            <span className="relative grid size-20 place-items-center text-primary-container">
+              <ExpressiveShape
+                kind="cookie"
+                className="absolute inset-0 size-full"
+              />
+              <BookOpen
+                size={32}
+                className="relative text-on-primary-container"
+              />
+            </span>
+            <h2 className="mt-5 text-2xl font-medium text-on-surface">
+              記事がまだありません
+            </h2>
+            <p className="mt-2 text-sm leading-7 text-on-surface-variant">
+              最初の記事をお楽しみに！
+            </p>
           </div>
         )}
       </div>

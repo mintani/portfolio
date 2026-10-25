@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { ArticleMeta } from "@/components/blog/ArticleMeta";
 import { ArticleTags } from "@/components/blog/ArticleTags";
+import { BlogBanner } from "@/components/blog/BlogBanner";
 
 type ArticleDetailHeaderProps = {
   article: BlogArticle;
@@ -10,32 +11,32 @@ type ArticleDetailHeaderProps = {
 
 export const ArticleDetailHeader = ({ article }: ArticleDetailHeaderProps) => {
   return (
-    <header className="relative border-b border-[#35429a]/12 bg-[#e6ebf9]">
-      <div className="container relative mx-auto max-w-4xl px-4 py-20 md:px-6 md:py-20">
-        <Link
-          href="/blog"
-          className="mb-6 inline-flex items-center gap-1.5 text-sm text-[#4d597f] transition-colors hover:text-[#1d2947]"
-        >
-          <ArrowLeft size={14} />
-          記事一覧に戻る
-        </Link>
+    <BlogBanner>
+      <Link
+        href="/blog"
+        className="state-layer -ml-4 mb-6 inline-flex h-10 items-center gap-2 rounded-full px-4 text-sm font-medium text-on-primary-container"
+      >
+        <ArrowLeft size={18} />
+        記事一覧に戻る
+      </Link>
 
-        <div className="space-y-5">
-          <h1 className="font-poppins text-3xl font-semibold tracking-tight text-[#1d2947] md:text-5xl">
-            {article.title}
-          </h1>
+      <div className="space-y-5">
+        <h1 className="text-3xl font-medium tracking-tight text-on-surface md:text-5xl md:leading-tight">
+          {article.title}
+        </h1>
 
-          <ArticleMeta
-            date={article.date}
-            readingTime={article.readingTime}
-            iconSize={14}
-            className="gap-x-5 gap-y-2 text-sm text-[#4d597f]"
-            iconClassName="text-[#4a5cc0]"
-          />
+        <ArticleMeta
+          date={article.date}
+          readingTime={article.readingTime}
+          iconSize={16}
+          className="gap-x-5 gap-y-2 text-sm text-on-primary-container"
+        />
 
-          <ArticleTags tags={article.tags} badgeClassName="bg-white" />
-        </div>
+        <ArticleTags
+          tags={article.tags}
+          chipClassName="border-transparent bg-surface-container-lowest/80 text-on-surface"
+        />
       </div>
-    </header>
+    </BlogBanner>
   );
 };

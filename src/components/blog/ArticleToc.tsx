@@ -47,27 +47,27 @@ export const ArticleToc = ({ items }: ArticleTocProps) => {
 
   return (
     <nav
-      className="sticky top-24 rounded-2xl border border-[#35429a]/12 bg-white p-5 shadow-[0_18px_40px_rgba(23,26,44,0.05)]"
+      className="sticky top-24 rounded-[28px] bg-surface-container-low p-3"
       aria-label="Table of contents"
     >
-      <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#626d92]">
+      <h3 className="px-4 pt-2 pb-3 text-sm font-medium text-on-surface-variant">
         目次
       </h3>
-      <ul className="flex flex-col gap-1 border-l border-[#35429a]/10">
+      <ul className="flex flex-col gap-0.5">
         {items.map((item) => {
           const isActive = activeId === item.url;
           const depthClass =
-            item.depth === 2 ? "pl-3" : item.depth === 3 ? "pl-6" : "pl-9";
+            item.depth === 2 ? "pl-4" : item.depth === 3 ? "pl-8" : "pl-12";
 
           return (
             <li key={item.url}>
               <button
                 type="button"
                 onClick={() => handleClick(item.url)}
-                className={`block w-full cursor-pointer text-left text-sm leading-relaxed transition-all duration-200 ${depthClass} ${
+                className={`state-layer block w-full cursor-pointer rounded-[20px] py-2 pr-4 text-left text-sm leading-relaxed transition-colors duration-200 ${depthClass} ${
                   isActive
-                    ? "border-l-2 border-[#4a5cc0] -ml-px font-medium text-[#1d2947]"
-                    : "text-[#4d597f] hover:text-[#1d2947]"
+                    ? "bg-secondary-container font-medium text-on-secondary-container"
+                    : "text-on-surface-variant"
                 }`}
               >
                 {item.value}

@@ -11,22 +11,22 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="group block rounded-3xl border border-[#35429a]/12 bg-white p-5 shadow-[0_18px_40px_rgba(23,26,44,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#4a5cc0]/35 hover:shadow-[0_24px_52px_rgba(23,26,44,0.08)] md:p-6"
+      className="state-layer block rounded-3xl bg-surface-container-low p-5 text-on-surface transition-shadow duration-200 hover:shadow-level-1 md:p-6"
     >
       <div className="flex h-full flex-col gap-4 md:flex-row md:items-start md:justify-between md:gap-6">
         <div className="min-w-0 flex-1">
           <ArticleMeta
             date={article.date}
             readingTime={article.readingTime}
-            className="gap-3 text-xs text-[#626d92]"
+            className="gap-3 text-xs text-on-surface-variant"
           />
 
-          <h2 className="mt-3 font-poppins text-xl font-semibold tracking-tight text-[#1d2947] transition-colors duration-200 group-hover:text-[#4353b8] md:text-2xl">
+          <h2 className="mt-3 text-xl font-medium tracking-tight md:text-2xl">
             {article.title}
           </h2>
 
           {article.description ? (
-            <p className="mt-3 line-clamp-2 text-sm leading-7 text-[#4d597f] md:text-[15px]">
+            <p className="mt-2 line-clamp-2 text-sm leading-7 text-on-surface-variant md:text-[15px]">
               {article.description}
             </p>
           ) : null}
@@ -35,7 +35,6 @@ export const ArticleCard = ({ article }: ArticleCardProps) => {
         <ArticleTags
           tags={article.tags}
           className="md:max-w-52 md:justify-end"
-          badgeClassName="bg-[#e2e8f8]"
         />
       </div>
     </Link>
